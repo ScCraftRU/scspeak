@@ -43,6 +43,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.sccraft.scspeak.MainActivity" />
         </activity>
+        <activity
+            android:name=".WordFullscreenActivity"
+            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:label="@string/title_activity_word_fullscreen"
+            android:parentActivityName=".WordInfoActivity"
+            android:theme="@style/FullscreenTheme">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.sccraft.scspeak.WordInfoActivity" />
+        </activity>
     </application>
 
 </manifest>
