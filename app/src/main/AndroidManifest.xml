@@ -53,6 +53,7 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.sccraft.scspeak.WordInfoActivity" />
         </activity>
+        <activity android:name=".DownloadActivity"></activity>
     </application>
 
 </manifest>
