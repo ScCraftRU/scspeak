@@ -5,18 +5,33 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.ProgressBar;
 import android.widget.Toast;
 
 public class DownloadActivity extends AppCompatActivity {
 
+    ProgressBar pb;
+    Get g;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
+        pb = (ProgressBar) findViewById(R.id.pb_download);
+        g = (Get) getLastCustomNonConfigurationInstance();
+        if (g == null) {
+            g = new Get(this);
+        }else{
+            g.link(this);
+        }
     }
 
-    private void back() {
+    private void back(boolean b) {
         super.onBackPressed();
+    }
+
+    @Override
+    public Object onRetainCustomNonConfigurationInstance() {
+        return g;
     }
 
     class Get extends AsyncTask<Void, Integer, Boolean> {
@@ -27,6 +42,8 @@ public class DownloadActivity extends AppCompatActivity {
         String server;
         String[] fileName;
         String[] pathOnServer;
+        boolean pr = false;
+        int p;
 
         Get(DownloadActivity a) {
             this.a = a;
@@ -65,8 +82,25 @@ public class DownloadActivity extends AppCompatActivity {
             super.onPostExecute(aBoolean);
             if (aBoolean) {
                 Toast.makeText(getApplicationContext(), a.getString(R.string.done), Toast.LENGTH_SHORT).show();
-                a.back();
+                a.back(true);
+            }else{
+                Toast.makeText(getApplicationContext(), getString(R.string.connectionError), Toast.LENGTH_LONG).show();
             }
+        }
+
+        @Override
+        protected void onProgressUpdate(Integer... values) {
+            super.onProgressUpdate(values);
+            if (!pr) {
+                a.pb.setMax(fileName.length);
+                pr = true;
+            }
+            p++;
+            a.pb.setProgress(p);
+        }
+
+        void link(DownloadActivity a) {
+            this.a = a;
         }
     }
 }
