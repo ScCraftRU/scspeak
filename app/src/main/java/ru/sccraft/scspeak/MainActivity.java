@@ -9,6 +9,9 @@ import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
+import android.widget.EditText;
 import android.widget.ListView;
 
 public class MainActivity extends AppCompatActivity {
@@ -16,6 +19,8 @@ public class MainActivity extends AppCompatActivity {
     Word[] w;
     String[] s; //Слова на текущем языке
     ListView lw;
+    String[] file;
+    EditText search;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -23,7 +28,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         lw = (ListView) findViewById(R.id.lw);
-
+        search = (EditText) findViewById(R.id.search);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -32,6 +37,31 @@ public class MainActivity extends AppCompatActivity {
                         .setAction("Action", null).show();
             }
         });
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (fileList().length > 1) {
+            search(search.getText().toString());
+        }else{
+            String[] noWords = getResources().getStringArray(R.array.noWordsArray);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                    android.R.layout.simple_list_item_1, noWords);
+
+            lw.setAdapter(adapter);
+            lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position) {
+                        case 1:
+                            Intent intent = new Intent(MainActivity.this, DownloadActivity.class);
+                            startActivity(intent);
+                    }
+                }
+            });
+
+        }
     }
 
     @Override
@@ -63,5 +93,10 @@ public class MainActivity extends AppCompatActivity {
         }
 
         return super.onOptionsItemSelected(item);
+    }
+
+    private void search(String st) {
+        file = fileList();
+
     }
 }

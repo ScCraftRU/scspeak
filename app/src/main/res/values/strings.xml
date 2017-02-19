@@ -64,4 +64,9 @@
     <string name="server">Server</string>
     <string name="done">Done</string>
     <string name="connectionError">Connection error!</string>
+
+    <string-array name="noWordsArray">
+        <item>No saved words!</item>
+        <item>Click Here to download words from server</item>
+    </string-array>
 </resources>
