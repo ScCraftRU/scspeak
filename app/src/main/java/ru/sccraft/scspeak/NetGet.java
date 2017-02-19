@@ -45,7 +45,9 @@ public class NetGet {
             conn.setRequestMethod("GET");
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             while ((line = rd.readLine()) != null) {
-                al.add(line);
+                if (!(line.equals(""))) {
+                    al.add(line);
+                }
             }
             rd.close();
             result = al.toArray(new String[al.size()]);

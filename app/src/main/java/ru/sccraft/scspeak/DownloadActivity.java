@@ -58,8 +58,13 @@ public class DownloadActivity extends AppCompatActivity {
             sp = PreferenceManager.getDefaultSharedPreferences(a);
             server = sp.getString("word_server", "http://sccraft.ru/android-app/scspeak/").toString();
             Log.i(LOG_TAG, "Загрузка с сервера:" + server);
-            String[] serverWoordList = NetGet.getMultiLine(server + "list.sccraft");
-            Log.i(LOG_TAG, "Список слов на сервере: " + serverWoordList.toString());
+            String swl = server + "list.sccraft";
+            Log.i(LOG_TAG, "Путь к файлу со списком слов: " + swl);
+            String[] serverWoordList = NetGet.getMultiLine(swl);
+            Log.i(LOG_TAG, "Список слов на сервере:");
+            for (int i = 0; i < serverWoordList.length; i++) {
+                Log.i(LOG_TAG, serverWoordList[i]);
+            }
             fileName = new String[serverWoordList.length];
             pathOnServer = new String[serverWoordList.length];
             for (int i = 0; i < serverWoordList.length; i++) {
@@ -75,7 +80,10 @@ public class DownloadActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                if (fl) fe.saveFile(fileName[i], NetGet.getOneLine(server + pathOnServer + ".json"));
+                if (fl) {
+                    String s = NetGet.getOneLine(server + "words/" + pathOnServer[i] + ".json");
+                    fe.saveFile(fileName[i], s);
+                }
                 publishProgress(i);
             }
             return true;
