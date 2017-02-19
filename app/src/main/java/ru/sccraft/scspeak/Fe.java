@@ -1,5 +1,6 @@
 package ru.sccraft.scspeak;
 
+import android.app.Activity;
 import android.content.ContextWrapper;
 
 import java.io.FileInputStream;
@@ -17,6 +18,10 @@ public class Fe {
     FileInputStream fin;
     FileOutputStream fos;
     ContextWrapper a;
+
+    public Fe(Activity a) {
+        this.a = new ContextWrapper(a.getApplicationContext());
+    }
 
     public void saveText(String name, String content){
 

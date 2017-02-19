@@ -52,7 +52,7 @@ public class DownloadActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            fe = new Fe();
+            fe = new Fe(a);
             file = fileList();
             sp = PreferenceManager.getDefaultSharedPreferences(a);
             server = sp.getString("word_server", "http://sccraft.ru/android-app/scspeak").toString();
@@ -72,7 +72,7 @@ public class DownloadActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                if (fl) fe.saveText(fileName[i], NetGet.getOneLine(server + pathOnServer));
+                if (fl) fe.saveText(fileName[i], NetGet.getOneLine(server + pathOnServer + ".json"));
             }
             return true;
         }

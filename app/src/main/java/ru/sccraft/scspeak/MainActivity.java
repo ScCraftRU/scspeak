@@ -14,6 +14,8 @@ import android.widget.ArrayAdapter;
 import android.widget.EditText;
 import android.widget.ListView;
 
+import java.util.ArrayList;
+
 public class MainActivity extends AppCompatActivity {
 
     Word[] w;
@@ -42,7 +44,8 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-        if (fileList().length > 1) {
+        file = fileList();
+        if (file.length > 1) {
             search(search.getText().toString());
         }else{
             String[] noWords = getResources().getStringArray(R.array.noWordsArray);
@@ -96,7 +99,36 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void search(String st) {
-        file = fileList();
+        {
+            Fe fe = new Fe(this);
+            ArrayList<Word> al = new ArrayList<>();
+            for (int i = 0; i < file.length; i++) {
+                if (!(file[i].equals("instant-run"))) {
+                    al.add(Word.fromJSON(fe.openText(file[i])));
+                }
+
+            }
+            w = al.toArray(new Word[al.size()]);
+        }
+        s = new String[w.length];
+        for (int i = 0; i < w.length; i++) {
+            switch (getString(R.string.getSystemLanguage)) {
+                case "en":
+                    s[i] = w[i].en;
+                    break;
+                case "mk":
+                    s[i] = w[i].mk;
+                    break;
+                case "ru":
+                    s[i] = w[i].ru;
+                    break;
+            }
+        }
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
+                android.R.layout.simple_list_item_1, s);
+
+        lw.setAdapter(adapter);
 
     }
 }
