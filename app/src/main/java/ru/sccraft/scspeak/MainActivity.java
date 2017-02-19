@@ -99,17 +99,17 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void search(String st) {
-        {
+        //{
             Fe fe = new Fe(this);
             ArrayList<Word> al = new ArrayList<>();
             for (int i = 0; i < file.length; i++) {
                 if (!(file[i].equals("instant-run"))) {
-                    al.add(Word.fromJSON(fe.openText(file[i])));
+                    al.add(Word.fromJSON(fe.getFile(file[i])));
                 }
 
             }
             w = al.toArray(new Word[al.size()]);
-        }
+        //}
         s = new String[w.length];
         for (int i = 0; i < w.length; i++) {
             switch (getString(R.string.getSystemLanguage)) {

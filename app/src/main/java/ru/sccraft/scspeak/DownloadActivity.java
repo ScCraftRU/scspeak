@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.util.Log;
 import android.widget.ProgressBar;
 import android.widget.Toast;
 
@@ -35,6 +36,7 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     class Get extends AsyncTask<Void, Integer, Boolean> {
+        static final String LOG_TAG = "DownloadActivity/Get";
         DownloadActivity a;
         Fe fe;
         String[] file;
@@ -43,7 +45,6 @@ public class DownloadActivity extends AppCompatActivity {
         String[] fileName;
         String[] pathOnServer;
         boolean pr = false;
-        int p;
 
         Get(DownloadActivity a) {
             this.a = a;
@@ -55,8 +56,10 @@ public class DownloadActivity extends AppCompatActivity {
             fe = new Fe(a);
             file = fileList();
             sp = PreferenceManager.getDefaultSharedPreferences(a);
-            server = sp.getString("word_server", "http://sccraft.ru/android-app/scspeak").toString();
+            server = sp.getString("word_server", "http://sccraft.ru/android-app/scspeak/").toString();
+            Log.i(LOG_TAG, "Загрузка с сервера:" + server);
             String[] serverWoordList = NetGet.getMultiLine(server + "list.sccraft");
+            Log.i(LOG_TAG, "Список слов на сервере: " + serverWoordList.toString());
             fileName = new String[serverWoordList.length];
             pathOnServer = new String[serverWoordList.length];
             for (int i = 0; i < serverWoordList.length; i++) {
@@ -72,7 +75,8 @@ public class DownloadActivity extends AppCompatActivity {
                         break;
                     }
                 }
-                if (fl) fe.saveText(fileName[i], NetGet.getOneLine(server + pathOnServer + ".json"));
+                if (fl) fe.saveFile(fileName[i], NetGet.getOneLine(server + pathOnServer + ".json"));
+                publishProgress(i);
             }
             return true;
         }
@@ -95,8 +99,7 @@ public class DownloadActivity extends AppCompatActivity {
                 a.pb.setMax(fileName.length);
                 pr = true;
             }
-            p++;
-            a.pb.setProgress(p);
+            a.pb.setProgress(values[0]);
         }
 
         void link(DownloadActivity a) {

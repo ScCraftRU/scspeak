@@ -1,5 +1,7 @@
 package ru.sccraft.scspeak;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -29,6 +31,7 @@ public class Word {
     }
 
     static Word fromJSON(String JSON) {
+        Log.i(LOG_TAG, "Входящий JSON " + JSON);
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
         Word w = gson.fromJson(JSON, Word.class);

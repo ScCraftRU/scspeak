@@ -2,6 +2,7 @@ package ru.sccraft.scspeak;
 
 import android.app.Activity;
 import android.content.ContextWrapper;
+import android.util.Log;
 
 import java.io.FileInputStream;
 import java.io.FileOutputStream;
@@ -15,6 +16,7 @@ import static android.content.Context.MODE_PRIVATE;
  */
 
 public class Fe {
+    public static final String LOG_TAG = "Fe";
     FileInputStream fin;
     FileOutputStream fos;
     ContextWrapper a;
@@ -23,7 +25,7 @@ public class Fe {
         this.a = new ContextWrapper(a.getApplicationContext());
     }
 
-    public void saveText(String name, String content){
+    public void saveFile(String name, String content){
 
         try {
             fos = a.openFileOutput(name, MODE_PRIVATE);
@@ -43,12 +45,13 @@ public class Fe {
         }
     }
 
-    public String openText(String name){
+    public String getFile(String name){
         try {
             fin = a.openFileInput(name);
             byte[] bytes = new byte[fin.available()];
             fin.read(bytes);
             String text = new String (bytes);
+            Log.d(LOG_TAG, "Из файла получен текст: " + text);
             return text;
         }
         catch(IOException ex) {
