@@ -37,4 +37,28 @@ public class Fe {
             }
         }
     }
+
+    public String openText(String name){
+        try {
+            fin = a.openFileInput(name);
+            byte[] bytes = new byte[fin.available()];
+            fin.read(bytes);
+            String text = new String (bytes);
+            return text;
+        }
+        catch(IOException ex) {
+            ex.printStackTrace();
+            return "File read error";
+        }
+        finally{
+
+            try{
+                if(fin!=null)
+                    fin.close();
+            }
+            catch(IOException ex){
+                ex.printStackTrace();
+            }
+        }
+    }
 }
