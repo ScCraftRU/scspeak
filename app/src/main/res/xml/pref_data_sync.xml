@@ -18,6 +18,7 @@
     <Preference
         android:title="Sync now"
         android:icon="@drawable/ic_sync_black_24dp">
+        <intent android:action="ru.sccraft.scspeak.download"/>
     </Preference>
 
 </PreferenceScreen>
