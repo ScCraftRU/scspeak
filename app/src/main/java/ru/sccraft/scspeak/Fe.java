@@ -16,7 +16,7 @@ import static android.content.Context.MODE_PRIVATE;
 public class Fe {
     FileInputStream fin;
     FileOutputStream fos;
-    ContextWrapper a = null;
+    ContextWrapper a;
 
     public void saveText(String name, String content){
 
@@ -60,5 +60,9 @@ public class Fe {
                 ex.printStackTrace();
             }
         }
+    }
+
+    String[] fileList() {
+        return a.fileList();
     }
 }

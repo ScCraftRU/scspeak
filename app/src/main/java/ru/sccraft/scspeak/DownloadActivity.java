@@ -13,9 +13,11 @@ public class DownloadActivity extends AppCompatActivity {
     }
 
     class Get extends AsyncTask<Void, Integer, Boolean> {
+        Fe fe;
 
         @Override
         protected Boolean doInBackground(Void... params) {
+            fe = new Fe();
             return null;
         }
     }
