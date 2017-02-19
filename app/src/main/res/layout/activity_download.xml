@@ -18,11 +18,10 @@
         android:text="@string/downloading" />
 
     <ProgressBar
-        style="@android:style/Widget.Material.Light.ProgressBar.Large"
+        style="@android:style/Widget.DeviceDefault.ProgressBar.Horizontal"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:id="@+id/pb_download"
-        android:indeterminate="false"
         android:visibility="visible" />
 
 </LinearLayout>
