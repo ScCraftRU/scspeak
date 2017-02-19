@@ -54,7 +54,7 @@ public class DownloadActivity extends AppCompatActivity {
         protected Boolean doInBackground(Void... params) {
             fe = new Fe();
             file = fileList();
-            sp = PreferenceManager.getDefaultSharedPreferences(getApplicationContext());
+            sp = PreferenceManager.getDefaultSharedPreferences(a);
             server = sp.getString("word_server", "http://sccraft.ru/android-app/scspeak").toString();
             String[] serverWoordList = NetGet.getMultiLine(server + "list.sccraft");
             fileName = new String[serverWoordList.length];
