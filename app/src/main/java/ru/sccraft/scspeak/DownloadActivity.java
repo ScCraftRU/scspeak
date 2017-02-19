@@ -5,6 +5,7 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
 import android.support.v7.app.AppCompatActivity;
+import android.widget.Toast;
 
 public class DownloadActivity extends AppCompatActivity {
 
@@ -14,13 +15,23 @@ public class DownloadActivity extends AppCompatActivity {
         setContentView(R.layout.activity_download);
     }
 
+    private void back() {
+        super.onBackPressed();
+    }
+
     class Get extends AsyncTask<Void, Integer, Boolean> {
+        DownloadActivity a;
         Fe fe;
         String[] file;
         SharedPreferences sp;
         String server;
         String[] fileName;
         String[] pathOnServer;
+
+        Get(DownloadActivity a) {
+            this.a = a;
+            this.execute();
+        }
 
         @Override
         protected Boolean doInBackground(Void... params) {
@@ -46,7 +57,16 @@ public class DownloadActivity extends AppCompatActivity {
                 }
                 if (fl) fe.saveText(fileName[i], NetGet.getOneLine(server + pathOnServer));
             }
-            return null;
+            return true;
+        }
+
+        @Override
+        protected void onPostExecute(Boolean aBoolean) {
+            super.onPostExecute(aBoolean);
+            if (aBoolean) {
+                Toast.makeText(getApplicationContext(), a.getString(R.string.done), Toast.LENGTH_SHORT).show();
+                a.back();
+            }
         }
     }
 }
