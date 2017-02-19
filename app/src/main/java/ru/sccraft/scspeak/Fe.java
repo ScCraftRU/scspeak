@@ -62,7 +62,7 @@ public class Fe {
         }
     }
 
-    String[] fileList() {
+    String[] list() {
         return a.fileList();
     }
 }
