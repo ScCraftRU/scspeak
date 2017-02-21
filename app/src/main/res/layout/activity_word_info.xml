@@ -17,7 +17,50 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-            
+
+            <!--На текущем языке-->
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/onThisLanguage"
+                android:textSize="18sp"
+                android:textAlignment="center" />
+            <HorizontalScrollView
+                android:layout_width="match_parent"
+                android:layout_height="37sp">
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Слово"
+                        android:textSize="36sp"
+                        android:textAlignment="center"
+                        android:textStyle="normal|bold"
+                        android:id="@+id/wordInfo_thisLanguage" />
+                </LinearLayout>
+            </HorizontalScrollView>
+
+            <!--На других языках-->
+            <!--Английский-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            </LinearLayout>
+            <!--Македонский-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+            </LinearLayout>
+            <!--Русский-->
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"></LinearLayout>
         </LinearLayout>
     </ScrollView>
 
