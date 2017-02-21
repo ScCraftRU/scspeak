@@ -129,6 +129,32 @@ public class MainActivity extends AppCompatActivity {
                 android.R.layout.simple_list_item_1, s);
 
         lw.setAdapter(adapter);
+        lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i = 0; i < s.length; i++) {
+                    switch (getString(R.string.getSystemLanguage)) {
+                        case "en":
+                            if (w[i].en.equals(s[i])) info(w[i]);
+                            break;
+                        case "mk":
+                            if (w[i].mk.equals(s[i])) info(w[i]);
+                            break;
+                        case "ru":
+                            if (w[i].ru.equals(s[i])) info(w[i]);
+                            break;
+                    }
+                }
+            }
+        });
 
     }
+
+    private void info(Word word) {
+        Intent intent = new Intent(MainActivity.this, WordInfoActivity.class);
+        intent.putExtra("word", word);
+        startActivity(intent);
+    }
+
+
 }

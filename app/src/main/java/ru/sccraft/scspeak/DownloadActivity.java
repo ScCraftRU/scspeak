@@ -53,6 +53,7 @@ public class DownloadActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
+            if(!NetGet.getNetworkConnectionStatus(a)) return false;
             fe = new Fe(a);
             file = fileList();
             sp = PreferenceManager.getDefaultSharedPreferences(a);
@@ -61,6 +62,7 @@ public class DownloadActivity extends AppCompatActivity {
             String swl = server + "list.sccraft";
             Log.i(LOG_TAG, "Путь к файлу со списком слов: " + swl);
             String[] serverWoordList = NetGet.getMultiLine(swl);
+            if (serverWoordList[0].equals("Connection error")) return false;
             Log.i(LOG_TAG, "Список слов на сервере:");
             for (int i = 0; i < serverWoordList.length; i++) {
                 Log.i(LOG_TAG, serverWoordList[i]);
@@ -82,6 +84,7 @@ public class DownloadActivity extends AppCompatActivity {
                 }
                 if (fl) {
                     String s = NetGet.getOneLine(server + "words/" + pathOnServer[i] + ".json");
+                    if (s.equals("Connection error")) return false;
                     fe.saveFile(fileName[i], s);
                 }
                 publishProgress(i);
@@ -97,6 +100,7 @@ public class DownloadActivity extends AppCompatActivity {
                 a.back(true);
             }else{
                 Toast.makeText(getApplicationContext(), getString(R.string.connectionError), Toast.LENGTH_LONG).show();
+                a.back(false);
             }
         }
 

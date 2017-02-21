@@ -42,18 +42,6 @@ public class Word implements Parcelable {
         ruTranscriptionToMK = in.readString();
     }
 
-    public static final Creator<Word> CREATOR = new Creator<Word>() {
-        @Override
-        public Word createFromParcel(Parcel in) {
-            return new Word(in);
-        }
-
-        @Override
-        public Word[] newArray(int size) {
-            return new Word[size];
-        }
-    };
-
     public String toJSON() {
         GsonBuilder builder = new GsonBuilder();
         Gson gson = builder.create();
