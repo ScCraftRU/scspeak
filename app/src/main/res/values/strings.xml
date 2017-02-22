@@ -44,4 +44,8 @@
     </string-array>
     <string name="getSystemLanguage">en</string>
     <string name="onThisLanguage">On English</string>
+    <string name="onOthersLanguages">On others languages</string>
+    <string name="wordInEnglish">"In English: "</string>
+    <string name="wordInMakedonian">"In Makedonian: "</string>
+    <string name="wordInRussian">"In Russian: "</string>
 </resources>
