@@ -55,4 +55,9 @@
     <string name="yes">Yes</string>
     <string name="no">No</string>
     <string name="removeAllPreference">Remove all words</string>
+    <string name="about">About</string>
+    <string name="version">"Version: "</string>
+    <string name="versionCode">"Build #: "</string>
+    <string name="rateApp">Rate this app</string>
+    <string name="goToGooglePlayQestion">Go to Google Play?</string>
 </resources>

@@ -29,4 +29,9 @@
     <string name="no">Нет</string>
     <string name="yes">Да</string>
     <string name="removeAllPreference">Удалить все слова</string>
+    <string name="about">О программе</string>
+    <string name="version">"Версия: "</string>
+    <string name="versionCode">"Сборка № "</string>
+    <string name="rateApp">Оценить приложение</string>
+    <string name="goToGooglePlayQestion">Перейти в Google Play?</string>
 </resources>

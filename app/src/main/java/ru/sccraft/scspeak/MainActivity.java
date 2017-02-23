@@ -93,13 +93,16 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_about:
+                Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
+                startActivity(intent1);
         }
 
         return super.onOptionsItemSelected(item);
     }
 
     private void search(String st) {
-        //{
+        {
             Fe fe = new Fe(this);
             ArrayList<Word> al = new ArrayList<>();
             for (int i = 0; i < file.length; i++) {
@@ -109,7 +112,7 @@ public class MainActivity extends AppCompatActivity {
 
             }
             w = al.toArray(new Word[al.size()]);
-        //}
+        }
         s = new String[w.length];
         for (int i = 0; i < w.length; i++) {
             switch (getString(R.string.getSystemLanguage)) {

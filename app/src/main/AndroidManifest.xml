@@ -65,7 +65,11 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".AboutActivity" />
+        <activity android:name=".AboutActivity" >
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="ru.sccraft.scspeak.MainActivity" />
+        </activity>
         <activity android:name=".RemoveAllActivity">
             <intent-filter>
                 <action android:name="ru.sccraft.scspeak.removeall"/>
