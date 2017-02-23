@@ -100,7 +100,7 @@ public class RemoveAllActivity extends AppCompatActivity {
                     deleteFile(file[i]);
                 }
             }
-            return params[0];
+            return null;
         }
 
         @Override

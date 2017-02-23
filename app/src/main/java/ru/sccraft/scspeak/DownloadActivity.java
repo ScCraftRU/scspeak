@@ -90,6 +90,14 @@ public class DownloadActivity extends AppCompatActivity {
                 }
                 publishProgress(i);
             }
+            if (file.length == 0) {
+                for (int i = 0; i < fileName.length; i++)  {
+                    String s = NetGet.getOneLine(server + "words/" + pathOnServer[i] + ".json");
+                    if (s.equals("Connection error")) return false;
+                    fe.saveFile(fileName[i], s);
+                    publishProgress(i);
+                }
+            }
             return true;
         }
 

@@ -41,6 +41,8 @@
     <string-array name="noWordsArray">
         <item>No saved words!</item>
         <item>Click Here to download words from server</item>
+        <item>Downloading a standard dictionary, or manually by adding the word you Accepted privacy policy!</item>
+        <item>View privacy policy</item>
     </string-array>
     <string name="getSystemLanguage">en</string>
     <string name="onThisLanguage">On English</string>
@@ -60,4 +62,8 @@
     <string name="versionCode">"Build #: "</string>
     <string name="rateApp">Rate this app</string>
     <string name="goToGooglePlayQestion">Go to Google Play?</string>
+    <string name="newWord">New word</string>
+    <string name="editWord">Edit word</string>
+    <string name="wordEdit_onLanguages">Different languages:</string>
+    <string name="wordEdit_transcriptions">Transcriptions:</string>
 </resources>

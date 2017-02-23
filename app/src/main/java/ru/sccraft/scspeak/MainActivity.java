@@ -1,9 +1,9 @@
 package ru.sccraft.scspeak;
 
 import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
-import android.support.design.widget.Snackbar;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
@@ -35,8 +35,8 @@ public class MainActivity extends AppCompatActivity {
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
+                Intent intent = new Intent(MainActivity.this, WordEditActivity.class);
+                startActivity(intent);
             }
         });
     }
@@ -60,10 +60,15 @@ public class MainActivity extends AppCompatActivity {
                         case 1:
                             Intent intent = new Intent(MainActivity.this, DownloadActivity.class);
                             startActivity(intent);
+                            break;
+                        case 3:
+                            Uri address = Uri.parse("https://sites.google.com/view/scspeak/%D0%BF%D0%BE%D0%BB%D0%B8%D1%82%D0%B8%D0%BA%D0%B0-%D0%BA%D0%BE%D0%BD%D1%84%D0%B8%D0%B4%D0%B5%D0%BD%D1%86%D0%B8%D0%B0%D0%BB%D1%8C%D0%BD%D0%BE%D1%81%D1%82%D0%B8?authuser=0");
+                            Intent openlink = new Intent(Intent.ACTION_VIEW, address);
+                            startActivity(openlink);
+                            break;
                     }
                 }
             });
-
         }
     }
 
@@ -128,6 +133,13 @@ public class MainActivity extends AppCompatActivity {
             }
         }
 
+        ArrayList<String> searchResult = new ArrayList<>();
+        for (int i = 0; i < s.length; i++) {
+            if (s[i].indexOf(st) != -1) {
+                searchResult.add(s[i]);
+            }
+        }
+
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, s);
 
@@ -150,6 +162,25 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         });
+        lw.setOnItemLongClickListener(new AdapterView.OnItemLongClickListener() {
+            @Override
+            public boolean onItemLongClick(AdapterView<?> parent, View view, int position, long id) {
+                for (int i = 0; i < s.length; i++) {
+                    switch (getString(R.string.getSystemLanguage)) {
+                        case "en":
+                            if (w[i].en.equals(s[i])) edit(w[i]);
+                            break;
+                        case "mk":
+                            if (w[i].mk.equals(s[i])) edit(w[i]);
+                            break;
+                        case "ru":
+                            if (w[i].ru.equals(s[i])) edit(w[i]);
+                            break;
+                    }
+                }
+                return true;
+            }
+        });
 
     }
 
@@ -159,5 +190,9 @@ public class MainActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
+    private void edit(Word word) {
+        Intent intent = new Intent(MainActivity.this, WordEditActivity.class);
+        intent.putExtra("word", word);
+        startActivity(intent);
+    }
 }

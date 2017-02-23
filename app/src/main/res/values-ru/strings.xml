@@ -34,4 +34,14 @@
     <string name="versionCode">"Сборка № "</string>
     <string name="rateApp">Оценить приложение</string>
     <string name="goToGooglePlayQestion">Перейти в Google Play?</string>
+    <string name="newWord">Новое слово</string>
+    <string name="editWord">Изменить слово</string>
+    <string name="wordEdit_onLanguages">На разных языках:</string>
+    <string name="wordEdit_transcriptions">Транскрипции:</string>
+    <string-array name="noWordsArray">
+        <item>Нет сохранённых слов!</item>
+        <item>Нажмите сюдадля скачивания стандартного словаря</item>
+        <item>Скачивая словарь, или добавляя слово вручную, вы соглашаетесь сполитикрй конфиденциальности!</item>
+        <item>Политикаконфиденциальности</item>
+    </string-array>
 </resources>
