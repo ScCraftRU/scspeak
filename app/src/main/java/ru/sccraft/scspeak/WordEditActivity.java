@@ -28,9 +28,9 @@ public class WordEditActivity extends AppCompatActivity {
             w = new Word();
         }else{
             setTitle(getString(R.string.editWord));
-            if (etEN.getText().toString().equals("")) etEN.setText(w.en);
-            if (etMK.getText().toString().equals("")) etEN.setText(w.mk);
-            if (etRU.getText().toString().equals("")) etEN.setText(w.ru);
+            etEN.setText(w.en);
+            etMK.setText(w.mk);
+            etRU.setText(w.ru);
         }
     }
 }
