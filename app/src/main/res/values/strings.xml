@@ -48,4 +48,11 @@
     <string name="wordInEnglish">"In English: "</string>
     <string name="wordInMakedonian">"In Makedonian: "</string>
     <string name="wordInRussian">"In Russian: "</string>
+    <string name="pref_category_words">Words</string>
+    <string name="pleaseWait">Please, wait...</string>
+    <string name="removeAllDialogTitle">Remove all words?</string>
+    <string name="removeAllDialogContent">All words will be removed!</string>
+    <string name="yes">Yes</string>
+    <string name="no">No</string>
+    <string name="removeAllPreference">Remove all words</string>
 </resources>

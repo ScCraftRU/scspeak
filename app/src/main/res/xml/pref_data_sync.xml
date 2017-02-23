@@ -13,7 +13,7 @@
         android:singleLine="true"
         android:title="@string/server"
         android:key="word_server"
-        android:icon="@android:drawable/stat_sys_download_done" />
+        android:icon="@android:drawable/ic_menu_mapmode" />
 
     <Preference
         android:title="Sync now"

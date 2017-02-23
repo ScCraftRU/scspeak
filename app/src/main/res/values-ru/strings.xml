@@ -21,4 +21,12 @@
     <string name="wordInEnglish">"На английском: "</string>
     <string name="wordInMakedonian">"На македонском: "</string>
     <string name="wordInRussian">"На пусском: "</string>
+    <string name="pref_category_words">Слова</string>
+    <string name="pref_ringtone_silent">Бесшумный</string>
+    <string name="pleaseWait">Пожалуйста, подождите...</string>
+    <string name="removeAllDialogTitle">Удалить все слова?</string>
+    <string name="removeAllDialogContent">Все слова будут удалены!</string>
+    <string name="no">Нет</string>
+    <string name="yes">Да</string>
+    <string name="removeAllPreference">Удалить все слова</string>
 </resources>

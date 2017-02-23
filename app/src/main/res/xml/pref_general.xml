@@ -7,4 +7,10 @@
          dismiss it. -->
     <!-- NOTE: ListPreference's summary should be set to its value by the activity code. -->
 
+    <PreferenceCategory android:title="@string/pref_category_words">
+        <Preference android:title="@string/removeAllPreference"
+            android:icon="@android:drawable/ic_menu_delete" >
+            <intent android:action="ru.sccraft.scspeak.removeall"/>
+        </Preference>
+    </PreferenceCategory>
 </PreferenceScreen>

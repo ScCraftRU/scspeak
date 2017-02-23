@@ -1,6 +1,7 @@
 package ru.sccraft.scspeak;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -23,14 +24,15 @@ public class WordInfoActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_info);
+        setupActionBar();
         w = getIntent().getParcelableExtra("word");
         thisLanguage = (TextView) findViewById(R.id.wordInfo_thisLanguage);
         llEN = (LinearLayout) findViewById(R.id.wordInfo_layoutEN);
         llMK = (LinearLayout) findViewById(R.id.wordInfo_layoutMK);
         llRU = (LinearLayout) findViewById(R.id.wordInfo_layoutRU);
-        bEN = (Button)findViewById(R.id.wordInfo_en);
-        bMK = (Button)findViewById(R.id.wordInfo_mk);
-        bRU = (Button)findViewById(R.id.wordInfo_ru);
+        bEN = (Button) findViewById(R.id.wordInfo_en);
+        bMK = (Button) findViewById(R.id.wordInfo_mk);
+        bRU = (Button) findViewById(R.id.wordInfo_ru);
 
         // Load an ad into the AdMob banner view.
         AdView adView = (AdView) findViewById(R.id.adView);
@@ -51,6 +53,14 @@ public class WordInfoActivity extends AppCompatActivity {
         bEN.setText(w.en);
         bMK.setText(w.mk);
         bRU.setText(w.ru);
+    }
+
+    private void setupActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
     }
 
 
