@@ -168,13 +168,13 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < s.length; i++) {
                     switch (getString(R.string.getSystemLanguage)) {
                         case "en":
-                            if (w[i].en.equals(s[i])) edit(w[i]);
+                            if (w[i].en.equals(s[position])) edit(w[i]);
                             break;
                         case "mk":
-                            if (w[i].mk.equals(s[i])) edit(w[i]);
+                            if (w[i].mk.equals(s[position])) edit(w[i]);
                             break;
                         case "ru":
-                            if (w[i].ru.equals(s[i])) edit(w[i]);
+                            if (w[i].ru.equals(s[position])) edit(w[i]);
                             break;
                     }
                 }

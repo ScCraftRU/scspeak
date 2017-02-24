@@ -66,4 +66,5 @@
     <string name="editWord">Edit word</string>
     <string name="wordEdit_onLanguages">Different languages:</string>
     <string name="wordEdit_transcriptions">Transcriptions:</string>
+    <string name="save">Save</string>
 </resources>
