@@ -69,4 +69,6 @@
     <string name="save">Save</string>
     <string name="shareServerFile">Share file for server</string>
     <string name="pref_syncNow">Sync now</string>
+    <string name="transcription">Transcription</string>
+    <string name="close">Close</string>
 </resources>

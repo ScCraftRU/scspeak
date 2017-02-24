@@ -47,4 +47,6 @@
     <string name="save">Сохранить</string>
     <string name="shareServerFile">Поделиться файлом для сервера</string>
     <string name="pref_syncNow">Синхронизировать сейчас</string>
+    <string name="transcription">Произношение слова</string>
+    <string name="close">Закрыть</string>
 </resources>

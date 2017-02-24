@@ -71,7 +71,8 @@
                     android:text="word"
                     android:textAllCaps="false"
                     style="@style/Widget.AppCompat.Button.Borderless"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:onClick="trancriptionEN"/>
             </LinearLayout>
             <!--Македонский-->
             <LinearLayout
@@ -93,7 +94,8 @@
                     android:text="збор"
                     android:textAllCaps="false"
                     style="@style/Widget.AppCompat.Button.Borderless"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:onClick="transcriptionMK"/>
             </LinearLayout>
             <!--Русский-->
             <LinearLayout
@@ -115,7 +117,8 @@
                     android:text="слово"
                     android:textAllCaps="false"
                     style="@style/Widget.AppCompat.Button.Borderless"
-                    android:textSize="18sp" />
+                    android:textSize="18sp"
+                    android:onClick="transcriptionRU"/>
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

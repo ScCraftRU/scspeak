@@ -1,8 +1,10 @@
 package ru.sccraft.scspeak;
 
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -84,6 +86,7 @@ public class WordInfoActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_share:
+                share();
                 return true;
             case R.id.action_toServer:
                 toServer();
@@ -111,5 +114,70 @@ public class WordInfoActivity extends AppCompatActivity {
         if (sendIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(sendIntent);
         }
+    }
+
+    private void showTranscription(String language) {
+        AlertDialog.Builder ad = new AlertDialog.Builder(this);
+        ad.setTitle(getString(R.string.transcription));  // заголовок
+        switch (getString(R.string.getSystemLanguage)) {
+            case "en":
+                switch (language) {
+                    case "en":
+                        ad.setMessage("ERROR");
+                        break;
+                    case "mk":
+                        ad.setMessage(w.mkTranscriptionToEN);
+                        break;
+                    case "ru":
+                        ad.setMessage(w.ruTranscriptionToEN);
+                        break;
+                }
+                break;
+            case "mk":
+                switch (language) {
+                    case "en":
+                        ad.setMessage(w.mkTranscriptionToEN);
+                        break;
+                    case "mk":
+                        ad.setMessage("ERROR");
+                        break;
+                    case "ru":
+                        ad.setMessage(w.ruTranscriptionToMK);
+                        break;
+                }
+                break;
+            case "ru":
+                switch (language) {
+                    case "en":
+                        ad.setMessage(w.enTranscriptionToRU);
+                        break;
+                    case "mk":
+                        ad.setMessage(w.mkTranscriptionToRU);
+                        break;
+                    case "ru":
+                        ad.setMessage("ERROR");
+                        break;
+                }
+                break;
+        }
+        ad.setPositiveButton(getString(R.string.close), new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialog, int which) {
+            }
+        });
+        ad.setCancelable(true);
+        ad.show();
+    }
+
+    public void trancriptionEN(View view) {
+        showTranscription("en");
+    }
+
+    public void transcriptionMK(View view) {
+        showTranscription("mk");
+    }
+
+    public void transcriptionRU(View view) {
+        showTranscription("ru");
     }
 }
