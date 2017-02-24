@@ -62,6 +62,12 @@ public class Word implements Parcelable {
         if (this.ru.equals(word)) return true;
         return false;
     }
+    public boolean contains(Word word) {
+        if (this.en.equals(word.en)) return true;
+        if (this.mk.equals(word.mk)) return true;
+        if (this.ru.equals(word.ru)) return true;
+        return false;
+    }
 
     @Override
     public int describeContents() {

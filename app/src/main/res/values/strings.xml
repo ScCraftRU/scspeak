@@ -67,4 +67,6 @@
     <string name="wordEdit_onLanguages">Different languages:</string>
     <string name="wordEdit_transcriptions">Transcriptions:</string>
     <string name="save">Save</string>
+    <string name="shareServerFile">Share file for server</string>
+    <string name="pref_syncNow">Sync now</string>
 </resources>

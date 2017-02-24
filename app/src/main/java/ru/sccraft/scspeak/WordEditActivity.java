@@ -65,7 +65,27 @@ public class WordEditActivity extends AppCompatActivity {
     }
 
     private void save() {
-        String[] file = fileList();
+        Fe fe = new Fe(this);
+        if (newW) {
+            fe.saveFile(w.en, w.toJSON());
+        }else{
+            String[] file = fileList();
+            String fileName = "";
+            int error = 0;
+            Word[] words = new Word[file.length];
+            for (int i = 0; i < file.length; i++) {
+                words[i] = null;
+                if (!(file[i].equals("instant-run"))) {
+                    words[i] = Word.fromJSON(fe.getFile(file[i]));
+                }
+            }
+            for (int i = 0; i < words.length; i++) {
+                if (words[i] == null) continue;
+                if (words[i].contains(w)) fileName = file[i];
+                fe.saveFile(fileName, w.toJSON());
+                return;
+            }
+        }
     }
 
     @Override

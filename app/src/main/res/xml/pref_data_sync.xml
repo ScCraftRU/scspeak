@@ -16,7 +16,7 @@
         android:icon="@android:drawable/ic_menu_mapmode" />
 
     <Preference
-        android:title="Sync now"
+        android:title="@string/pref_syncNow"
         android:icon="@drawable/ic_sync_black_24dp">
         <intent android:action="ru.sccraft.scspeak.download"/>
     </Preference>

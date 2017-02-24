@@ -1,5 +1,6 @@
 package ru.sccraft.scspeak;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
@@ -42,12 +43,15 @@ public class WordInfoActivity extends AppCompatActivity {
         switch (getString(R.string.getSystemLanguage)) {
             case "en":
                 llEN.setVisibility(View.GONE);
+                thisLanguage.setText(w.en);
                 break;
             case "mk":
                 llMK.setVisibility(View.GONE);
+                thisLanguage.setText(w.mk);
                 break;
             case "ru":
                 llRU.setVisibility(View.GONE);
+                thisLanguage.setText(w.ru);
                 break;
         }
         bEN.setText(w.en);
@@ -78,11 +82,34 @@ public class WordInfoActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        if (id == R.id.action_settings) {
-            return true;
+        switch (id) {
+            case R.id.action_share:
+                return true;
+            case R.id.action_toServer:
+                toServer();
+                return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
+    private void toServer() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, w.toJSON());
+        sendIntent.setType("text/plain");
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
+    }
+
+    private void share() {
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, thisLanguage.getText().toString() + "\n" + "en " + w.en + "\n" + "mk " + w.mk + "\n" + "ru " + w.ru);
+        sendIntent.setType("text/plain");
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
+    }
 }
