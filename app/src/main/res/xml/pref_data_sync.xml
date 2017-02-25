@@ -13,7 +13,7 @@
         android:singleLine="true"
         android:title="@string/server"
         android:key="word_server"
-        android:icon="@android:drawable/ic_menu_mapmode" />
+        android:icon="@drawable/ic_input_black" />
 
     <Preference
         android:title="@string/pref_syncNow"

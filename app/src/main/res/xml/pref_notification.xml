@@ -7,7 +7,7 @@
     <RingtonePreference
         android:defaultValue=""
         android:title="@string/pref_title_ringtone"
-        android:key="ringtone_preference_1" />
+        android:key="notifications_new_message_ringtone" />
     <SwitchPreference
         android:defaultValue="true"
         android:title="@string/pref_title_vibrate"
