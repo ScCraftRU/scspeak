@@ -1,10 +1,12 @@
 package ru.sccraft.scspeak;
 
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.EditText;
+import android.widget.Toast;
 
 public class WordEditActivity extends AppCompatActivity {
 
@@ -16,6 +18,7 @@ public class WordEditActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_edit);
+        setupActionBar();
         w = getIntent().getParcelableExtra("word");
         if (w == null) {newW = true;} else {newW = false;}
         etEN = (EditText) findViewById(R.id.wordEdit_ENet);
@@ -67,7 +70,17 @@ public class WordEditActivity extends AppCompatActivity {
     private void save() {
         Fe fe = new Fe(this);
         if (newW) {
-            fe.saveFile(w.en, w.toJSON());
+            w.en = etEN.getText().toString();
+            w.mk = etMK.getText().toString();
+            w.ru = etRU.getText().toString();
+            w.enTranscriptionToMK = etEN_MK.getText().toString();
+            w.enTranscriptionToRU = etEN_RU.getText().toString();
+            w.mkTranscriptionToEN = etMK_EN.getText().toString();
+            w.mkTranscriptionToRU = etMK_RU.getText().toString();
+            w.ruTranscriptionToEN = etRU_EN.getText().toString();
+            w.enTranscriptionToMK = etRU_MK.getText().toString();
+            fe.saveFile(w.en + ".json", w.toJSON());
+            Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
         }else{
             String[] file = fileList();
             String fileName = "";
@@ -82,14 +95,41 @@ public class WordEditActivity extends AppCompatActivity {
             for (int i = 0; i < words.length; i++) {
                 if (words[i] == null) continue;
                 if (words[i].contains(w)) fileName = file[i];
+                w.en = etEN.getText().toString();
+                w.mk = etMK.getText().toString();
+                w.ru = etRU.getText().toString();
+                w.enTranscriptionToMK = etEN_MK.getText().toString();
+                w.enTranscriptionToRU = etEN_RU.getText().toString();
+                w.mkTranscriptionToEN = etMK_EN.getText().toString();
+                w.mkTranscriptionToRU = etMK_RU.getText().toString();
+                w.ruTranscriptionToEN = etRU_EN.getText().toString();
+                w.enTranscriptionToMK = etRU_MK.getText().toString();
                 fe.saveFile(fileName, w.toJSON());
+                Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
                 return;
             }
         }
     }
 
+    private void setupActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
+        w.en = etEN.getText().toString();
+        w.mk = etMK.getText().toString();
+        w.ru = etRU.getText().toString();
+        w.enTranscriptionToMK = etEN_MK.getText().toString();
+        w.enTranscriptionToRU = etEN_RU.getText().toString();
+        w.mkTranscriptionToEN = etMK_EN.getText().toString();
+        w.mkTranscriptionToRU = etMK_RU.getText().toString();
+        w.ruTranscriptionToEN = etRU_EN.getText().toString();
+        w.enTranscriptionToMK = etRU_MK.getText().toString();
         return w;
     }
 }

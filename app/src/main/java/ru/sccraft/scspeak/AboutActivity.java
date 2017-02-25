@@ -35,9 +35,9 @@ public class AboutActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        vc = (TextView) findViewById(R.id.aboutVC);
+        vc = (TextView) findViewById(R.id.aboutVersionCode);
         vn = (TextView) findViewById(R.id.aboutVN);
-//        vc.setText(versionCode);
+        vc.setText("" + versionCode);
         vn.setText(versionName);
     }
 

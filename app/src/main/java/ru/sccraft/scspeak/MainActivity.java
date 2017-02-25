@@ -15,6 +15,7 @@ import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -139,6 +140,7 @@ public class MainActivity extends AppCompatActivity {
                 searchResult.add(s[i]);
             }
         }
+        Arrays.sort(s);
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
                 android.R.layout.simple_list_item_1, s);
