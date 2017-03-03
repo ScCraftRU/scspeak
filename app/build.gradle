@@ -7,8 +7,8 @@ android {
         applicationId "ru.sccraft.scspeak"
         minSdkVersion 17
         targetSdkVersion 25
-        versionCode 18
-        versionName "0.1alpha18"
+        versionCode 20
+        versionName "0.1alpha20"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -30,6 +30,6 @@ dependencies {
     compile 'com.google.android.gms:play-services-ads:10.2.0'
     compile 'com.android.support:support-v4:25.2.0'
     compile 'com.android.support:support-vector-drawable:25.2.0'
-    compile 'com.google.code.gson:gson:2.6.1'
+    compile 'com.google.code.gson:gson:2.7'
     testCompile 'junit:junit:4.12'
 }

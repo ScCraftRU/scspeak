@@ -3,13 +3,20 @@
     xmlns:tools="http://schemas.android.com/tools"
     tools:context="ru.sccraft.scspeak.MainActivity">
     <item
-        android:id="@+id/action_settings"
+        android:id="@+id/app_bar_search"
+        android:actionViewClass="android.widget.SearchView"
+        android:icon="@android:drawable/ic_menu_search"
         android:orderInCategory="100"
+        android:title="@android:string/search_go"
+        app:showAsAction="always" />
+    <item
+        android:id="@+id/action_settings"
+        android:orderInCategory="101"
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
         android:title="@string/about"
-        android:orderInCategory="101"
+        android:orderInCategory="102"
         android:id="@+id/action_about" />
 
 </menu>

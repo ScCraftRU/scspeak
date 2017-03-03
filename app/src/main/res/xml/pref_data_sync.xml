@@ -16,9 +16,9 @@
         android:icon="@drawable/ic_input_black" />
 
     <Preference
-        android:title="@string/pref_syncNow"
-        android:icon="@drawable/ic_sync_black_24dp">
-        <intent android:action="ru.sccraft.scspeak.download"/>
+        android:icon="@drawable/ic_sync_black"
+        android:title="@string/pref_syncNow">
+        <intent android:action="ru.sccraft.scspeak.download" />
     </Preference>
 
 </PreferenceScreen>
