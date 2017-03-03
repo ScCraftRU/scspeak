@@ -2,6 +2,7 @@ package ru.sccraft.scspeak;
 
 import android.os.Parcel;
 import android.os.Parcelable;
+import android.support.annotation.NonNull;
 import android.util.Log;
 
 import com.google.gson.Gson;
@@ -11,7 +12,7 @@ import com.google.gson.GsonBuilder;
  * Created by alexandr on 18.02.17.
  */
 
-public class Word implements Parcelable {
+public class Word implements Parcelable, Comparable<Word> {
     static final String LOG_TAG = "Word";
     public String en;
     public String mk;
@@ -98,4 +99,17 @@ public class Word implements Parcelable {
             return new Word[size];
         }
     };
+
+    @Override
+    public int compareTo(@NonNull Word o) {
+        switch (MainActivity.language) {
+            case "en":
+                return this.en.compareTo(o.en);
+            case "mk":
+                return this.mk.compareTo(o.mk);
+            case "ru":
+                return this.ru.compareTo(o.ru);
+        }
+        return 0;
+    }
 }

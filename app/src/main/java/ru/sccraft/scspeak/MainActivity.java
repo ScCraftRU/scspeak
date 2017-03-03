@@ -1,17 +1,18 @@
 package ru.sccraft.scspeak;
 
+import android.app.SearchManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
+import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.EditText;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -23,15 +24,18 @@ public class MainActivity extends AppCompatActivity {
     String[] s; //Слова на текущем языке
     ListView lw;
     String[] file;
-    EditText search;
+    SearchView searchView;
+    static String swResult = "";
+    static String language;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        language = getString(R.string.getSystemLanguage);
         setContentView(R.layout.activity_main);
         Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         lw = (ListView) findViewById(R.id.lw);
-        search = (EditText) findViewById(R.id.search);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,11 +51,11 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         file = fileList();
         if (file.length > 1) {
-            search(search.getText().toString());
+            updateWordList();
+            search(swResult);
         }else{
             String[] noWords = getResources().getStringArray(R.array.noWordsArray);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                    android.R.layout.simple_list_item_1, noWords);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noWords);
 
             lw.setAdapter(adapter);
             lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
@@ -83,6 +87,31 @@ public class MainActivity extends AppCompatActivity {
 //        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
 //        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
+        MenuItem searchItem = menu.findItem(R.id.action_search);
+
+        SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(SEARCH_SERVICE);
+
+        if (searchItem != null) {
+            searchView = (SearchView) searchItem.getActionView();
+        }
+        if (searchView != null) {
+            searchView.setSearchableInfo(searchManager.getSearchableInfo(MainActivity.this.getComponentName()));
+            searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+                @Override
+                public boolean onQueryTextSubmit(String query) {
+                    return false;
+                }
+
+                @Override
+                public boolean onQueryTextChange(String newText) {
+                    swResult = newText;
+                    updateWordList();
+                    search(swResult);
+                    return true;
+                }
+            });
+        }
+
         return true;
     }
 
@@ -107,7 +136,7 @@ public class MainActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    private void search(String st) {
+    private void updateWordList() {
         {
             Fe fe = new Fe(this);
             ArrayList<Word> al = new ArrayList<>();
@@ -133,17 +162,35 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
+    }
 
-        ArrayList<String> searchResult = new ArrayList<>();
+    private void search(String st) {
+        ArrayList<Word> searchResult = new ArrayList<>();
         for (int i = 0; i < s.length; i++) {
             if (s[i].indexOf(st) != -1) {
-                searchResult.add(s[i]);
+                searchResult.add(w[i]);
             }
         }
-        Arrays.sort(s);
+        Word[] sr = searchResult.toArray(new Word[searchResult.size()]);
+        Arrays.sort(sr);
+        String[] vW = new String[sr.length];
+        for(int i = 0; i < sr.length; i++) {
+            switch (getString(R.string.getSystemLanguage)) {
+                case "en":
+                    vW[i] = w[i].en;
+                    break;
+                case "mk":
+                    vW[i] = w[i].mk;
+                    break;
+                case "ru":
+                    vW[i] = w[i].ru;
+                    break;
+            }
+        }
+        w = sr;
+        s = vW;
 
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this,
-                android.R.layout.simple_list_item_1, s);
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, vW);
 
         lw.setAdapter(adapter);
         lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
