@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lw;
     String[] file;
     SearchView searchView;
-    static String swResult = "";
+    static String swResult = ""; //Текст из SearchView
     static String language;
 
     @Override

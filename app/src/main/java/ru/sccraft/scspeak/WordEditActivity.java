@@ -70,15 +70,7 @@ public class WordEditActivity extends AppCompatActivity {
     private void save() {
         Fe fe = new Fe(this);
         if (newW) {
-            w.en = etEN.getText().toString();
-            w.mk = etMK.getText().toString();
-            w.ru = etRU.getText().toString();
-            w.enTranscriptionToMK = etEN_MK.getText().toString();
-            w.enTranscriptionToRU = etEN_RU.getText().toString();
-            w.mkTranscriptionToEN = etMK_EN.getText().toString();
-            w.mkTranscriptionToRU = etMK_RU.getText().toString();
-            w.ruTranscriptionToEN = etRU_EN.getText().toString();
-            w.enTranscriptionToMK = etRU_MK.getText().toString();
+            updateTempWordClass();
             fe.saveFile(w.en + ".json", w.toJSON());
             Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
         }else{
@@ -95,15 +87,7 @@ public class WordEditActivity extends AppCompatActivity {
             for (int i = 0; i < words.length; i++) {
                 if (words[i] == null) continue;
                 if (words[i].contains(w)) fileName = file[i];
-                w.en = etEN.getText().toString();
-                w.mk = etMK.getText().toString();
-                w.ru = etRU.getText().toString();
-                w.enTranscriptionToMK = etEN_MK.getText().toString();
-                w.enTranscriptionToRU = etEN_RU.getText().toString();
-                w.mkTranscriptionToEN = etMK_EN.getText().toString();
-                w.mkTranscriptionToRU = etMK_RU.getText().toString();
-                w.ruTranscriptionToEN = etRU_EN.getText().toString();
-                w.enTranscriptionToMK = etRU_MK.getText().toString();
+                updateTempWordClass();
                 fe.saveFile(fileName, w.toJSON());
                 Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
                 return;
@@ -121,6 +105,11 @@ public class WordEditActivity extends AppCompatActivity {
 
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
+        updateTempWordClass();
+        return w;
+    }
+
+    private void updateTempWordClass() {
         w.en = etEN.getText().toString();
         w.mk = etMK.getText().toString();
         w.ru = etRU.getText().toString();
@@ -129,7 +118,6 @@ public class WordEditActivity extends AppCompatActivity {
         w.mkTranscriptionToEN = etMK_EN.getText().toString();
         w.mkTranscriptionToRU = etMK_RU.getText().toString();
         w.ruTranscriptionToEN = etRU_EN.getText().toString();
-        w.enTranscriptionToMK = etRU_MK.getText().toString();
-        return w;
+        w.ruTranscriptionToMK = etRU_MK.getText().toString();
     }
 }
