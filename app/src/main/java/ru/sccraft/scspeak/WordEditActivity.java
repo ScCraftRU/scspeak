@@ -76,7 +76,6 @@ public class WordEditActivity extends AppCompatActivity {
         }else{
             String[] file = fileList();
             String fileName = "";
-            int error = 0;
             Word[] words = new Word[file.length];
             for (int i = 0; i < file.length; i++) {
                 words[i] = null;
