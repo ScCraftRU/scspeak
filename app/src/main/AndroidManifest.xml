@@ -78,7 +78,8 @@
                 <category android:name="android.intent.category.DEFAULT" />
             </intent-filter>
         </activity>
-        <activity android:name=".WordEditActivity"></activity>
+        <activity android:name=".WordEditActivity" />
+        <activity android:name=".DisableADsActivity"></activity>
     </application>
 
 </manifest>

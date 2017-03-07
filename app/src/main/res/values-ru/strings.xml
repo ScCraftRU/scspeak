@@ -51,4 +51,6 @@
     <string name="close">Закрыть</string>
     <string name="fileSaved">Файл сохранён!</string>
     <string name="pref_email">Разрешить доступ к Email</string>
+    <string name="buy">Купить</string>
+    <string name="ads">Реклама</string>
 </resources>

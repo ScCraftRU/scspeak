@@ -13,10 +13,10 @@
             <intent android:action="ru.sccraft.scspeak.removeall"/>
         </Preference>
     </PreferenceCategory>
-    <PreferenceCategory android:title="ADs" >
+    <PreferenceCategory android:title="@string/ads">
         <CheckBoxPreference
             android:defaultValue="false"
-            android:title="@string/pref_email"
-            android:key="disableADsByEmail" />
+            android:key="disableADsByEmail"
+            android:title="@string/pref_email" />
     </PreferenceCategory>
 </PreferenceScreen>

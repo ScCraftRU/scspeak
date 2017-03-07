@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
+import android.os.PersistableBundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -25,7 +26,7 @@ public class MainActivity extends AppCompatActivity {
     ListView lw;
     String[] file;
     SearchView searchView;
-    static String swResult = ""; //Текст из SearchView
+    String swResult = ""; //Текст из SearchView
     static String language;
 
     @Override
@@ -243,5 +244,17 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, WordEditActivity.class);
         intent.putExtra("word", word);
         startActivity(intent);
+    }
+
+    @Override
+    public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
+        super.onSaveInstanceState(outState, outPersistentState);
+        outState.putString("search", swResult);
+    }
+
+    @Override
+    protected void onRestoreInstanceState(Bundle savedInstanceState) {
+        super.onRestoreInstanceState(savedInstanceState);
+        swResult = savedInstanceState.getString("search");
     }
 }

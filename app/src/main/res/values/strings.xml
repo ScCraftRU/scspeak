@@ -73,4 +73,6 @@
     <string name="close">Close</string>
     <string name="fileSaved">File Saved!</string>
     <string name="pref_email">Allow access to E-mail</string>
+    <string name="buy">Buy</string>
+    <string name="ads">ADs</string>
 </resources>
