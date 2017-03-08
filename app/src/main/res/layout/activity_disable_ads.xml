@@ -7,11 +7,20 @@
     tools:context="ru.sccraft.scspeak.DisableADsActivity">
 
     <Button
-        android:layout_width="wrap_content"
-        android:layout_height="0dp"
+        android:layout_width="190dp"
+        android:layout_height="54dp"
         android:text="@string/buy"
-        tools:layout_editor_absoluteX="121dp"
-        tools:layout_editor_absoluteY="204dp"
+        tools:layout_editor_absoluteY="452dp"
         tools:ignore="MissingConstraints"
-        android:onClick="buy"/>
+        android:onClick="buy"
+        app:layout_constraintRight_toLeftOf="@+id/button4"
+        android:layout_marginRight="8dp" />
+
+    <Button
+        android:layout_width="196dp"
+        android:layout_height="54dp"
+        android:text="@string/restorePurchases"
+        tools:layout_editor_absoluteX="193dp"
+        tools:layout_editor_absoluteY="452dp"
+        android:id="@+id/button4" />
 </android.support.constraint.ConstraintLayout>

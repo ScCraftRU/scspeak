@@ -53,4 +53,5 @@
     <string name="pref_email">Разрешить доступ к Email</string>
     <string name="buy">Купить</string>
     <string name="ads">Реклама</string>
+    <string name="restorePurchases">Восстановить покупки</string>
 </resources>
