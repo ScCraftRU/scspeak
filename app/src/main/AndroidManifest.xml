@@ -79,7 +79,12 @@
             </intent-filter>
         </activity>
         <activity android:name=".WordEditActivity" />
-        <activity android:name=".DisableADsActivity"></activity>
+        <activity android:name=".DisableADsActivity">
+            <intent-filter>
+                <action android:name="ru.sccraft.scspeak.disableads"/>
+                <category android:name="android.intent.category.DEFAULT"/>
+            </intent-filter>
+        </activity>
     </application>
 
 </manifest>
