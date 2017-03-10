@@ -22,7 +22,7 @@ import ru.sccraft.scspeak.util.Purchase;
 
 public class DisableADsActivity extends AppCompatActivity implements IabBroadcastReceiver.IabBroadcastListener, DialogInterface.OnClickListener {
 
-    private static String base64EncodedPublicKey = "CONSTRUCT_YOUR_KEY_AND_PLACE_IT_HERE";
+    private static String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi4FjCgarlg4fXq0hnhUeLmQxQs3GFbZXZRKOFw7Dj5b0+rtghIy0JpLciorCVrSOqLphths3uT7AIabWR3AfHa/1R3IIAHutXsV4d83z86bYAeExEHqBZEiJslmpm/S1ghI3PpkOASByYKwjU3Gl0UHiINlr8AAuTfJElhgQDnVoWmwH8QVT2WrshtVDF6/YZkLxEmlfNkbupjG6CqDaypiywquiDXfAo8RKfHgBcqoPcAYtBAOCzUhSFjYY2Af4b7DRnas4HLrTE84NaygqsuJYp0tI+C9frZBneLmne7OVs1PTqUvdjosOy+R2NH+xxYNE8btsbQSCyGkAwXDLrQIDAQAB";
     private static final boolean BUY_DEBUG = true; //Если true , то не списывать деньги
     IabHelper mHelper;
     IabBroadcastReceiver mBroadcastReceiver;

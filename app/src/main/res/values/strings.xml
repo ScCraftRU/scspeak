@@ -76,4 +76,6 @@
     <string name="buy">Buy</string>
     <string name="ads">ADs</string>
     <string name="restorePurchases">restore purchases</string>
+    <string name="disableADs">Disable ADs</string>
+    <string name="exportAll">Export al words</string>
 </resources>

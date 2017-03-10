@@ -54,4 +54,6 @@
     <string name="buy">Купить</string>
     <string name="ads">Реклама</string>
     <string name="restorePurchases">Восстановить покупки</string>
+    <string name="disableADs">Отключить рекламу</string>
+    <string name="exportAll">Экспортировать все слова</string>
 </resources>

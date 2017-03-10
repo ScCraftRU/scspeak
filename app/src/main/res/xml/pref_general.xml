@@ -19,9 +19,8 @@
             android:defaultValue="false"
             android:key="disableADsByEmail"
             android:title="@string/pref_email" />
-        <Preference
-            android:title="Disable ADs">
-            <intent android:action="ru.sccraft.scspeak.disableads"/>
+        <Preference android:title="@string/disableADs">
+            <intent android:action="ru.sccraft.scspeak.disableads" />
         </Preference>
     </PreferenceCategory>
 </PreferenceScreen>

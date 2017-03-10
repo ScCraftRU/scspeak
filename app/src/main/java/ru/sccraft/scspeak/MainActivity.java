@@ -111,6 +111,7 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             });
+            //searchView.setTextWatcher(new TextWatcher());
         }
 
         return true;
