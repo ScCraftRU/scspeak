@@ -126,6 +126,9 @@ public class MainActivity extends AppCompatActivity {
 
         //noinspection SimplifiableIfStatement
         switch (id) {
+            case R.id.action_exportAll:
+                exportAllWords();
+                break;
             case R.id.action_settings:
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
@@ -245,6 +248,27 @@ public class MainActivity extends AppCompatActivity {
         Intent intent = new Intent(MainActivity.this, WordEditActivity.class);
         intent.putExtra("word", word);
         startActivity(intent);
+    }
+
+    private void exportAllWords() {
+        Fe fe = new Fe(this);
+        String tittle = "This data ONLY for ScSpeak server!\n";
+        String rasdelitel = "=================================================================\n";
+        String data = tittle + rasdelitel;
+        for (int i = 0; i < file.length; i++) {
+            if (!(file[i].equals("instant-run"))) {
+                data = data + file[i] + "\n" + fe.getFile(file[i]) + "\n" + rasdelitel;
+            }
+        }
+        data = data + "END OF SERVER DATA";
+
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, data);
+        sendIntent.setType("text/plain");
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
     }
 
     @Override
