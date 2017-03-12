@@ -181,6 +181,9 @@ public class WordInfoActivity extends AppCompatActivity {
 
     private void showAD() {
         adView.setVisibility(View.GONE);
+        Fe fe = new Fe(this);
+        String AD_DATA = fe.getFile("scspeak-ads");
+        if (AD_DATA.equals("1")) return;
         if (getUsername().equals("sasha01945@gmail.com")) return;
         adView.setVisibility(View.VISIBLE);
         AdRequest adRequest = new AdRequest.Builder().setRequestAgent("android_studio:ad_template").build();

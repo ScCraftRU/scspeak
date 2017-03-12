@@ -1,0 +1,58 @@
+{
+  "project_info": {
+    "project_number": "654812072945",
+    "firebase_url": "https://scspeak-a5f8d.firebaseio.com",
+    "project_id": "scspeak-a5f8d",
+    "storage_bucket": "scspeak-a5f8d.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:654812072945:android:16b722282db620d2",
+        "android_client_info": {
+          "package_name": "ru.sccraft.scspeak"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "654812072945-n7r7hogbtdpj7nr8rthtuh4nkisv31ct.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.sccraft.scspeak",
+            "certificate_hash": "ab8058b0d4a227b5822a122131034200187f2313"
+          }
+        },
+        {
+          "client_id": "654812072945-j5t20a3g3tsfg8og7hdgb85a1bmohchr.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "ru.sccraft.scspeak",
+            "certificate_hash": "77352d8439c4518320a1e7f514c982f0e8c36086"
+          }
+        },
+        {
+          "client_id": "654812072945-e0m85u71h1ofl8hh3v4fubmspdi61itd.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyCTbetlk7-ZoppoHVF0BEbX_fwLRDF4vQM"
+        }
+      ],
+      "services": {
+        "analytics_service": {
+          "status": 1
+        },
+        "appinvite_service": {
+          "status": 1,
+          "other_platform_oauth_client": []
+        },
+        "ads_service": {
+          "status": 2
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

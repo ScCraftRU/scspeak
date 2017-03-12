@@ -146,7 +146,7 @@ public class MainActivity extends AppCompatActivity {
             Fe fe = new Fe(this);
             ArrayList<Word> al = new ArrayList<>();
             for (int i = 0; i < file.length; i++) {
-                if (!(file[i].equals("instant-run"))) {
+                if (!((file[i].equals("instant-run"))||(file[i].equals("scspeak-ads")))) {
                     al.add(Word.fromJSON(fe.getFile(file[i])));
                 }
 
