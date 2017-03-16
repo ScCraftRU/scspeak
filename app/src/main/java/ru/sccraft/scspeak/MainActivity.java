@@ -9,6 +9,7 @@ import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -21,8 +22,9 @@ import java.util.Arrays;
 
 public class MainActivity extends AppCompatActivity {
 
-    Word[] w;
-    String[] s; //Слова на текущем языке
+    private static String LOG_TAG = "MainActivity";
+    Word[] w, sr;
+    String[] s, vW; //Слова на текущем языке
     ListView lw;
     String[] file;
     SearchView searchView;
@@ -170,15 +172,20 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void search(String st) {
+        if (st == null) {
+            swResult = "";
+            search(swResult);
+            return;
+        }
         ArrayList<Word> searchResult = new ArrayList<>();
         for (int i = 0; i < s.length; i++) {
             if (s[i].indexOf(st) != -1) {
                 searchResult.add(w[i]);
             }
         }
-        Word[] sr = searchResult.toArray(new Word[searchResult.size()]);
+        sr = searchResult.toArray(new Word[searchResult.size()]);
         Arrays.sort(sr);
-        String[] vW = new String[sr.length];
+        vW = new String[sr.length];
         for(int i = 0; i < sr.length; i++) {
             switch (getString(R.string.getSystemLanguage)) {
                 case "en":
@@ -192,8 +199,6 @@ public class MainActivity extends AppCompatActivity {
                     break;
             }
         }
-        w = sr;
-        s = vW;
 
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, vW);
 
@@ -204,13 +209,13 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < s.length; i++) {
                     switch (getString(R.string.getSystemLanguage)) {
                         case "en":
-                            if (w[i].en.equals(s[position])) info(w[i]);
+                            if (sr[i].en.equals(vW[position])) info(sr[i]);
                             break;
                         case "mk":
-                            if (w[i].mk.equals(s[position])) info(w[i]);
+                            if (sr[i].mk.equals(vW[position])) info(sr[i]);
                             break;
                         case "ru":
-                            if (w[i].ru.equals(s[position])) info(w[i]);
+                            if (sr[i].ru.equals(vW[position])) info(sr[i]);
                             break;
                     }
                 }
@@ -222,13 +227,13 @@ public class MainActivity extends AppCompatActivity {
                 for (int i = 0; i < s.length; i++) {
                     switch (getString(R.string.getSystemLanguage)) {
                         case "en":
-                            if (w[i].en.equals(s[position])) edit(w[i]);
+                            if (sr[i].en.equals(vW[position])) edit(sr[i]);
                             break;
                         case "mk":
-                            if (w[i].mk.equals(s[position])) edit(w[i]);
+                            if (sr[i].mk.equals(vW[position])) edit(sr[i]);
                             break;
                         case "ru":
-                            if (w[i].ru.equals(s[position])) edit(w[i]);
+                            if (sr[i].ru.equals(vW[position])) edit(sr[i]);
                             break;
                     }
                 }
@@ -274,7 +279,10 @@ public class MainActivity extends AppCompatActivity {
     @Override
     public void onSaveInstanceState(Bundle outState, PersistableBundle outPersistentState) {
         super.onSaveInstanceState(outState, outPersistentState);
+        Log.d(LOG_TAG, swResult);
         outState.putString("search", swResult);
+        Log.d(LOG_TAG, outState.toString());
+
     }
 
     @Override
