@@ -91,7 +91,6 @@ public class MainActivity extends AppCompatActivity {
 //        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
         MenuItem searchItem = menu.findItem(R.id.action_search);
-
         SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(SEARCH_SERVICE);
 
         if (searchItem != null) {
@@ -113,9 +112,14 @@ public class MainActivity extends AppCompatActivity {
                     return true;
                 }
             });
-            //searchView.setTextWatcher(new TextWatcher());
         }
 
+        if (fileList().length < 2) {
+            //Скрыть недоступные элементы GUI
+            searchItem.setVisible(false);
+            MenuItem exportItem = menu.findItem(R.id.action_exportAll);
+            exportItem.setVisible(false);
+        }
         return true;
     }
 
