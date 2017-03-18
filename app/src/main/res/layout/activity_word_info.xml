@@ -28,18 +28,21 @@
             <HorizontalScrollView
                 android:layout_width="match_parent"
                 android:layout_height="45sp">
+
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:orientation="horizontal">
+
                     <TextView
+                        android:id="@+id/wordInfo_thisLanguage"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:text="Слово"
-                        android:textSize="36sp"
                         android:textAlignment="center"
-                        android:textStyle="normal|bold"
-                        android:id="@+id/wordInfo_thisLanguage" />
+                        android:textSize="36sp"
+                        android:textStyle="normal|bold" />
                 </LinearLayout>
             </HorizontalScrollView>
 

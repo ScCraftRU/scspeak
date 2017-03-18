@@ -20,7 +20,7 @@
     <string name="onOthersLanguages">На других языках</string>
     <string name="wordInEnglish">"На английском: "</string>
     <string name="wordInMakedonian">"На македонском: "</string>
-    <string name="wordInRussian">"На пусском: "</string>
+    <string name="wordInRussian">\"На русском: \"</string>
     <string name="pref_category_words">Слова</string>
     <string name="pref_ringtone_silent">Бесшумный</string>
     <string name="pleaseWait">Пожалуйста, подождите...</string>
