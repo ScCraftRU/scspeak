@@ -5,8 +5,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
-import java.util.Random;
-
 import ru.sccraft.scspeak.util.IabHelper;
 import ru.sccraft.scspeak.util.IabResult;
 import ru.sccraft.scspeak.util.Inventory;
@@ -60,7 +58,7 @@ public class DisableADsActivity extends AppCompatActivity {
 
         // compute your public key and store it in base64EncodedPublicKey
         mHelper = new IabHelper(this, base64EncodedPublicKey);
-        mHelper.enableDebugLogging(false);
+        mHelper.enableDebugLogging(true);
         mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
             public void onIabSetupFinished(IabResult result) {
                 if (!result.isSuccess()) {
@@ -85,11 +83,8 @@ public class DisableADsActivity extends AppCompatActivity {
     }
 
     private void buy() {
-        int randomCode = Integer.MIN_VALUE;
         try {
-            Random random = new Random();
-            randomCode = random.nextInt();
-            mHelper.launchPurchaseFlow(this, "ru.sccraft.scspeak.disableads", randomCode, mPurchaseFinishedListener, "Язык: " + MainActivity.language);
+            mHelper.launchPurchaseFlow(this, "ru.sccraft.scspeak.disableads", 10001, mPurchaseFinishedListener, "Язык: " + MainActivity.language);
         } catch (IabHelper.IabAsyncInProgressException e) {
             e.printStackTrace();
         }
