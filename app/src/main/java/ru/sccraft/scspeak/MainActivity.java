@@ -183,7 +183,7 @@ public class MainActivity extends AppCompatActivity {
         }
         ArrayList<Word> searchResult = new ArrayList<>();
         for (int i = 0; i < s.length; i++) {
-            if (s[i].indexOf(st) != -1) {
+            if (s[i].contains(st)) {
                 searchResult.add(w[i]);
             }
         }
@@ -261,7 +261,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void exportAllWords() {
         Fe fe = new Fe(this);
-        String tittle = "This data ONLY for ScSpeak server!\n";
+        String tittle = "This data ONLY for ScSpeak server!\nMore information on http://sccraft.ru/publ/scspeak/guide/howtocreateserver/2-1-0-1";
         String rasdelitel = "=================================================================\n";
         String data = tittle + rasdelitel;
         for (int i = 0; i < file.length; i++) {
