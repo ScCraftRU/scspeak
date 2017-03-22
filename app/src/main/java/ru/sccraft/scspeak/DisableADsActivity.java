@@ -5,6 +5,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
 
+import java.util.Random;
+
 import ru.sccraft.scspeak.util.IabHelper;
 import ru.sccraft.scspeak.util.IabResult;
 import ru.sccraft.scspeak.util.Inventory;
@@ -78,6 +80,8 @@ public class DisableADsActivity extends AppCompatActivity {
             mHelper.dispose();
         } catch (IabHelper.IabAsyncInProgressException e) {
             e.printStackTrace();
+        } catch (IllegalArgumentException ex) {
+            ex.printStackTrace();
         }
         mHelper = null;
     }
@@ -87,7 +91,11 @@ public class DisableADsActivity extends AppCompatActivity {
             mHelper.launchPurchaseFlow(this, "ru.sccraft.scspeak.disableads", 10001, mPurchaseFinishedListener, "Язык: " + MainActivity.language);
         } catch (IabHelper.IabAsyncInProgressException e) {
             e.printStackTrace();
+        } catch (IllegalStateException ex) {
+            ex.printStackTrace();
         }
+
+        Random r = new Random();
     }
 
     private void restore() {
@@ -95,6 +103,8 @@ public class DisableADsActivity extends AppCompatActivity {
             mHelper.queryInventoryAsync(mGotInventoryListener);
         } catch (IabHelper.IabAsyncInProgressException e) {
             e.printStackTrace();
+        } catch (IllegalStateException ex) {
+            ex.printStackTrace();
         }
     }
     public void buy(View view) {

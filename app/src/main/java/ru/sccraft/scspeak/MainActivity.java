@@ -30,6 +30,8 @@ public class MainActivity extends AppCompatActivity {
     SearchView searchView;
     String swResult = ""; //Текст из SearchView
     static String language;
+    private Menu menu;
+    private MenuItem searchItem;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,6 +55,20 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         file = fileList();
+        if (file.length < 2) {
+            //Скрыть недоступные элементы GUI
+            if (searchItem != null) {
+                searchItem.setVisible(false);
+                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
+                exportItem.setVisible(false);
+            }
+        } else {
+            if (searchItem != null) {
+                searchItem.setVisible(true);
+                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
+                exportItem.setVisible(true);
+            }
+        }
         if (file.length > 1) {
             updateWordList();
             search(swResult);
@@ -90,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
 //        SearchView searchView = (SearchView) menu.findItem(R.id.search).getActionView();
 //        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
 
-        MenuItem searchItem = menu.findItem(R.id.action_search);
+        searchItem = menu.findItem(R.id.action_search);
         SearchManager searchManager = (SearchManager) MainActivity.this.getSystemService(SEARCH_SERVICE);
 
         if (searchItem != null) {
@@ -107,18 +123,26 @@ public class MainActivity extends AppCompatActivity {
                 @Override
                 public boolean onQueryTextChange(String newText) {
                     swResult = newText;
-                    updateWordList();
                     search(swResult);
                     return true;
                 }
             });
         }
 
-        if (fileList().length < 2) {
+        this.menu = menu;
+        if (file.length < 2) {
             //Скрыть недоступные элементы GUI
-            searchItem.setVisible(false);
-            MenuItem exportItem = menu.findItem(R.id.action_exportAll);
-            exportItem.setVisible(false);
+            if (searchItem != null) {
+                searchItem.setVisible(false);
+                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
+                exportItem.setVisible(false);
+            }
+        } else {
+            if (searchItem != null) {
+                searchItem.setVisible(true);
+                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
+                exportItem.setVisible(true);
+            }
         }
         return true;
     }
