@@ -78,4 +78,5 @@
     <string name="restorePurchases">restore purchases</string>
     <string name="disableADs">Disable ADs</string>
     <string name="exportAll">Export al words</string>
+    <string name="notBuyed">You are no have this in-app product!</string>
 </resources>

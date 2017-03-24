@@ -1,9 +1,12 @@
 package ru.sccraft.scspeak;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import java.util.Random;
 
@@ -22,6 +25,17 @@ public class DisableADsActivity extends AppCompatActivity {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
             if (result.isFailure()) {
                 Log.d(TAG, "Error purchasing: " + result);
+
+                AlertDialog.Builder ad = new AlertDialog.Builder(DisableADsActivity.this);
+                ad.setTitle(getString(R.string.transcription));  // заголовок
+                ad.setMessage("ERROR " + result);
+                ad.setPositiveButton(getString(R.string.close), new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                    }
+                });
+                ad.setCancelable(true);
+                ad.show();
                 return;
             }
             else if (purchase.getSku().equals("ru.sccraft.scspeak.disableads")) {
@@ -29,6 +43,7 @@ public class DisableADsActivity extends AppCompatActivity {
                 // consume the gas and update the UI
                 adsDisabled = true;
                 fe.saveFile("scspeak-ads", "1");
+                Toast.makeText(getApplicationContext(), getString(R.string.done), Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -43,7 +58,12 @@ public class DisableADsActivity extends AppCompatActivity {
                 // does the user have the premium upgrade?
                 adsDisabled = inventory.hasPurchase("ru.sccraft.scspeak.disableads");
                 // update UI accordingly
-                if (adsDisabled) fe.saveFile("scspeak-ads", "1");
+                if (adsDisabled) {
+                    fe.saveFile("scspeak-ads", "1");
+                    Toast.makeText(getApplicationContext(), getString(R.string.done), Toast.LENGTH_LONG).show();
+                } else {
+                    Toast.makeText(getApplicationContext(), getString(R.string.notBuyed), Toast.LENGTH_LONG).show();
+                }
             }
         }
     };

@@ -56,4 +56,5 @@
     <string name="restorePurchases">Восстановить покупки</string>
     <string name="disableADs">Отключить рекламу</string>
     <string name="exportAll">Экспортировать все слова</string>
+    <string name="notBuyed">Этот продукт не преобретён!</string>
 </resources>

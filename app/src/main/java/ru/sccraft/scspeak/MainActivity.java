@@ -234,7 +234,7 @@ public class MainActivity extends AppCompatActivity {
         lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                for (int i = 0; i < s.length; i++) {
+                for (int i = 0; i < vW.length; i++) {
                     switch (getString(R.string.getSystemLanguage)) {
                         case "en":
                             if (sr[i].en.equals(vW[position])) info(sr[i]);
