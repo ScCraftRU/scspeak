@@ -76,20 +76,19 @@ public class WordEditActivity extends AppCompatActivity {
         }else{
             String[] file = fileList();
             String fileName = "";
-            Word[] words = new Word[file.length];
+            updateTempWordClass();
+            Word original = getIntent().getParcelableExtra("word");
             for (int i = 0; i < file.length; i++) {
-                words[i] = null;
                 if (!(file[i].equals("instant-run"))) {
-                    words[i] = Word.fromJSON(fe.getFile(file[i]));
+                    String JSON = fe.getFile(file[i]);
+                    if (!(JSON.contains(original.en))) continue;
+                    if (!(JSON.contains(original.mk))) continue;
+                    if (!(JSON.contains(original.ru))) continue;
+                    fileName = file[i];
+                    fe.saveFile(fileName, w.toJSON());
+                    Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
+                    return;
                 }
-            }
-            for (int i = 0; i < words.length; i++) {
-                if (words[i] == null) continue;
-                if (words[i].contains(w)) fileName = file[i];
-                updateTempWordClass();
-                fe.saveFile(fileName, w.toJSON());
-                Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
-                return;
             }
         }
     }

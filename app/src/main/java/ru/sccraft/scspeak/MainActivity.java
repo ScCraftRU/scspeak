@@ -206,8 +206,8 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         ArrayList<Word> searchResult = new ArrayList<>();
-        for (int i = 0; i < s.length; i++) {
-            if (s[i].contains(st)) {
+        for (int i = 0; i < w.length; i++) {
+            if (w[i].contains(st)) {
                 searchResult.add(w[i]);
             }
         }
@@ -217,13 +217,13 @@ public class MainActivity extends AppCompatActivity {
         for(int i = 0; i < sr.length; i++) {
             switch (getString(R.string.getSystemLanguage)) {
                 case "en":
-                    vW[i] = w[i].en;
+                    vW[i] = sr[i].en;
                     break;
                 case "mk":
-                    vW[i] = w[i].mk;
+                    vW[i] = sr[i].mk;
                     break;
                 case "ru":
-                    vW[i] = w[i].ru;
+                    vW[i] = sr[i].ru;
                     break;
             }
         }

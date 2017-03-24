@@ -58,15 +58,9 @@ public class Word implements Parcelable, Comparable<Word> {
     }
 
     public boolean contains(String word) {
-        if (this.en.equals(word)) return true;
-        if (this.mk.equals(word)) return true;
-        if (this.ru.equals(word)) return true;
-        return false;
-    }
-    public boolean contains(Word word) {
-        if (this.en.equals(word.en)) return true;
-        if (this.mk.equals(word.mk)) return true;
-        if (this.ru.equals(word.ru)) return true;
+        if (this.en.contains(word)) return true;
+        if (this.mk.contains(word)) return true;
+        if (this.ru.contains(word)) return true;
         return false;
     }
 
