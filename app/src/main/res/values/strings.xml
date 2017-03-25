@@ -79,4 +79,5 @@
     <string name="disableADs">Disable ADs</string>
     <string name="exportAll">Export al words</string>
     <string name="notBuyed">You are no have this in-app product!</string>
+    <string name="unavableInThisMoment">This action is unavable in this moment! Click \"back\" and try again!</string>
 </resources>

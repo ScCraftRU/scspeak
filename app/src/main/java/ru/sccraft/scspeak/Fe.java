@@ -1,6 +1,6 @@
 package ru.sccraft.scspeak;
 
-import android.app.Activity;
+import android.content.Context;
 import android.content.ContextWrapper;
 import android.util.Log;
 
@@ -21,7 +21,7 @@ public class Fe {
     FileOutputStream fos;
     ContextWrapper a;
 
-    public Fe(Activity a) {
+    public Fe(Context a) {
         this.a = new ContextWrapper(a.getApplicationContext());
     }
 

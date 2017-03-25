@@ -24,11 +24,11 @@ public class DisableADsActivity extends AppCompatActivity {
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
             if (result.isFailure()) {
-                Log.d(TAG, "Error purchasing: " + result);
+                Log.e(TAG, "Error purchasing: " + result);
 
                 AlertDialog.Builder ad = new AlertDialog.Builder(DisableADsActivity.this);
-                ad.setTitle(getString(R.string.transcription));  // заголовок
-                ad.setMessage("ERROR " + result);
+                ad.setTitle("ERROR");  // заголовок
+                ad.setMessage("" +result);
                 ad.setPositiveButton(getString(R.string.close), new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialog, int which) {
@@ -86,6 +86,17 @@ public class DisableADsActivity extends AppCompatActivity {
                 if (!result.isSuccess()) {
                     // Oh no, there was a problem.
                     Log.d(TAG, "Problem setting up In-app Billing: " + result);
+
+                    AlertDialog.Builder ad = new AlertDialog.Builder(DisableADsActivity.this);
+                    ad.setTitle("ERROR");  // заголовок
+                    ad.setMessage("" + result);
+                    ad.setPositiveButton(getString(R.string.close), new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                        }
+                    });
+                    ad.setCancelable(true);
+                    ad.show();
                 }
                 // Hooray, IAB is fully set up!
             }
@@ -111,6 +122,7 @@ public class DisableADsActivity extends AppCompatActivity {
             mHelper.launchPurchaseFlow(this, "ru.sccraft.scspeak.disableads", 10001, mPurchaseFinishedListener, "Язык: " + MainActivity.language);
         } catch (IabHelper.IabAsyncInProgressException e) {
             e.printStackTrace();
+            Toast.makeText(getApplication(), R.string.unavableInThisMoment, Toast.LENGTH_LONG).show();
         } catch (IllegalStateException ex) {
             ex.printStackTrace();
         }
@@ -123,6 +135,7 @@ public class DisableADsActivity extends AppCompatActivity {
             mHelper.queryInventoryAsync(mGotInventoryListener);
         } catch (IabHelper.IabAsyncInProgressException e) {
             e.printStackTrace();
+            Toast.makeText(getApplication(), R.string.unavableInThisMoment, Toast.LENGTH_LONG).show();
         } catch (IllegalStateException ex) {
             ex.printStackTrace();
         }

@@ -57,4 +57,5 @@
     <string name="disableADs">Отключить рекламу</string>
     <string name="exportAll">Экспортировать все слова</string>
     <string name="notBuyed">Этот продукт не преобретён!</string>
+    <string name="unavableInThisMoment">Это действие недоступно в настоящий момент! Нажмите \"Назад\" и попробуйте ещё раз!</string>
 </resources>
