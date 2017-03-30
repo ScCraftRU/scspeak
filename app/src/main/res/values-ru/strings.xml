@@ -44,6 +44,10 @@
         <item>Скачивая словарь, или добавляя слово вручную, вы соглашаетесь сполитикрй конфиденциальности!</item>
         <item>Политикаконфиденциальности</item>
     </string-array>
+    <string-array name="pref_search_array">
+        <item>Текущий язык</item>
+        <item>Все языки</item>
+    </string-array>
     <string name="save">Сохранить</string>
     <string name="shareServerFile">Поделиться файлом для сервера</string>
     <string name="pref_syncNow">Синхронизировать сейчас</string>
@@ -58,4 +62,7 @@
     <string name="exportAll">Экспортировать все слова</string>
     <string name="notBuyed">Этот продукт не преобретён!</string>
     <string name="unavableInThisMoment">Это действие недоступно в настоящий момент! Нажмите \"Назад\" и попробуйте ещё раз!</string>
+    <string name="pref_search">Язык поиска</string>
+    <string name="action_delete">Удалить</string>
+    <string name="fileDeleted">Файл удалён!</string>
 </resources>

@@ -80,12 +80,12 @@ public class DisableADsActivity extends AppCompatActivity {
 
         // compute your public key and store it in base64EncodedPublicKey
         mHelper = new IabHelper(this, base64EncodedPublicKey);
-        mHelper.enableDebugLogging(true);
+        mHelper.enableDebugLogging(true, "In-app-billing");
         mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
             public void onIabSetupFinished(IabResult result) {
                 if (!result.isSuccess()) {
                     // Oh no, there was a problem.
-                    Log.d(TAG, "Problem setting up In-app Billing: " + result);
+                    Log.e(TAG, "Problem setting up In-app Billing: " + result);
 
                     AlertDialog.Builder ad = new AlertDialog.Builder(DisableADsActivity.this);
                     ad.setTitle("ERROR");  // заголовок
@@ -101,7 +101,6 @@ public class DisableADsActivity extends AppCompatActivity {
                 // Hooray, IAB is fully set up!
             }
         });
-
     }
 
     @Override

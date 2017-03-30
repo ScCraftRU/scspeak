@@ -13,6 +13,13 @@
             android:icon="@android:drawable/ic_menu_delete" >
             <intent android:action="ru.sccraft.scspeak.removeall"/>
         </Preference>
+        <ListPreference
+            android:defaultValue="1"
+            android:entries="@array/pref_search_array"
+            android:entryValues="@array/pref_search_array"
+            android:icon="@android:drawable/ic_search_category_default"
+            android:key="pref_searchLanguage"
+            android:title="@string/pref_search" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/ads">
         <CheckBoxPreference

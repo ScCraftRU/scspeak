@@ -44,6 +44,11 @@
         <item>Downloading a standard dictionary, or manually by adding the word you Accepted privacy policy!</item>
         <item>View privacy policy</item>
     </string-array>
+    <string-array name="pref_search_array">
+        <item>Current language</item>
+        <item>All languages</item>
+    </string-array>
+
     <string name="getSystemLanguage">en</string>
     <string name="onThisLanguage">On English</string>
     <string name="onOthersLanguages">On others languages</string>
@@ -80,4 +85,7 @@
     <string name="exportAll">Export al words</string>
     <string name="notBuyed">You are no have this in-app product!</string>
     <string name="unavableInThisMoment">This action is unavable in this moment! Click \"back\" and try again!</string>
+    <string name="pref_search">Search language</string>
+    <string name="action_delete">Delete</string>
+    <string name="fileDeleted">File deleted!</string>
 </resources>

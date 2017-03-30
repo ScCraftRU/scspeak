@@ -95,9 +95,9 @@ public class RemoveAllActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            for (int i = 0; i < file.length; i++) {
-                if (!file[i].equals("instant-run")) {
-                    deleteFile(file[i]);
+            for (String aFile : file) {
+                if (!aFile.equals("instant-run")) {
+                    deleteFile(aFile);
                 }
             }
             return null;

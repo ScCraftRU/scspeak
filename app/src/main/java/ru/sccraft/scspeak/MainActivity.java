@@ -2,9 +2,11 @@ package ru.sccraft.scspeak;
 
 import android.app.SearchManager;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.PersistableBundle;
+import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
@@ -206,9 +208,28 @@ public class MainActivity extends AppCompatActivity {
             return;
         }
         ArrayList<Word> searchResult = new ArrayList<>();
-        for (int i = 0; i < w.length; i++) {
-            if (w[i].contains(st)) {
-                searchResult.add(w[i]);
+        SharedPreferences настройки = PreferenceManager.getDefaultSharedPreferences(this);
+        String язык_поиска = настройки.getString("pref_searchLanguage", "");
+        final String[] настройки_поиска = getResources().getStringArray(R.array.pref_search_array);
+        if (язык_поиска.equals(настройки_поиска[0])) {
+            for (int i = 0; i < w.length; i++) {
+                if (s[i].contains(st)) {
+                    searchResult.add(w[i]);
+                }
+            }
+        } else if (язык_поиска.equals(настройки_поиска[1])) {
+            for (int i = 0; i < w.length; i++) {
+                if (w[i].contains(st)) {
+                    searchResult.add(w[i]);
+                }
+            }
+        } else {
+            for (int i = 0; i < w.length; i++) {
+                for (int j = 0; j < w.length; i++) {
+                    if (s[j].contains(st)) {
+                        searchResult.add(w[j]);
+                    }
+                }
             }
         }
         sr = searchResult.toArray(new Word[searchResult.size()]);

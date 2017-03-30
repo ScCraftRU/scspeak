@@ -1,5 +1,6 @@
 package ru.sccraft.scspeak;
 
+import android.app.Dialog;
 import android.content.ActivityNotFoundException;
 import android.content.DialogInterface;
 import android.content.Intent;
@@ -50,34 +51,42 @@ public class AboutActivity extends AppCompatActivity {
     }
 
     public void rateAPP(View view) {
-        String title = getString(R.string.rateApp);
-        String message = getString(R.string.goToGooglePlayQestion);
-        String button1String = getString(R.string.yes);
-        String button2String = getString(R.string.no);
+        showDialog(1);
+    }
 
-        ad = new AlertDialog.Builder(AboutActivity.this);
-        ad.setTitle(title);  // заголовок
-        ad.setMessage(message); // сообщение
-        ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int arg1) {
-                try {
-                    Intent intent = new Intent(Intent.ACTION_VIEW);
-                    intent.setData(Uri.parse("market://details?id=ru.sccraft.scspeak"));
-                    startActivity(intent);
-                }catch (ActivityNotFoundException e) {
-                    e.printStackTrace();
+    @Override
+    protected Dialog onCreateDialog(int id) {
+        if (id == 1) {
+            String title = getString(R.string.rateApp);
+            String message = getString(R.string.goToGooglePlayQestion);
+            String button1String = getString(R.string.yes);
+            String button2String = getString(R.string.no);
+
+            ad = new AlertDialog.Builder(AboutActivity.this);
+            ad.setTitle(title);  // заголовок
+            ad.setMessage(message); // сообщение
+            ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int arg1) {
+                    try {
+                        Intent intent = new Intent(Intent.ACTION_VIEW);
+                        intent.setData(Uri.parse("market://details?id=ru.sccraft.scspeak"));
+                        startActivity(intent);
+                    }catch (ActivityNotFoundException e) {
+                        e.printStackTrace();
+                    }
                 }
-            }
-        });
-        ad.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
-            public void onClick(DialogInterface dialog, int arg1) {
-            }
-        });
-        ad.setCancelable(true);
-        ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
-            public void onCancel(DialogInterface dialog) {
-            }
-        });
-        ad.show();
+            });
+            ad.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
+                public void onClick(DialogInterface dialog, int arg1) {
+                }
+            });
+            ad.setCancelable(true);
+            ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
+                public void onCancel(DialogInterface dialog) {
+                }
+            });
+            return ad.create();
+        }
+        return super.onCreateDialog(id);
     }
 }

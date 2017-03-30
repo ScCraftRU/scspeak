@@ -53,6 +53,8 @@ public class WordEditActivity extends AppCompatActivity {
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_wordedit, menu);
+        MenuItem удалить = menu.findItem(R.id.action_delete);
+        if (newW) удалить.setVisible(false);
         return true;
     }
 
@@ -63,6 +65,9 @@ public class WordEditActivity extends AppCompatActivity {
             case R.id.action_save:
                 save();
                 return true;
+            case R.id.action_delete:
+                delete();
+                break;
         }
         return super.onOptionsItemSelected(item);
     }
@@ -89,6 +94,27 @@ public class WordEditActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
                     return;
                 }
+            }
+        }
+    }
+
+    private void delete() {
+        if (newW) return;
+        String[] file = fileList();
+        Fe fe = new Fe(this);
+        String fileName = "";
+        updateTempWordClass();
+        Word original = getIntent().getParcelableExtra("word");
+        for (int i = 0; i < file.length; i++) {
+            if (!(file[i].equals("instant-run"))) {
+                String JSON = fe.getFile(file[i]);
+                if (!(JSON.contains(original.en))) continue;
+                if (!(JSON.contains(original.mk))) continue;
+                if (!(JSON.contains(original.ru))) continue;
+                fileName = file[i];
+                deleteFile(fileName);
+                Toast.makeText(getApplicationContext(), getString(R.string.fileDeleted), Toast.LENGTH_LONG).show();
+                return;
             }
         }
     }
