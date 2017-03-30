@@ -225,10 +225,8 @@ public class MainActivity extends AppCompatActivity {
             }
         } else {
             for (int i = 0; i < w.length; i++) {
-                for (int j = 0; j < w.length; i++) {
-                    if (s[j].contains(st)) {
-                        searchResult.add(w[j]);
-                    }
+                if (s[i].contains(st)) {
+                    searchResult.add(w[i]);
                 }
             }
         }
