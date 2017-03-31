@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import java.util.ArrayList;
 import java.util.Random;
 
 import ru.sccraft.scspeak.util.IabHelper;
@@ -104,6 +105,7 @@ public class DisableADsActivity extends AppCompatActivity {
                     ad.show();
                 }
                 // Hooray, IAB is fully set up!
+                restore();
             }
         });
     }
@@ -135,8 +137,10 @@ public class DisableADsActivity extends AppCompatActivity {
     }
 
     private void restore() {
+        ArrayList<String> товары = new ArrayList<>(1);
+        товары.add("ru.sccraft.scspeak.disableads");
         try {
-            mHelper.queryInventoryAsync(mGotInventoryListener);
+            mHelper.queryInventoryAsync(true,товары, null, mGotInventoryListener);
         } catch (IabHelper.IabAsyncInProgressException e) {
             e.printStackTrace();
             Toast.makeText(getApplication(), R.string.unavableInThisMoment, Toast.LENGTH_LONG).show();
