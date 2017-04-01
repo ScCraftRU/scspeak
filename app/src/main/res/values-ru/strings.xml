@@ -65,4 +65,7 @@
     <string name="pref_search">Язык поиска</string>
     <string name="action_delete">Удалить</string>
     <string name="fileDeleted">Файл удалён!</string>
+    <string name="adsDisabled">Реклама отключена!</string>
+    <string name="send_logcat">Отправить Logcat</string>
+    <string name="onlyForDevelopers">Эта кнопка предназначена только для разработчиков! Logcat может содержать конфиденциальные данные!</string>
 </resources>

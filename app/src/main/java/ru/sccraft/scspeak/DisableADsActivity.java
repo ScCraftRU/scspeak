@@ -19,15 +19,17 @@ import ru.sccraft.scspeak.util.Purchase;
 
 public class DisableADsActivity extends AppCompatActivity {
 
+    private static final String LOG_TAG = "DisableADsActivity";
     Fe fe;
     Button buyButton;
     IabHelper mHelper;
     boolean adsDisabled = false;
+    private boolean показывать_сообщение;
     private String TAG = "DisableADsActivity";
     IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
         public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
             if (result.isFailure()) {
-                Log.e(TAG, "Error purchasing: " + result);
+                Log.e(TAG, "Ошибка покупки: " + result);
 
                 AlertDialog.Builder ad = new AlertDialog.Builder(DisableADsActivity.this);
                 ad.setTitle("ERROR");  // заголовок
@@ -46,7 +48,8 @@ public class DisableADsActivity extends AppCompatActivity {
                 // consume the gas and update the UI
                 adsDisabled = true;
                 fe.saveFile("scspeak-ads", "1");
-                Toast.makeText(getApplicationContext(), getString(R.string.done), Toast.LENGTH_LONG).show();
+                Log.i(LOG_TAG, "Реклама отключена!");
+                Toast.makeText(getApplicationContext(), getString(R.string.adsDisabled), Toast.LENGTH_LONG).show();
             }
         }
     };
@@ -56,8 +59,8 @@ public class DisableADsActivity extends AppCompatActivity {
 
             if (result.isFailure()) {
                 // handle error here
-            }
-            else {
+                Log.e(LOG_TAG, "");
+            } else {
                 String цена = inventory.getSkuDetails("ru.sccraft.scspeak.disableads").getPrice();
                 buyButton.setText(buyButton.getText().toString() + " (" + цена + ")");
                 // does the user have the premium upgrade?
@@ -65,9 +68,11 @@ public class DisableADsActivity extends AppCompatActivity {
                 // update UI accordingly
                 if (adsDisabled) {
                     fe.saveFile("scspeak-ads", "1");
-                    Toast.makeText(getApplicationContext(), getString(R.string.done), Toast.LENGTH_LONG).show();
+                    Toast.makeText(getApplicationContext(), getString(R.string.adsDisabled), Toast.LENGTH_LONG).show();
+                    finish();
                 } else {
-                    Toast.makeText(getApplicationContext(), getString(R.string.notBuyed), Toast.LENGTH_LONG).show();
+                    if (показывать_сообщение) Toast.makeText(getApplicationContext(), getString(R.string.notBuyed), Toast.LENGTH_LONG).show();
+                    показывать_сообщение = true;
                 }
             }
         }
@@ -83,6 +88,7 @@ public class DisableADsActivity extends AppCompatActivity {
         buyButton = (Button) findViewById(R.id.button_buy);
         fe = new Fe(this);
         String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi4FjCgarlg4fXq0hnhUeLmQxQs3GFbZXZRKOFw7Dj5b0+rtghIy0JpLciorCVrSOqLphths3uT7AIabWR3AfHa/1R3IIAHutXsV4d83z86bYAeExEHqBZEiJslmpm/S1ghI3PpkOASByYKwjU3Gl0UHiINlr8AAuTfJElhgQDnVoWmwH8QVT2WrshtVDF6/YZkLxEmlfNkbupjG6CqDaypiywquiDXfAo8RKfHgBcqoPcAYtBAOCzUhSFjYY2Af4b7DRnas4HLrTE84NaygqsuJYp0tI+C9frZBneLmne7OVs1PTqUvdjosOy+R2NH+xxYNE8btsbQSCyGkAwXDLrQIDAQAB";
+        показывать_сообщение = false;
 
         // compute your public key and store it in base64EncodedPublicKey
         mHelper = new IabHelper(this, base64EncodedPublicKey);
@@ -115,10 +121,8 @@ public class DisableADsActivity extends AppCompatActivity {
         super.onDestroy();
         if (mHelper != null) try {
             mHelper.dispose();
-        } catch (IabHelper.IabAsyncInProgressException e) {
+        } catch (IabHelper.IabAsyncInProgressException | IllegalArgumentException e) {
             e.printStackTrace();
-        } catch (IllegalArgumentException ex) {
-            ex.printStackTrace();
         }
         mHelper = null;
     }

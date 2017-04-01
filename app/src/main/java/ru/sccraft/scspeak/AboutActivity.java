@@ -12,6 +12,11 @@ import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStreamReader;
 
 public class AboutActivity extends AppCompatActivity {
 
@@ -19,6 +24,7 @@ public class AboutActivity extends AppCompatActivity {
     String versionName;
     TextView vc, vn;
     private AlertDialog.Builder ad;
+    private byte кликни_пять_раз_не_поворачивая_экран;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -40,6 +46,7 @@ public class AboutActivity extends AppCompatActivity {
         vn = (TextView) findViewById(R.id.aboutVN);
         vc.setText("" + versionCode);
         vn.setText(versionName);
+        кликни_пять_раз_не_поворачивая_экран = 0;
     }
 
     private void setupActionBar() {
@@ -88,5 +95,37 @@ public class AboutActivity extends AppCompatActivity {
             return ad.create();
         }
         return super.onCreateDialog(id);
+    }
+
+    private String получить_лог_приложения() {
+        try {
+            Process process = Runtime.getRuntime().exec("logcat -d");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+
+            StringBuilder log=new StringBuilder();
+            String line = "";
+            while ((line = bufferedReader.readLine()) != null) {
+                log.append(line);
+            }
+            return log.toString();
+        } catch (IOException e) {
+            e.printStackTrace();
+            return "";
+        }
+    }
+
+    public void getLogcat(View view) {
+        if (кликни_пять_раз_не_поворачивая_экран < 5) {
+            кликни_пять_раз_не_поворачивая_экран++;
+            Toast.makeText(getApplicationContext(), getString(R.string.onlyForDevelopers), Toast.LENGTH_LONG).show();
+            return;
+        }
+        Intent sendIntent = new Intent();
+        sendIntent.setAction(Intent.ACTION_SEND);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, получить_лог_приложения());
+        sendIntent.setType("text/plain");
+        if (sendIntent.resolveActivity(getPackageManager()) != null) {
+            startActivity(sendIntent);
+        }
     }
 }

@@ -88,4 +88,7 @@
     <string name="pref_search">Search language</string>
     <string name="action_delete">Delete</string>
     <string name="fileDeleted">File deleted!</string>
+    <string name="adsDisabled">Advertising is disabled!</string>
+    <string name="send_logcat">Send Logcat</string>
+    <string name="onlyForDevelopers">This button only for developers!</string>
 </resources>
