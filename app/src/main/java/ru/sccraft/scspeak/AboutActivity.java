@@ -6,6 +6,7 @@ import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -20,10 +21,9 @@ import java.io.InputStreamReader;
 
 public class AboutActivity extends AppCompatActivity {
 
-    int versionCode = 0;
-    String versionName;
+    int номер_сборки = 0; //VersionCode
+    String название_версии; //VersionName
     TextView vc, vn;
-    private AlertDialog.Builder ad;
     private byte кликни_пять_раз_не_поворачивая_экран;
 
     @Override
@@ -33,19 +33,19 @@ public class AboutActivity extends AppCompatActivity {
         setupActionBar();
         setTitle(getString(R.string.about));
         try {
-            versionName = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
+            название_версии = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         try {
-            versionCode = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
+            номер_сборки = getPackageManager().getPackageInfo(getPackageName(), 0).versionCode;
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
         vc = (TextView) findViewById(R.id.aboutVersionCode);
         vn = (TextView) findViewById(R.id.aboutVN);
-        vc.setText("" + versionCode);
-        vn.setText(versionName);
+        vc.setText("" + номер_сборки);
+        vn.setText(название_версии);
         кликни_пять_раз_не_поворачивая_экран = 0;
     }
 
@@ -63,6 +63,7 @@ public class AboutActivity extends AppCompatActivity {
 
     @Override
     protected Dialog onCreateDialog(int id) {
+        AlertDialog.Builder ad;
         if (id == 1) {
             String title = getString(R.string.rateApp);
             String message = getString(R.string.goToGooglePlayQestion);
@@ -99,15 +100,15 @@ public class AboutActivity extends AppCompatActivity {
 
     private String получить_лог_приложения() {
         try {
-            Process process = Runtime.getRuntime().exec("logcat -d");
-            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(process.getInputStream()));
+            Process процесс = Runtime.getRuntime().exec("logcat -d");
+            BufferedReader bufferedReader = new BufferedReader(new InputStreamReader(процесс.getInputStream()));
 
-            StringBuilder log=new StringBuilder();
-            String line = "";
-            while ((line = bufferedReader.readLine()) != null) {
-                log.append(line);
+            StringBuilder лог = new StringBuilder();
+            String линия = "";
+            while ((линия = bufferedReader.readLine()) != null) {
+                лог.append(линия);
             }
-            return log.toString();
+            return лог.toString();
         } catch (IOException e) {
             e.printStackTrace();
             return "";
@@ -118,14 +119,31 @@ public class AboutActivity extends AppCompatActivity {
         if (кликни_пять_раз_не_поворачивая_экран < 5) {
             кликни_пять_раз_не_поворачивая_экран++;
             Toast.makeText(getApplicationContext(), getString(R.string.onlyForDevelopers), Toast.LENGTH_LONG).show();
-            return;
+            if (кликни_пять_раз_не_поворачивая_экран != 5) return;
         }
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, получить_лог_приложения());
-        sendIntent.setType("text/plain");
-        if (sendIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(sendIntent);
+
+        class Поток extends AsyncTask<Void, Void, Intent> {
+
+            @Override
+            protected Intent doInBackground(Void... params) {
+                Intent отправить_лог = new Intent();
+                отправить_лог.setAction(Intent.ACTION_SEND);
+                отправить_лог.putExtra(Intent.EXTRA_TEXT, получить_лог_приложения());
+                отправить_лог.setType("text/plain");
+                return отправить_лог;
+            }
+
+            @Override
+            protected void onPostExecute(Intent intent) {
+                super.onPostExecute(intent);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
+            }
         }
+
+        Поток поток = new Поток();
+        поток.execute();
+
     }
 }

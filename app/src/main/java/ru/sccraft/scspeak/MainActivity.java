@@ -230,6 +230,7 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         }
+
         sr = searchResult.toArray(new Word[searchResult.size()]);
         Arrays.sort(sr);
         vW = new String[sr.length];

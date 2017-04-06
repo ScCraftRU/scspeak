@@ -2,6 +2,7 @@ package ru.sccraft.scspeak;
 
 import android.content.DialogInterface;
 import android.os.Bundle;
+import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
@@ -10,7 +11,6 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import java.util.ArrayList;
-import java.util.Random;
 
 import ru.sccraft.scspeak.util.IabHelper;
 import ru.sccraft.scspeak.util.IabResult;
@@ -85,6 +85,7 @@ public class DisableADsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_disable_ads);
         setTitle(getString(R.string.disableADs));
+        setupActionBar();
         buyButton = (Button) findViewById(R.id.button_buy);
         fe = new Fe(this);
         String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi4FjCgarlg4fXq0hnhUeLmQxQs3GFbZXZRKOFw7Dj5b0+rtghIy0JpLciorCVrSOqLphths3uT7AIabWR3AfHa/1R3IIAHutXsV4d83z86bYAeExEHqBZEiJslmpm/S1ghI3PpkOASByYKwjU3Gl0UHiINlr8AAuTfJElhgQDnVoWmwH8QVT2WrshtVDF6/YZkLxEmlfNkbupjG6CqDaypiywquiDXfAo8RKfHgBcqoPcAYtBAOCzUhSFjYY2Af4b7DRnas4HLrTE84NaygqsuJYp0tI+C9frZBneLmne7OVs1PTqUvdjosOy+R2NH+xxYNE8btsbQSCyGkAwXDLrQIDAQAB";
@@ -116,6 +117,14 @@ public class DisableADsActivity extends AppCompatActivity {
         });
     }
 
+    private void setupActionBar() {
+        ActionBar actionBar = getSupportActionBar();
+        if (actionBar != null) {
+            // Show the Up button in the action bar.
+            actionBar.setDisplayHomeAsUpEnabled(true);
+        }
+    }
+
     @Override
     public void onDestroy() {
         super.onDestroy();
@@ -136,8 +145,6 @@ public class DisableADsActivity extends AppCompatActivity {
         } catch (IllegalStateException ex) {
             ex.printStackTrace();
         }
-
-        Random r = new Random();
     }
 
     private void restore() {
