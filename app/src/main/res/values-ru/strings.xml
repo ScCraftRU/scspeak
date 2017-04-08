@@ -47,6 +47,9 @@
     <string-array name="pref_search_array">
         <item>Текущий язык</item>
         <item>Все языки</item>
+        <item>Английский (English)</item>
+        <item>Македонский</item>
+        <item>Русский</item>
     </string-array>
     <string name="save">Сохранить</string>
     <string name="shareServerFile">Поделиться файлом для сервера</string>

@@ -223,6 +223,24 @@ public class MainActivity extends AppCompatActivity {
                     searchResult.add(w[i]);
                 }
             }
+        } else if (язык_поиска.equals(настройки_поиска[2])){
+            for (int i = 0; i < w.length; i++) {
+                if (w[i].en.contains(st)) {
+                    searchResult.add(w[i]);
+                }
+            }
+        } else if (язык_поиска.equals(настройки_поиска[3])) {
+            for (int i = 0; i < w.length; i++) {
+                if (w[i].mk.contains(st)) {
+                    searchResult.add(w[i]);
+                }
+            }
+        } else if (язык_поиска.equals(настройки_поиска[4])) {
+            for (int i = 0; i < w.length; i++) {
+                if (w[i].ru.contains(st)) {
+                    searchResult.add(w[i]);
+                }
+            }
         } else {
             for (int i = 0; i < w.length; i++) {
                 if (s[i].contains(st)) {

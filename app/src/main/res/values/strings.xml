@@ -47,6 +47,9 @@
     <string-array name="pref_search_array">
         <item>Current language</item>
         <item>All languages</item>
+        <item>English</item>
+        <item>Mackedonian</item>
+        <item>Russian (Русский)</item>
     </string-array>
 
     <string name="getSystemLanguage">en</string>
