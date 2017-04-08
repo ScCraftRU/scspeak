@@ -59,10 +59,10 @@ public class DisableADsActivity extends AppCompatActivity {
 
             if (result.isFailure()) {
                 // handle error here
-                Log.e(LOG_TAG, "");
+                Log.e(LOG_TAG, "" + result);
             } else {
                 String цена = inventory.getSkuDetails("ru.sccraft.scspeak.disableads").getPrice();
-                buyButton.setText(buyButton.getText().toString() + " (" + цена + ")");
+                if (!показывать_сообщение) buyButton.setText(buyButton.getText().toString() + " (" + цена + ")");
                 // does the user have the premium upgrade?
                 adsDisabled = inventory.hasPurchase("ru.sccraft.scspeak.disableads");
                 // update UI accordingly
@@ -71,7 +71,7 @@ public class DisableADsActivity extends AppCompatActivity {
                     Toast.makeText(getApplicationContext(), getString(R.string.adsDisabled), Toast.LENGTH_LONG).show();
                     finish();
                 } else {
-                    if (показывать_сообщение) Toast.makeText(getApplicationContext(), getString(R.string.notBuyed), Toast.LENGTH_LONG).show();
+                    if (показывать_сообщение) Toast.makeText(getApplicationContext(), getString(R.string.notBuyed), Toast.LENGTH_SHORT).show();
                     показывать_сообщение = true;
                 }
             }

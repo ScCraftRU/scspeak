@@ -8,6 +8,8 @@ import android.view.MenuItem;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import java.util.Random;
+
 public class WordEditActivity extends AppCompatActivity {
 
     Word w;
@@ -76,7 +78,7 @@ public class WordEditActivity extends AppCompatActivity {
         Fe fe = new Fe(this);
         if (newW) {
             updateTempWordClass();
-            fe.saveFile(w.en + ".json", w.toJSON());
+            fe.saveFile((new Random()).nextInt(Integer.MAX_VALUE) + ".json", w.toJSON());
             Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
         }else{
             String[] file = fileList();
@@ -89,6 +91,12 @@ public class WordEditActivity extends AppCompatActivity {
                     if (!(JSON.contains(original.en))) continue;
                     if (!(JSON.contains(original.mk))) continue;
                     if (!(JSON.contains(original.ru))) continue;
+                    if (!(JSON.contains(original.enTranscriptionToMK))) continue;
+                    if (!(JSON.contains(original.enTranscriptionToRU))) continue;
+                    if (!(JSON.contains(original.mkTranscriptionToEN))) continue;
+                    if (!(JSON.contains(original.mkTranscriptionToRU))) continue;
+                    if (!(JSON.contains(original.ruTranscriptionToEN))) continue;
+                    if (!(JSON.contains(original.ruTranscriptionToMK))) continue;
                     fileName = file[i];
                     fe.saveFile(fileName, w.toJSON());
                     Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
@@ -111,9 +119,16 @@ public class WordEditActivity extends AppCompatActivity {
                 if (!(JSON.contains(original.en))) continue;
                 if (!(JSON.contains(original.mk))) continue;
                 if (!(JSON.contains(original.ru))) continue;
+                if (!(JSON.contains(original.enTranscriptionToMK))) continue;
+                if (!(JSON.contains(original.enTranscriptionToRU))) continue;
+                if (!(JSON.contains(original.mkTranscriptionToEN))) continue;
+                if (!(JSON.contains(original.mkTranscriptionToRU))) continue;
+                if (!(JSON.contains(original.ruTranscriptionToEN))) continue;
+                if (!(JSON.contains(original.ruTranscriptionToMK))) continue;
                 fileName = file[i];
                 deleteFile(fileName);
                 Toast.makeText(getApplicationContext(), getString(R.string.fileDeleted), Toast.LENGTH_LONG).show();
+                finish();
                 return;
             }
         }
