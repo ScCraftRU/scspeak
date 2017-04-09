@@ -71,4 +71,5 @@
     <string name="adsDisabled">Реклама отключена!</string>
     <string name="send_logcat">Отправить Logcat</string>
     <string name="onlyForDevelopers">Эта кнопка предназначена только для разработчиков! Logcat может содержать конфиденциальные данные!</string>
+    <string name="pref_export">Разрешить экспорт</string>
 </resources>

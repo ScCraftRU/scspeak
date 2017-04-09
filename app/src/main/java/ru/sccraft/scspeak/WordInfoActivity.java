@@ -84,6 +84,11 @@ public class WordInfoActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
         getMenuInflater().inflate(R.menu.menu_word_info, menu);
+        MenuItem экспорт = menu.findItem(R.id.action_toServer);
+        SharedPreferences настройки = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean разрешить_экспорт;
+        разрешить_экспорт = настройки.getBoolean("pref_export", false);
+        экспорт.setVisible(разрешить_экспорт);
         return true;
     }
 

@@ -20,6 +20,11 @@
             android:icon="@android:drawable/ic_search_category_default"
             android:key="pref_searchLanguage"
             android:title="@string/pref_search" />
+        <SwitchPreference
+            android:defaultValue="false"
+            android:icon="@android:drawable/ic_menu_upload"
+            android:key="pref_export"
+            android:title="@string/pref_export" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/ads">
         <CheckBoxPreference

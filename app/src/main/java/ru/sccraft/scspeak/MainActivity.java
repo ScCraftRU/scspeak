@@ -57,20 +57,7 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         super.onResume();
         file = fileList();
-        if (file.length < 2) {
-            //Скрыть недоступные элементы GUI
-            if (searchItem != null) {
-                searchItem.setVisible(false);
-                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
-                exportItem.setVisible(false);
-            }
-        } else {
-            if (searchItem != null) {
-                searchItem.setVisible(true);
-                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
-                exportItem.setVisible(true);
-            }
-        }
+        updateMenu();
         if (file.length > 1) {
             updateWordList();
             search(swResult);
@@ -95,6 +82,26 @@ public class MainActivity extends AppCompatActivity {
                     }
                 }
             });
+        }
+    }
+
+    private void updateMenu() {
+        SharedPreferences настройки = PreferenceManager.getDefaultSharedPreferences(this);
+        boolean разрешить_экспорт;
+        разрешить_экспорт = настройки.getBoolean("pref_export", false);
+        if (file.length < 2) {
+            //Скрыть недоступные элементы GUI
+            if (searchItem != null) {
+                searchItem.setVisible(false);
+                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
+                exportItem.setVisible(false);
+            }
+        } else {
+            if (searchItem != null) {
+                searchItem.setVisible(true);
+                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
+                exportItem.setVisible(разрешить_экспорт);
+            }
         }
     }
 
@@ -132,20 +139,7 @@ public class MainActivity extends AppCompatActivity {
         }
 
         this.menu = menu;
-        if (file.length < 2) {
-            //Скрыть недоступные элементы GUI
-            if (searchItem != null) {
-                searchItem.setVisible(false);
-                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
-                exportItem.setVisible(false);
-            }
-        } else {
-            if (searchItem != null) {
-                searchItem.setVisible(true);
-                MenuItem exportItem = menu.findItem(R.id.action_exportAll);
-                exportItem.setVisible(true);
-            }
-        }
+        updateMenu();
         return true;
     }
 

@@ -1,0 +1,80 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">ScSpeak</string>
+    <string name="action_settings">Поставки</string>
+    <string name="connectionError">Грешка при врска со серверот</string>
+    <string name="done">Готово</string>
+    <string name="downloading">Симне...</string>
+    <string name="getSystemLanguage">mk</string>
+    <string name="pref_header_data_sync">Синхронизација</string>
+    <string name="pref_header_general">Главно</string>
+    <string name="pref_header_notifications">Известувања</string>
+    <string name="pref_title_enable_notifications">Вклучи известувања</string>
+    <string name="pref_title_ringtone">Звук</string>
+    <string name="pref_title_vibrate">Вибрација</string>
+    <string name="server">Сервер</string>
+    <string name="title_activity_settings">Поставки </string>
+    <string name="title_activity_word_fullscreen">Збор</string>
+    <string name="title_activity_word_info">Перевод на зборот</string>
+    <string name="onThisLanguage">На руски</string>
+    <string name="onOthersLanguages">На други јазици</string>
+    <string name="wordInEnglish">"На англиски: "</string>
+    <string name="wordInMakedonian">"На македонски: "</string>
+    <string name="wordInRussian">\"На руски: \"</string>
+    <string name="pref_category_words">Зборови</string>
+    <string name="pref_ringtone_silent">Тивко</string>
+    <string name="pleaseWait">Молам, почекајте...</string>
+    <string name="removeAllDialogTitle">Да ги избриши сите зборови?</string>
+    <string name="removeAllDialogContent">Сите зборови ќе бидат избрешини!</string>
+    <string name="no">Не</string>
+    <string name="yes">Да</string>
+    <string name="removeAllPreference">Избриши ги сите зборови</string>
+    <string name="about">За програмот</string>
+    <string name="version">"Верзиjа: "</string>
+    <string name="versionCode">"Збирка № "</string>
+    <string name="rateApp">Оцени jа апликациjата</string>
+    <string name="goToGooglePlayQestion">Се префрли во Google Play?</string>
+    <string name="newWord">Нов збор</string>
+    <string name="editWord">Промени збор</string>
+    <string name="wordEdit_onLanguages">На разни jазици:</string>
+    <string name="wordEdit_transcriptions">Транскрипции:</string>
+
+    <string-array name="noWordsArray">
+        <item>Нема скратеници!</item>
+        <item>Притисни овде за симнување на стандарден речник</item>
+        <item>Симнувајќи речник, или додавајќи збор рачно, се согласувате со политиката на доверливоста!</item>
+        <item>Политиката на доверливоста</item>
+    </string-array>
+
+    <string-array name="pref_search_array">
+        <item>Моменталниот јазик</item>
+        <item>Сите јазици</item>
+        <item>Англиски (English)</item>
+        <item>Македонски</item>
+        <item>Руски</item>
+
+    </string-array>
+
+    <string name="save">Зачува</string>
+    <string name="shareServerFile">Сподели фајл со серверот</string>
+    <string name="pref_syncNow">Синхронизира сега</string>
+    <string name="transcription">Изговор на зборот</string>
+    <string name="close">Затвори</string>
+    <string name="fileSaved">Фајлот е зачуван!</string>
+    <string name="pref_email">Дозволи пристап кон Email</string>
+    <string name="buy">Купи</string>
+    <string name="ads">Реклама</string>
+    <string name="restorePurchases">Враќање на набавките</string>
+    <string name="disableADs">Исклучи ја рекламата</string>
+    <string name="exportAll">Експортира ги сите зборови</string>
+    <string name="notBuyed"> Овој производ не е купен!</string>
+    <string name="unavableInThisMoment"> Ова дејство не е достапно во моментот! Притисни \"Назад\" и обидете се повторно!</string>
+    <string name="pref_search"> Јазик на пребарување </string>
+    <string name="action_delete">Избриши</string>
+    <string name="fileDeleted">Фајлот е избришен!</string>
+    <string name="adsDisabled">Рекламата е исклучена!</string>
+    <string name="send_logcat">Прати Logcat</string>
+    <string name="onlyForDevelopers"> Ова копче е само за програмери! Logcat може да содржи доверливите податоци!</string>
+    <string name="pref_export">дозволи за извоз</string>
+
+</resources>
