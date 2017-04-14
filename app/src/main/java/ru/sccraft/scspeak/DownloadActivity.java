@@ -86,6 +86,7 @@ public class DownloadActivity extends AppCompatActivity {
                 if (fl) {
                     String s = NetGet.getOneLine(server + "words/" + pathOnServer[i] + ".json");
                     if (s.equals("Connection error")) return false;
+                    if (s.equals("")) continue; //Не сохранять пустые, или несуществующие файлы
                     fe.saveFile(fileName[i], s);
                 }
                 publishProgress(i);
@@ -94,6 +95,7 @@ public class DownloadActivity extends AppCompatActivity {
                 for (int i = 0; i < fileName.length; i++)  {
                     String s = NetGet.getOneLine(server + "words/" + pathOnServer[i] + ".json");
                     if (s.equals("Connection error")) return false;
+                    if (s.equals("")) continue;
                     fe.saveFile(fileName[i], s);
                     publishProgress(i);
                 }

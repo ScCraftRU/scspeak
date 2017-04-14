@@ -57,6 +57,22 @@ public class Word implements Parcelable, Comparable<Word> {
         return w;
     }
 
+    @Override
+    public boolean equals(Object obj) {
+        if (super.equals(obj)) return true;
+        Word слово = (Word) obj;
+        if(!(en.equals(слово.en))) return false;
+        if(!(mk.equals(слово.mk))) return false;
+        if(!(ru.equals(слово.ru))) return false;
+        if(!(enTranscriptionToMK.equals(слово.enTranscriptionToMK))) return false;
+        if(!(enTranscriptionToRU.equals(слово.enTranscriptionToRU))) return false;
+        if(!(mkTranscriptionToEN.equals(слово.mkTranscriptionToEN))) return false;
+        if(!(mkTranscriptionToRU.equals(слово.mkTranscriptionToRU))) return false;
+        if(!(ruTranscriptionToEN.equals(слово.ruTranscriptionToEN))) return false;
+        if(!(ruTranscriptionToMK.equals(слово.ruTranscriptionToMK))) return false;
+        return true;
+    }
+
     public boolean contains(String word) {
         if (this.en.contains(word)) return true;
         if (this.mk.contains(word)) return true;
