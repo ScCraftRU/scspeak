@@ -80,6 +80,7 @@ public class WordEditActivity extends AppCompatActivity {
             updateTempWordClass();
             fe.saveFile((new Random()).nextInt(Integer.MAX_VALUE) + ".json", w.toJSON());
             Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
+            finish();
         }else{
             String[] file = fileList();
             String fileName = "";
@@ -94,6 +95,7 @@ public class WordEditActivity extends AppCompatActivity {
                     fileName = file[i];
                     fe.saveFile(fileName, w.toJSON());
                     Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
+                    finish();
                     return;
                 }
             }

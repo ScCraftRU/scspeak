@@ -25,6 +25,7 @@ public class AboutActivity extends AppCompatActivity {
     String название_версии; //VersionName
     TextView vc, vn;
     private byte кликни_пять_раз_не_поворачивая_экран;
+    private Toast toast;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +33,7 @@ public class AboutActivity extends AppCompatActivity {
         setContentView(R.layout.activity_about);
         setupActionBar();
         setTitle(getString(R.string.about));
+        toast = Toast.makeText(getApplicationContext(), "", Toast.LENGTH_SHORT);
         try {
             название_версии = getPackageManager().getPackageInfo(getPackageName(), 0).versionName;
         } catch (PackageManager.NameNotFoundException e) {
@@ -118,10 +120,12 @@ public class AboutActivity extends AppCompatActivity {
     public void getLogcat(View view) {
         if (кликни_пять_раз_не_поворачивая_экран < 5) {
             кликни_пять_раз_не_поворачивая_экран++;
-            Toast.makeText(getApplicationContext(), getString(R.string.onlyForDevelopers), Toast.LENGTH_LONG).show();
+            toast.setText(R.string.onlyForDevelopers);
+            toast.setDuration(Toast.LENGTH_LONG);
+            toast.show();
             if (кликни_пять_раз_не_поворачивая_экран != 5) return;
         }
-
+        toast.cancel();
         class Поток extends AsyncTask<Void, Void, Intent> {
 
             @Override

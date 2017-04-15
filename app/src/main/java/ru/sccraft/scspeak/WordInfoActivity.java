@@ -124,7 +124,7 @@ public class WordInfoActivity extends AppCompatActivity {
     private void share() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, thisLanguage.getText().toString() + "\n" + "en " + w.en + "\n" + "mk " + w.mk + "\n" + "ru " + w.ru);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "EN: " + w.en + "\n" + "MK: " + w.mk + "\n" + "RU: " + w.ru + "\n" + "===== TRANSCRIPTIONS ====\n" + "EN ---> MK: " + w.enTranscriptionToMK + "EN ---> RU: " + w.enTranscriptionToRU + "\n" + "MK ---> EN: " + w.mkTranscriptionToEN + "\n" + "MK ---> RU: " + w.mkTranscriptionToRU + "\n" + "RU ---> EN: " + w.ruTranscriptionToEN + "\n" + "RU ---> MK: " + w.ruTranscriptionToMK);
         sendIntent.setType("text/plain");
         if (sendIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(sendIntent);
