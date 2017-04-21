@@ -75,7 +75,14 @@
                     android:textAllCaps="false"
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="18sp"
-                    android:onClick="trancriptionEN"/>
+                    android:onClick="trancriptionEN" />
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/common_google_signin_btn_text_dark_default"
+                    ads:srcCompat="@android:drawable/ic_menu_add"
+                    android:onClick="fullscreenEN"/>
             </LinearLayout>
             <!--Македонский-->
             <LinearLayout
@@ -99,6 +106,13 @@
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="18sp"
                     android:onClick="transcriptionMK"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/common_google_signin_btn_text_dark_default"
+                    android:onClick="fullscreenMK"
+                    ads:srcCompat="@android:drawable/ic_menu_add" />
             </LinearLayout>
             <!--Русский-->
             <LinearLayout
@@ -122,6 +136,13 @@
                     style="@style/Widget.AppCompat.Button.Borderless"
                     android:textSize="18sp"
                     android:onClick="transcriptionRU"/>
+
+                <ImageButton
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:backgroundTint="@color/common_google_signin_btn_text_dark_default"
+                    android:onClick="fullscreenRU"
+                    ads:srcCompat="@android:drawable/ic_menu_add" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>

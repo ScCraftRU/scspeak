@@ -17,7 +17,7 @@ import java.util.ArrayList;
 public class NetGet {
     public static String getOneLine(String webAdress) {
         URL url;
-        HttpURLConnection conn;
+        HttpURLConnection conn = null;
         BufferedReader rd;
         String line;
         String result = "";
@@ -32,13 +32,19 @@ public class NetGet {
             rd.close();
         } catch (Exception e) {
             e.printStackTrace();
+        } finally {
+            try {
+                conn.disconnect();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
         return result;
     }
 
     public static String[] getMultiLine(String webAdress) {
         URL url;
-        HttpURLConnection conn;
+        HttpURLConnection conn = null;
         BufferedReader rd;
         String line;
         ArrayList<String> al = new ArrayList<>();
@@ -46,6 +52,8 @@ public class NetGet {
         try {
             url = new URL(webAdress);
             conn = (HttpURLConnection) url.openConnection();
+            int responseCode = conn.getResponseCode();
+            if (responseCode != conn.HTTP_OK) return new String[]{"Connection error"};
             conn.setRequestMethod("GET");
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             while ((line = rd.readLine()) != null) {
@@ -59,6 +67,12 @@ public class NetGet {
             e.printStackTrace();
             result = new String[1];
             result[0] = "Connection error";
+        } finally {
+            try {
+                conn.disconnect();
+            } catch (NullPointerException e) {
+                e.printStackTrace();
+            }
         }
         return result;
     }

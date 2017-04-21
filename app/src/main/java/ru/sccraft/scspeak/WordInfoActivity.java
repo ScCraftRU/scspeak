@@ -124,7 +124,7 @@ public class WordInfoActivity extends AppCompatActivity {
     private void share() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, "EN: " + w.en + "\n" + "MK: " + w.mk + "\n" + "RU: " + w.ru + "\n" + "===== TRANSCRIPTIONS ====\n" + "EN ---> MK: " + w.enTranscriptionToMK + "EN ---> RU: " + w.enTranscriptionToRU + "\n" + "MK ---> EN: " + w.mkTranscriptionToEN + "\n" + "MK ---> RU: " + w.mkTranscriptionToRU + "\n" + "RU ---> EN: " + w.ruTranscriptionToEN + "\n" + "RU ---> MK: " + w.ruTranscriptionToMK);
+        sendIntent.putExtra(Intent.EXTRA_TEXT, "EN: " + w.en + "\n" + "MK: " + w.mk + "\n" + "RU: " + w.ru + "\n" + "===== TRANSCRIPTIONS ====\n" + "EN ---> MK: " + w.enTranscriptionToMK + "\n" + "EN ---> RU: " + w.enTranscriptionToRU + "\n" + "MK ---> EN: " + w.mkTranscriptionToEN + "\n" + "MK ---> RU: " + w.mkTranscriptionToRU + "\n" + "RU ---> EN: " + w.ruTranscriptionToEN + "\n" + "RU ---> MK: " + w.ruTranscriptionToMK);
         sendIntent.setType("text/plain");
         if (sendIntent.resolveActivity(getPackageManager()) != null) {
             startActivity(sendIntent);
@@ -236,5 +236,23 @@ public class WordInfoActivity extends AppCompatActivity {
 
     public void transcriptionRU(View view) {
         showTranscription("ru");
+    }
+
+    public void fullscreenEN(View view) {
+        Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
+        intent.putExtra("word_fullscreen", w.en);
+        startActivity(intent);
+    }
+
+    public void fullscreenMK(View view) {
+        Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
+        intent.putExtra("word_fullscreen", w.mk);
+        startActivity(intent);
+    }
+
+    public void fullscreenRU(View view) {
+        Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
+        intent.putExtra("word_fullscreen", w.en);
+        startActivity(intent);
     }
 }

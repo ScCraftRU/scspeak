@@ -15,10 +15,11 @@
         android:orientation="vertical">
 
         <TextView
+            android:id="@+id/word_fullscreen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:textSize="50sp"
-            android:text="Где ближайший аэропорт?" />
+            android:text="Где ближайший аэропорт?"
+            android:textSize="50sp" />
     </LinearLayout>
 
 </FrameLayout>
