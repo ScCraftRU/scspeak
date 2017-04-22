@@ -317,7 +317,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void exportAllWords() {
         Fe fe = new Fe(this);
-        String tittle = "This data ONLY for ScSpeak server!\nMore information on http://sccraft.ru/publ/scspeak/guide/howtocreateserver/2-1-0-1";
+        String tittle = "This data ONLY for ScSpeak server!\nMore information on http://sccraft.ru/index.php/guide/10-scspeak/2-scspeak-create-server\n";
         String rasdelitel = "=================================================================\n";
         String data = tittle + rasdelitel;
         for (int i = 0; i < file.length; i++) {

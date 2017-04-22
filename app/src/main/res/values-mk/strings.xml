@@ -76,5 +76,9 @@
     <string name="send_logcat">Прати Logcat</string>
     <string name="onlyForDevelopers"> Ова копче е само за програмери! Logcat може да содржи доверливите податоци!</string>
     <string name="pref_export">дозволи за извоз</string>
+    <string name="pref_disableADs_summary">Оваа функција се плаќа</string>
+    <string name="pref_export_summary">Не се препорачува употреба! Оваа функција е наменета само за програмери!</string>
+    <string name="pref_removeall_summary">Оваа акција е неповратен процес!</string>
+    <string name="pref_sync_summary">Преземање на сите нови зборови. Ако зборот да додадете превод, а потоа отстранете зборот пред да го синхронизирате!</string>
 
 </resources>

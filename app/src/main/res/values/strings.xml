@@ -95,4 +95,8 @@
     <string name="send_logcat">Send Logcat</string>
     <string name="onlyForDevelopers">This button only for developers!</string>
     <string name="pref_export">Allow export</string>
+    <string name="pref_disableADs_summary">This function is paid!</string>
+    <string name="pref_export_summary">Do not use! Only for developers!</string>
+    <string name="pref_removeall_summary">This action is irreversible!</string>
+    <string name="pref_sync_summary">Download all new words. If the word has a translation added, then delete the word before synchronization!</string>
 </resources>

@@ -20,6 +20,7 @@ public class WordFullscreenActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         if (actionBar != null) {
             actionBar.setDisplayHomeAsUpEnabled(true);
+            actionBar.hide(); //Кнопка "НАЗАД" в ActionBar работала некорректно
         }
 
         слово = (TextView) findViewById(R.id.word_fullscreen);

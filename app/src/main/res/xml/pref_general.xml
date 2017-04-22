@@ -9,9 +9,10 @@
 
     <PreferenceCategory android:title="@string/pref_category_words">
         <Preference
-            android:title="@string/removeAllPreference"
-            android:icon="@android:drawable/ic_menu_delete" >
-            <intent android:action="ru.sccraft.scspeak.removeall"/>
+            android:icon="@android:drawable/ic_menu_delete"
+            android:summary="@string/pref_removeall_summary"
+            android:title="@string/removeAllPreference">
+            <intent android:action="ru.sccraft.scspeak.removeall" />
         </Preference>
         <ListPreference
             android:entries="@array/pref_search_array"
@@ -29,9 +30,14 @@
     <PreferenceCategory android:title="@string/ads">
         <CheckBoxPreference
             android:defaultValue="false"
+            android:icon="@android:drawable/sym_action_email"
             android:key="disableADsByEmail"
+            android:summary="@string/pref_export_summary"
             android:title="@string/pref_email" />
-        <Preference android:title="@string/disableADs">
+        <Preference
+            android:icon="@android:drawable/presence_offline"
+            android:summary="@string/pref_disableADs_summary"
+            android:title="@string/disableADs">
             <intent android:action="ru.sccraft.scspeak.disableads" />
         </Preference>
     </PreferenceCategory>

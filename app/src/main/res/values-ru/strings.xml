@@ -72,4 +72,8 @@
     <string name="send_logcat">Отправить Logcat</string>
     <string name="onlyForDevelopers">Эта кнопка предназначена только для разработчиков! Logcat может содержать конфиденциальные данные!</string>
     <string name="pref_export">Разрешить экспорт</string>
+    <string name="pref_disableADs_summary">Платная функция</string>
+    <string name="pref_export_summary">Использование не рекомендовано! Эта опция для разработчиков!</string>
+    <string name="pref_removeall_summary">Это действие необратимо!</string>
+    <string name="pref_sync_summary">Загрузить все новые слова. Если у слова добавился перевод, то удалите слово перед синхронизацией!</string>
 </resources>
