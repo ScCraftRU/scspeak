@@ -4,6 +4,7 @@ import android.app.SearchManager;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
@@ -316,24 +317,38 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void exportAllWords() {
-        Fe fe = new Fe(this);
-        String tittle = "This data ONLY for ScSpeak server!\nMore information on http://sccraft.ru/index.php/guide/10-scspeak/2-scspeak-create-server\n";
-        String rasdelitel = "=================================================================\n";
-        String data = tittle + rasdelitel;
-        for (int i = 0; i < file.length; i++) {
-            if (!(file[i].equals("instant-run"))) {
-                data = data + file[i] + "\n" + fe.getFile(file[i]) + "\n" + rasdelitel;
+        class Поток extends AsyncTask<Void, Void, Intent> {
+
+            @Override
+            protected Intent doInBackground(Void... params) {
+                Fe fe = new Fe(MainActivity.this);
+                String tittle = "This data ONLY for ScSpeak server!\nMore information on http://sccraft.ru/index.php/guide/10-scspeak/2-scspeak-create-server\n";
+                String rasdelitel = "=================================================================\n";
+                String data = tittle + rasdelitel;
+                for (int i = 0; i < file.length; i++) {
+                    if (!(file[i].equals("instant-run"))) {
+                        data = data + file[i] + "\n" + fe.getFile(file[i]) + "\n" + rasdelitel;
+                    }
+                }
+                data = data + "END OF SERVER DATA";
+
+                Intent sendIntent = new Intent();
+                sendIntent.setAction(Intent.ACTION_SEND);
+                sendIntent.putExtra(Intent.EXTRA_TEXT, data);
+                sendIntent.setType("text/plain");
+                return sendIntent;
+            }
+
+            @Override
+            protected void onPostExecute(Intent intent) {
+                super.onPostExecute(intent);
+                if (intent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(intent);
+                }
             }
         }
-        data = data + "END OF SERVER DATA";
-
-        Intent sendIntent = new Intent();
-        sendIntent.setAction(Intent.ACTION_SEND);
-        sendIntent.putExtra(Intent.EXTRA_TEXT, data);
-        sendIntent.setType("text/plain");
-        if (sendIntent.resolveActivity(getPackageManager()) != null) {
-            startActivity(sendIntent);
-        }
+        Поток поток = new Поток();
+        поток.execute();
     }
 
     @Override
