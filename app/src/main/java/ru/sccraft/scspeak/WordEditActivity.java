@@ -87,8 +87,7 @@ public class WordEditActivity extends AppCompatActivity {
             updateTempWordClass();
             Word original = getIntent().getParcelableExtra("word");
             for (int i = 0; i < file.length; i++) {
-                if (!(file[i].equals("instant-run"))) {
-                    if ((file[i].equals("instant-run"))||(file[i].equals("scspeak-ads"))) continue;
+                if (!((file[i].equals("instant-run"))||(file[i].equals("scspeak-ads")))) {
                     String JSON = fe.getFile(file[i]);
                     Word слово = Word.fromJSON(JSON);
                     if (!слово.equals(original)) continue;
@@ -99,6 +98,7 @@ public class WordEditActivity extends AppCompatActivity {
                     return;
                 }
             }
+            Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
         }
     }
 
