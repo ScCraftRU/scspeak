@@ -312,7 +312,7 @@ public class MainActivity extends AppCompatActivity {
 
     private void edit(Word word) {
         Intent intent = new Intent(MainActivity.this, WordEditActivity.class);
-        intent.putExtra("word", word);
+        intent.putExtra("word", word.toJSON());
         startActivity(intent);
     }
 

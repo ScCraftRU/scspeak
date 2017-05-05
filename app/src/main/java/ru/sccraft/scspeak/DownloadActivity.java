@@ -36,6 +36,11 @@ public class DownloadActivity extends AppCompatActivity {
         return g;
     }
 
+    @Override
+    public void onBackPressed() {
+        //Действие запрещено!
+    }
+
     class Get extends AsyncTask<Void, Integer, Boolean> {
         static final String LOG_TAG = "DownloadActivity/Get";
         DownloadActivity a;

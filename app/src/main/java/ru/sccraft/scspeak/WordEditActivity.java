@@ -21,7 +21,7 @@ public class WordEditActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_word_edit);
         setupActionBar();
-        w = getIntent().getParcelableExtra("word");
+        w = Word.fromJSON(getIntent().getStringExtra("word"));
         if (w == null) {newW = true;} else {newW = false;}
         etEN = (EditText) findViewById(R.id.wordEdit_ENet);
         etMK = (EditText) findViewById(R.id.wordEdit_MKet);
@@ -85,7 +85,7 @@ public class WordEditActivity extends AppCompatActivity {
             String[] file = fileList();
             String fileName = "";
             updateTempWordClass();
-            Word original = getIntent().getParcelableExtra("word");
+            Word original = Word.fromJSON(getIntent().getStringExtra("word"));
             for (int i = 0; i < file.length; i++) {
                 if (!((file[i].equals("instant-run"))||(file[i].equals("scspeak-ads")))) {
                     String JSON = fe.getFile(file[i]);
@@ -108,7 +108,7 @@ public class WordEditActivity extends AppCompatActivity {
         Fe fe = new Fe(this);
         String fileName = "";
         updateTempWordClass();
-        Word original = getIntent().getParcelableExtra("word");
+        Word original = Word.fromJSON(getIntent().getStringExtra("word"));
         for (int i = 0; i < file.length; i++) {
             if (!(file[i].equals("instant-run"))) {
                 String JSON = fe.getFile(file[i]);
@@ -120,6 +120,7 @@ public class WordEditActivity extends AppCompatActivity {
                 finish();
                 return;
             }
+            Toast.makeText(getApplicationContext(), "ERROR", Toast.LENGTH_SHORT).show();
         }
     }
 

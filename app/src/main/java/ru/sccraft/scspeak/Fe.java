@@ -30,6 +30,7 @@ public class Fe {
         try {
             fos = a.openFileOutput(name, MODE_PRIVATE);
             fos.write(content.getBytes());
+            Log.d(LOG_TAG, "File saved");
         }
         catch(IOException ex) {
             ex.printStackTrace();
