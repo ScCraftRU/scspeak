@@ -1,6 +1,7 @@
 package ru.sccraft.scspeak;
 
 import android.app.SearchManager;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.Uri;
@@ -9,6 +10,7 @@ import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
 import android.support.design.widget.FloatingActionButton;
+import android.support.v7.app.AlertDialog;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.SearchView;
 import android.support.v7.widget.Toolbar;
@@ -63,6 +65,7 @@ public class MainActivity extends AppCompatActivity {
             updateWordList();
             search(swResult);
         }else{
+            предложить_скачать_слова();
             String[] noWords = getResources().getStringArray(R.array.noWordsArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noWords);
 
@@ -72,8 +75,7 @@ public class MainActivity extends AppCompatActivity {
                 public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                     switch (position) {
                         case 1:
-                            Intent intent = new Intent(MainActivity.this, DownloadActivity.class);
-                            startActivity(intent);
+                            скачать_слова();
                             break;
                         case 3:
                             Uri address = Uri.parse("http://sccraft.ru/android-app/scspeak/privacy/");
@@ -84,6 +86,40 @@ public class MainActivity extends AppCompatActivity {
                 }
             });
         }
+    }
+
+    private void предложить_скачать_слова() {
+        AlertDialog.Builder ad;
+        String title = getResources().getStringArray(R.array.noWordsArray)[0];
+        String message = getString(R.string.noWordsDialogContent);
+        String button1String = getString(R.string.yes);
+        String button2String = getString(R.string.no);
+
+        ad = new AlertDialog.Builder(this);
+        ad.setTitle(title);  // заголовок
+        ad.setMessage(message); // сообщение
+        ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                скачать_слова();
+            }
+        });
+        ad.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+
+            }
+        });
+        ad.setCancelable(true);
+        ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+
+            }
+        });
+        ad.show();
+    }
+
+    private void скачать_слова() {
+        Intent intent = new Intent(MainActivity.this, DownloadActivity.class);
+        startActivity(intent);
     }
 
     private void updateMenu() {

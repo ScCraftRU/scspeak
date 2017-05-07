@@ -38,12 +38,14 @@
     <string name="editWord">Изменить слово</string>
     <string name="wordEdit_onLanguages">На разных языках:</string>
     <string name="wordEdit_transcriptions">Транскрипции:</string>
+
     <string-array name="noWordsArray">
         <item>Нет сохранённых слов!</item>
         <item>Нажмите сюдадля скачивания стандартного словаря</item>
         <item>Скачивая словарь, или добавляя слово вручную, вы соглашаетесь сполитикрй конфиденциальности!</item>
-        <item>Политикаконфиденциальности</item>
+        <item>Политика конфиденциальности</item>
     </string-array>
+
     <string-array name="pref_search_array">
         <item>Текущий язык</item>
         <item>Все языки</item>
@@ -51,6 +53,7 @@
         <item>Македонский</item>
         <item>Русский</item>
     </string-array>
+
     <string name="save">Сохранить</string>
     <string name="shareServerFile">Поделиться файлом для сервера</string>
     <string name="pref_syncNow">Синхронизировать сейчас</string>
@@ -76,4 +79,6 @@
     <string name="pref_export_summary">Использование не рекомендовано! Эта опция для разработчиков!</string>
     <string name="pref_removeall_summary">Это действие необратимо!</string>
     <string name="pref_sync_summary">Загрузить все новые слова. Если у слова добавился перевод, то удалите слово перед синхронизацией!</string>
+    <string name="privacy">Политика конфиденциальности</string>
+    <string name="noWordsDialogContent">Загрузить слова с сервера и принять политику конфиденциальности?\n\nДля просмотра политики конфиденциальности нажмите "НЕТ" и выберите соответствующий пункт.</string>
 </resources>

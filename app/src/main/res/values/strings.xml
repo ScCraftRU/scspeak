@@ -99,4 +99,7 @@
     <string name="pref_export_summary">Do not use! Only for developers!</string>
     <string name="pref_removeall_summary">This action is irreversible!</string>
     <string name="pref_sync_summary">Load all new words. If the word has a translation added, then delete the word before synchronization!</string>
+    <string name="privacy">Privacy policy</string>
+    <string name="noWordsDialogContent">Download words from the server and accept the privacy policy?\n\nTo view the privacy policy, click "NO" and select the appropriate option.</string>
+
 </resources>
