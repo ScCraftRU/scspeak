@@ -11,8 +11,6 @@ import android.widget.TextView;
 
 public class WordFullscreenActivity extends AppCompatActivity {
 
-    private TextView слово;
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -24,18 +22,9 @@ public class WordFullscreenActivity extends AppCompatActivity {
             actionBar.hide(); //Кнопка "НАЗАД" в ActionBar работала некорректно
         }
 
-        слово = (TextView) findViewById(R.id.word_fullscreen);
+        TextView слово = (TextView) findViewById(R.id.word_fullscreen);
         if (слово == null) return;
         слово.setText(getIntent().getStringExtra("word_fullscreen"));
-    }
-
-    @Override
-    protected void onPostCreate(Bundle savedInstanceState) {
-        super.onPostCreate(savedInstanceState);
-
-        // Trigger the initial hide() shortly after the activity has been
-        // created, to briefly hint to the user that UI controls
-        // are available.
     }
 
     @Override

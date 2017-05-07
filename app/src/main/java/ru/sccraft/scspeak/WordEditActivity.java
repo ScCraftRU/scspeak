@@ -22,7 +22,7 @@ public class WordEditActivity extends AppCompatActivity {
         setContentView(R.layout.activity_word_edit);
         setupActionBar();
         w = Word.fromJSON(getIntent().getStringExtra("word"));
-        if (w == null) {newW = true;} else {newW = false;}
+        newW = w == null; //= if (w == null){newW = true;}else{newW = false}
         etEN = (EditText) findViewById(R.id.wordEdit_ENet);
         etMK = (EditText) findViewById(R.id.wordEdit_MKet);
         etRU = (EditText) findViewById(R.id.wordEdit_RUet);
@@ -83,15 +83,15 @@ public class WordEditActivity extends AppCompatActivity {
             finish();
         }else{
             String[] file = fileList();
-            String fileName = "";
+            String fileName;
             updateTempWordClass();
             Word original = Word.fromJSON(getIntent().getStringExtra("word"));
-            for (int i = 0; i < file.length; i++) {
-                if (!((file[i].equals("instant-run"))||(file[i].equals("scspeak-ads")))) {
-                    String JSON = fe.getFile(file[i]);
+            for (String aFile : file) {
+                if (!((aFile.equals("instant-run")) || (aFile.equals("scspeak-ads")))) {
+                    String JSON = fe.getFile(aFile);
                     Word слово = Word.fromJSON(JSON);
                     if (!слово.equals(original)) continue;
-                    fileName = file[i];
+                    fileName = aFile;
                     fe.saveFile(fileName, w.toJSON());
                     Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
                     finish();
@@ -106,15 +106,15 @@ public class WordEditActivity extends AppCompatActivity {
         if (newW) return;
         String[] file = fileList();
         Fe fe = new Fe(this);
-        String fileName = "";
+        String fileName;
         updateTempWordClass();
         Word original = Word.fromJSON(getIntent().getStringExtra("word"));
-        for (int i = 0; i < file.length; i++) {
-            if (!(file[i].equals("instant-run"))) {
-                String JSON = fe.getFile(file[i]);
+        for (String aFile : file) {
+            if (!(aFile.equals("instant-run"))) {
+                String JSON = fe.getFile(aFile);
                 Word слово = Word.fromJSON(JSON);
                 if (!(слово.equals(original))) continue;
-                fileName = file[i];
+                fileName = aFile;
                 deleteFile(fileName);
                 Toast.makeText(getApplicationContext(), getString(R.string.fileDeleted), Toast.LENGTH_LONG).show();
                 finish();

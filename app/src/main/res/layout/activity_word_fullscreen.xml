@@ -18,11 +18,12 @@
             android:id="@+id/word_fullscreen"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
+            android:onClick="close"
             android:text="Где ближайший аэропорт?"
             android:textAppearance="@style/TextAppearance.AppCompat"
             android:textColor="@color/common_google_signin_btn_text_dark_default"
-            android:textSize="50sp"
-            android:onClick="close"/>
+            android:textIsSelectable="true"
+            android:textSize="50sp" />
     </LinearLayout>
 
 </FrameLayout>
