@@ -9,6 +9,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.os.Bundle;
 import android.preference.PreferenceManager;
+import android.support.annotation.NonNull;
 import android.support.v4.app.ActivityCompat;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AlertDialog;
@@ -19,6 +20,7 @@ import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.google.android.gms.ads.AdRequest;
 import com.google.android.gms.ads.AdView;
@@ -208,6 +210,7 @@ public class WordInfoActivity extends AppCompatActivity {
             //                                          int[] grantResults)
             // to handle the case where the user grants the permission. See the documentation
             // for ActivityCompat#requestPermissions for more details.
+            запросить_разрешение();
             return "a@b.c";
         }
         Account[] accounts = manager.getAccountsByType("com.google");
@@ -254,5 +257,20 @@ public class WordInfoActivity extends AppCompatActivity {
         Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
         intent.putExtra("word_fullscreen", w.en);
         startActivity(intent);
+    }
+
+    private void запросить_разрешение() {
+        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.GET_ACCOUNTS}, 1);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 1 && grantResults.length == 1) {
+            if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
+                showAD();
+                Toast.makeText(getApplicationContext(), "All ADs on ScSpeak is disabled by FREE!\nВся реклама в ScSpeak успешно отключена!\nThank you for choosing e-mail " + getUsername(), Toast.LENGTH_LONG).show();
+            }
+        }
+        super.onRequestPermissionsResult(requestCode, permissions, grantResults);
     }
 }

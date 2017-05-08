@@ -37,6 +37,7 @@ public class MainActivity extends AppCompatActivity {
     static String language;
     private Menu menu;
     private MenuItem searchItem;
+    private static boolean показывать_диалог = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -65,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             updateWordList();
             search(swResult);
         }else{
-            предложить_скачать_слова();
+            if (показывать_диалог) предложить_скачать_слова();
             String[] noWords = getResources().getStringArray(R.array.noWordsArray);
             ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noWords);
 
@@ -82,6 +83,8 @@ public class MainActivity extends AppCompatActivity {
                             Intent openlink = new Intent(Intent.ACTION_VIEW, address);
                             startActivity(openlink);
                             break;
+                        default:
+                            предложить_скачать_слова();
                     }
                 }
             });
@@ -100,18 +103,19 @@ public class MainActivity extends AppCompatActivity {
         ad.setMessage(message); // сообщение
         ad.setPositiveButton(button1String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
+                показывать_диалог = false;
                 скачать_слова();
             }
         });
         ad.setNegativeButton(button2String, new DialogInterface.OnClickListener() {
             public void onClick(DialogInterface dialog, int arg1) {
-
+                показывать_диалог = false;
             }
         });
         ad.setCancelable(true);
         ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
             public void onCancel(DialogInterface dialog) {
-
+                показывать_диалог = false;
             }
         });
         ad.show();
