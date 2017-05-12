@@ -27,16 +27,40 @@
                 android:text="@string/wordEdit_onLanguages"
                 android:textAlignment="center"
                 android:textSize="18sp" />
+
+            <TextView
+                android:id="@+id/textView_editEN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="EN"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="EN"
                 android:id="@+id/wordEdit_ENet" />
+
+            <TextView
+                android:id="@+id/textView_editMK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MK"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="MK"
                 android:id="@+id/wordEdit_MKet" />
+
+            <TextView
+                android:id="@+id/textView_editRU"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RU"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -61,31 +85,79 @@
                 android:text="@string/wordEdit_transcriptions"
                 android:textSize="18sp"
                 android:textAlignment="center" />
+
+            <TextView
+                android:id="@+id/textView_editENtoMK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="EN --> MK"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="EN --> MK"
                 android:id="@+id/WordEdit_enMKet" />
+
+            <TextView
+                android:id="@+id/textView_editENtoRU"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="EN --> RU"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="EN --> RU"
                 android:id="@+id/WordEdit_enRUet" />
+
+            <TextView
+                android:id="@+id/textView_editMKtoEN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MK --> EN"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="MK --> EN"
                 android:id="@+id/WordEdit_mkENet" />
+
+            <TextView
+                android:id="@+id/textView_editMKtoRU"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="MK --> RU"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="MK --> RU"
                 android:id="@+id/WordEdit_mkRUet" />
+
+            <TextView
+                android:id="@+id/textView_editRUtoEN"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RU --> EN"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:hint="RU --> EN"
                 android:id="@+id/WordEdit_RUenet" />
+
+            <TextView
+                android:id="@+id/textView_editRUtoMK"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="RU --> MK"
+                android:textColor="@color/colorAccent"
+                android:visibility="gone" />
             <EditText
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"

@@ -3,17 +3,22 @@ package ru.sccraft.scspeak;
 import android.os.Bundle;
 import android.support.v7.app.ActionBar;
 import android.support.v7.app.AppCompatActivity;
+import android.text.Editable;
+import android.text.TextWatcher;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import java.util.Random;
 
-public class WordEditActivity extends AppCompatActivity {
+public class WordEditActivity extends AppCompatActivity implements TextWatcher {
 
     Word w;
     EditText etEN, etMK, etRU, etEN_MK, etEN_RU, etMK_EN, etMK_RU, etRU_EN, etRU_MK;
+    TextView tvEN, tvMK, tvRU, tvEN_MK, tvEN_RU, tvMK_EN, tvMK_RU, tvRU_EN, tvRU_MK;
     boolean newW;
 
     @Override
@@ -23,6 +28,7 @@ public class WordEditActivity extends AppCompatActivity {
         setupActionBar();
         w = Word.fromJSON(getIntent().getStringExtra("word"));
         newW = w == null; //= if (w == null){newW = true;}else{newW = false}
+
         etEN = (EditText) findViewById(R.id.wordEdit_ENet);
         etMK = (EditText) findViewById(R.id.wordEdit_MKet);
         etRU = (EditText) findViewById(R.id.wordEdit_RUet);
@@ -32,6 +38,27 @@ public class WordEditActivity extends AppCompatActivity {
         etMK_RU = (EditText) findViewById(R.id.WordEdit_mkRUet);
         etRU_EN = (EditText) findViewById(R.id.WordEdit_RUenet);
         etRU_MK = (EditText) findViewById(R.id.WordEdit_ruMKet);
+
+        tvEN = (TextView) findViewById(R.id.textView_editEN);
+        tvMK = (TextView) findViewById(R.id.textView_editMK);
+        tvRU = (TextView) findViewById(R.id.textView_editRU);
+        tvEN_MK = (TextView) findViewById(R.id.textView_editENtoMK);
+        tvEN_RU = (TextView) findViewById(R.id.textView_editENtoRU);
+        tvMK_EN = (TextView) findViewById(R.id.textView_editMKtoEN);
+        tvMK_RU = (TextView) findViewById(R.id.textView_editMKtoRU);
+        tvRU_EN = (TextView) findViewById(R.id.textView_editRUtoEN);
+        tvRU_MK = (TextView) findViewById(R.id.textView_editRUtoMK);
+
+        etEN.addTextChangedListener(this);
+        etMK.addTextChangedListener(this);
+        etRU.addTextChangedListener(this);
+        etEN_MK.addTextChangedListener(this);
+        etEN_RU.addTextChangedListener(this);
+        etMK_EN.addTextChangedListener(this);
+        etMK_RU.addTextChangedListener(this);
+        etRU_EN.addTextChangedListener(this);
+        etRU_MK.addTextChangedListener(this);
+
         if (newW) {
             setTitle(getString(R.string.newWord));
             w = (Word) getLastCustomNonConfigurationInstance();
@@ -132,6 +159,18 @@ public class WordEditActivity extends AppCompatActivity {
         }
     }
 
+    private void обновить_подсказки() {
+        if (etEN.getText().toString().equals("")) tvEN.setVisibility(View.GONE); else tvEN.setVisibility(View.VISIBLE);
+        if (etMK.getText().toString().equals("")) tvMK.setVisibility(View.GONE); else tvMK.setVisibility(View.VISIBLE);
+        if (etRU.getText().toString().equals("")) tvRU.setVisibility(View.GONE); else tvRU.setVisibility(View.VISIBLE);
+        if (etEN_MK.getText().toString().equals("")) tvEN_MK.setVisibility(View.GONE); else tvEN_MK.setVisibility(View.VISIBLE);
+        if (etEN_RU.getText().toString().equals("")) tvEN_RU.setVisibility(View.GONE); else tvEN_RU.setVisibility(View.VISIBLE);
+        if (etMK_EN.getText().toString().equals("")) tvMK_EN.setVisibility(View.GONE); else tvMK_EN.setVisibility(View.VISIBLE);
+        if (etMK_RU.getText().toString().equals("")) tvMK_RU.setVisibility(View.GONE); else tvMK_RU.setVisibility(View.VISIBLE);
+        if (etRU_EN.getText().toString().equals("")) tvRU_EN.setVisibility(View.GONE); else tvRU.setVisibility(View.VISIBLE);
+        if (etRU_MK.getText().toString().equals("")) tvRU_MK.setVisibility(View.GONE); else tvRU_MK.setVisibility(View.VISIBLE);
+    }
+
     @Override
     public Object onRetainCustomNonConfigurationInstance() {
         updateTempWordClass();
@@ -148,5 +187,20 @@ public class WordEditActivity extends AppCompatActivity {
         w.mkTranscriptionToRU = etMK_RU.getText().toString();
         w.ruTranscriptionToEN = etRU_EN.getText().toString();
         w.ruTranscriptionToMK = etRU_MK.getText().toString();
+    }
+
+    @Override
+    public void beforeTextChanged(CharSequence s, int start, int count, int after) {
+        обновить_подсказки();
+    }
+
+    @Override
+    public void onTextChanged(CharSequence s, int start, int before, int count) {
+        обновить_подсказки();
+    }
+
+    @Override
+    public void afterTextChanged(Editable s) {
+        обновить_подсказки();
     }
 }

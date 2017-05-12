@@ -268,7 +268,7 @@ public class WordInfoActivity extends AppCompatActivity {
         if (requestCode == 1 && grantResults.length == 1) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 showAD();
-                Toast.makeText(getApplicationContext(), "All ADs on ScSpeak is disabled by FREE!\nВся реклама в ScSpeak успешно отключена!\nThank you for choosing e-mail " + getUsername(), Toast.LENGTH_LONG).show();
+                Toast.makeText(getApplicationContext(), "You are logined as " + getUsername(), Toast.LENGTH_LONG).show();
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
