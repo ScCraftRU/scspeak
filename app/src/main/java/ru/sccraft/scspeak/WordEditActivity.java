@@ -120,6 +120,7 @@ public class WordEditActivity extends AppCompatActivity implements TextWatcher {
             Word original = Word.fromJSON(getIntent().getStringExtra("word"));
             for (String aFile : file) {
                 if (!((aFile.equals("instant-run")) || (aFile.equals("scspeak-ads")))) {
+                    if (aFile.contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
                     String JSON = fe.getFile(aFile);
                     Word слово = Word.fromJSON(JSON);
                     if (!слово.equals(original)) continue;
@@ -142,7 +143,8 @@ public class WordEditActivity extends AppCompatActivity implements TextWatcher {
         updateTempWordClass();
         Word original = Word.fromJSON(getIntent().getStringExtra("word"));
         for (String aFile : file) {
-            if (!(aFile.equals("instant-run"))) {
+            if (!((aFile.equals("instant-run")) || (aFile.equals("scspeak-ads")))) {
+                if (aFile.contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
                 String JSON = fe.getFile(aFile);
                 Word слово = Word.fromJSON(JSON);
                 if (!(слово.equals(original))) continue;

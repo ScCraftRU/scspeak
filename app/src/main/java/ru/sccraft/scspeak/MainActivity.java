@@ -212,10 +212,10 @@ public class MainActivity extends AppCompatActivity {
         {
             Fe fe = new Fe(this);
             ArrayList<Word> al = new ArrayList<>();
-            for (int i = 0; i < file.length; i++) {
-                if (!((file[i].equals("instant-run"))||(file[i].equals("scspeak-ads")))) {
-                    if (file[i].contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
-                    al.add(Word.fromJSON(fe.getFile(file[i])));
+            for (String aFile : file) {
+                if (!((aFile.equals("instant-run")) || (aFile.equals("scspeak-ads")))) {
+                    if (aFile.contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
+                    al.add(Word.fromJSON(fe.getFile(aFile)));
                 }
 
             }
@@ -254,27 +254,27 @@ public class MainActivity extends AppCompatActivity {
                 }
             }
         } else if (язык_поиска.equals(настройки_поиска[1])) {
-            for (int i = 0; i < w.length; i++) {
-                if (w[i].contains(st)) {
-                    searchResult.add(w[i]);
+            for (Word aW : w) {
+                if (aW.contains(st)) {
+                    searchResult.add(aW);
                 }
             }
         } else if (язык_поиска.equals(настройки_поиска[2])){
-            for (int i = 0; i < w.length; i++) {
-                if (w[i].en.contains(st)) {
-                    searchResult.add(w[i]);
+            for (Word aW : w) {
+                if (aW.en.contains(st)) {
+                    searchResult.add(aW);
                 }
             }
         } else if (язык_поиска.equals(настройки_поиска[3])) {
-            for (int i = 0; i < w.length; i++) {
-                if (w[i].mk.contains(st)) {
-                    searchResult.add(w[i]);
+            for (Word aW : w) {
+                if (aW.mk.contains(st)) {
+                    searchResult.add(aW);
                 }
             }
         } else if (язык_поиска.equals(настройки_поиска[4])) {
-            for (int i = 0; i < w.length; i++) {
-                if (w[i].ru.contains(st)) {
-                    searchResult.add(w[i]);
+            for (Word aW : w) {
+                if (aW.ru.contains(st)) {
+                    searchResult.add(aW);
                 }
             }
         } else {
@@ -362,13 +362,14 @@ public class MainActivity extends AppCompatActivity {
 
             @Override
             protected Intent doInBackground(Void... params) {
+                Log.i(LOG_TAG, "запущен экспорт слов");
                 Fe fe = new Fe(MainActivity.this);
                 String tittle = "This data ONLY for ScSpeak server!\nMore information on http://sccraft.ru/index.php/guide/10-scspeak/2-scspeak-create-server\n";
                 String rasdelitel = "=================================================================\n";
                 String data = tittle + rasdelitel;
-                for (int i = 0; i < file.length; i++) {
-                    if (!(file[i].equals("instant-run"))) {
-                        data = data + file[i] + "\n" + fe.getFile(file[i]) + "\n" + rasdelitel;
+                for (String aFile : file) {
+                    if (!(aFile.equals("instant-run"))) {
+                        data = data + aFile + "\n" + fe.getFile(aFile) + "\n" + rasdelitel;
                     }
                 }
                 data = data + "END OF SERVER DATA";
@@ -377,6 +378,7 @@ public class MainActivity extends AppCompatActivity {
                 sendIntent.setAction(Intent.ACTION_SEND);
                 sendIntent.putExtra(Intent.EXTRA_TEXT, data);
                 sendIntent.setType("text/plain");
+                Log.i(LOG_TAG, "Экспорт слов завершён! Пользователю необходимо выбрать приложение, в которое будет проведён экспорт.");
                 return sendIntent;
             }
 
