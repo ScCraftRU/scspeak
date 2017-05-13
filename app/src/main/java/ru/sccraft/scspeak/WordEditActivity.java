@@ -105,7 +105,12 @@ public class WordEditActivity extends AppCompatActivity implements TextWatcher {
         Fe fe = new Fe(this);
         if (newW) {
             updateTempWordClass();
-            fe.saveFile((new Random()).nextInt(Integer.MAX_VALUE) + ".json", w.toJSON());
+            Random генератор = new Random();
+            String fileName = генератор.nextInt() + ".json";
+            while (fe.haveFile(fileName)) {
+                fileName = генератор.nextInt() + ".json";
+            }
+            fe.saveFile(fileName, w.toJSON());
             Toast.makeText(getApplicationContext(), getString(R.string.fileSaved), Toast.LENGTH_LONG).show();
             finish();
         }else{

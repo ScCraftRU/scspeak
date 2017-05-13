@@ -15,17 +15,17 @@ import static android.content.Context.MODE_PRIVATE;
  * Операции с файлами
  */
 
-public class Fe {
-    public static final String LOG_TAG = "Fe";
-    FileInputStream fin;
-    FileOutputStream fos;
+class Fe {
+    private static final String LOG_TAG = "Fe";
+    private FileInputStream fin;
+    private FileOutputStream fos;
     ContextWrapper a;
 
-    public Fe(Context a) {
+    Fe(Context a) {
         this.a = new ContextWrapper(a.getApplicationContext());
     }
 
-    public void saveFile(String name, String content){
+    void saveFile(String name, String content){
 
         try {
             fos = a.openFileOutput(name, MODE_PRIVATE);
@@ -46,13 +46,13 @@ public class Fe {
         }
     }
 
-    public String getFile(String name){
+    String getFile(String name){
         try {
             fin = a.openFileInput(name);
             byte[] bytes = new byte[fin.available()];
             fin.read(bytes);
             String text = new String (bytes);
-            Log.d(LOG_TAG, "Из файла получен текст: " + text);
+            Log.d(LOG_TAG, "Из файла \"" + name + "\" получен текст: " + text);
             return text;
         }
         catch(IOException ex) {
@@ -71,7 +71,11 @@ public class Fe {
         }
     }
 
-    String[] list() {
-        return a.fileList();
+    boolean haveFile (String имя_файла) {
+        String[] file = a.fileList();
+        for (String файл : file) {
+            if (имя_файла.equals(файл)) return true;
+        }
+        return false;
     }
 }
