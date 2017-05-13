@@ -214,6 +214,7 @@ public class MainActivity extends AppCompatActivity {
             ArrayList<Word> al = new ArrayList<>();
             for (int i = 0; i < file.length; i++) {
                 if (!((file[i].equals("instant-run"))||(file[i].equals("scspeak-ads")))) {
+                    if (file[i].contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
                     al.add(Word.fromJSON(fe.getFile(file[i])));
                 }
 
