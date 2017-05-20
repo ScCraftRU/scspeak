@@ -13,7 +13,7 @@ import com.google.gson.GsonBuilder;
  */
 
 public class Word implements Parcelable, Comparable<Word> {
-    static final String LOG_TAG = "Word";
+    private static final String LOG_TAG = "Word";
     public String en;
     public String mk;
     public String ru;
@@ -73,10 +73,10 @@ public class Word implements Parcelable, Comparable<Word> {
         return true;
     }
 
-    public boolean contains(String word) {
-        if (this.en.contains(word)) return true;
-        if (this.mk.contains(word)) return true;
-        if (this.ru.contains(word)) return true;
+    public boolean содержит(String word) {
+        if (сравнить_строки_без_учёта_регистра(this.en, word)) return true;
+        if (сравнить_строки_без_учёта_регистра(this.mk, word)) return true;
+        if (сравнить_строки_без_учёта_регистра(this.ru, word)) return true;
         return false;
     }
 
@@ -121,5 +121,19 @@ public class Word implements Parcelable, Comparable<Word> {
                 return this.ru.compareTo(o.ru);
         }
         return 0;
+    }
+
+    public static boolean сравнить_строки_без_учёта_регистра(String строка_1, String строка_2)     {
+        if(строка_1 == null || строка_2 == null) return false;
+
+        final int length = строка_2.length();
+        if (length == 0)
+            return true;
+
+        for (int i = строка_1.length() - length; i >= 0; i--) {
+            if (строка_1.regionMatches(true, i, строка_2, 0, length))
+                return true;
+        }
+        return false;
     }
 }

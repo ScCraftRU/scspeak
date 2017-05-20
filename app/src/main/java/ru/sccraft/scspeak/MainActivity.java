@@ -212,10 +212,10 @@ public class MainActivity extends AppCompatActivity {
         {
             Fe fe = new Fe(this);
             ArrayList<Word> al = new ArrayList<>();
-            for (String aFile : file) {
-                if (!((aFile.equals("instant-run")) || (aFile.equals("scspeak-ads")))) {
-                    if (aFile.contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
-                    al.add(Word.fromJSON(fe.getFile(aFile)));
+            for (String файл : file) {
+                if (!((файл.equals("instant-run")) || (файл.equals("scspeak-ads")))) {
+                    if (файл.contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
+                    al.add(Word.fromJSON(fe.getFile(файл)));
                 }
 
             }
@@ -237,8 +237,8 @@ public class MainActivity extends AppCompatActivity {
         }
     }
 
-    private void search(String st) {
-        if (st == null) {
+    private void search(String поисковый_запрос) {
+        if (поисковый_запрос == null) {
             swResult = "";
             search(swResult);
             return;
@@ -249,37 +249,37 @@ public class MainActivity extends AppCompatActivity {
         final String[] настройки_поиска = getResources().getStringArray(R.array.pref_search_array);
         if (язык_поиска.equals(настройки_поиска[0])) {
             for (int i = 0; i < w.length; i++) {
-                if (s[i].contains(st)) {
+                if (Word.сравнить_строки_без_учёта_регистра(s[i], поисковый_запрос)) {
                     searchResult.add(w[i]);
                 }
             }
         } else if (язык_поиска.equals(настройки_поиска[1])) {
-            for (Word aW : w) {
-                if (aW.contains(st)) {
-                    searchResult.add(aW);
+            for (Word слово : w) {
+                if (слово.содержит(поисковый_запрос)) {
+                    searchResult.add(слово);
                 }
             }
         } else if (язык_поиска.equals(настройки_поиска[2])){
-            for (Word aW : w) {
-                if (aW.en.contains(st)) {
-                    searchResult.add(aW);
+            for (Word слово : w) {
+                if (Word.сравнить_строки_без_учёта_регистра(слово.en,поисковый_запрос)) {
+                    searchResult.add(слово);
                 }
             }
         } else if (язык_поиска.equals(настройки_поиска[3])) {
-            for (Word aW : w) {
-                if (aW.mk.contains(st)) {
-                    searchResult.add(aW);
+            for (Word слово : w) {
+                if (Word.сравнить_строки_без_учёта_регистра(слово.mk,поисковый_запрос)) {
+                    searchResult.add(слово);
                 }
             }
         } else if (язык_поиска.equals(настройки_поиска[4])) {
-            for (Word aW : w) {
-                if (aW.ru.contains(st)) {
-                    searchResult.add(aW);
+            for (Word слово : w) {
+                if (Word.сравнить_строки_без_учёта_регистра(слово.ru,поисковый_запрос)) {
+                    searchResult.add(слово);
                 }
             }
         } else {
             for (int i = 0; i < w.length; i++) {
-                if (s[i].contains(st)) {
+                if (Word.сравнить_строки_без_учёта_регистра(s[i], поисковый_запрос)) {
                     searchResult.add(w[i]);
                 }
             }
