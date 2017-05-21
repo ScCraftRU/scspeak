@@ -95,9 +95,9 @@ public class RemoveAllActivity extends AppCompatActivity {
 
         @Override
         protected Void doInBackground(Void... params) {
-            for (String aFile : file) {
-                if (!((aFile.equals("instant-run"))||(aFile.equals("scspeak-ads")))) {
-                    deleteFile(aFile);
+            for (String файл : file) {
+                if (!((файл.equals("instant-run"))||(файл.equals("scspeak-ads")))) {
+                    deleteFile(файл);
                 }
             }
             return null;

@@ -71,6 +71,36 @@ public class WordInfoActivity extends AppCompatActivity {
         bEN.setText(w.en);
         bMK.setText(w.mk);
         bRU.setText(w.ru);
+
+        bEN.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
+                intent.putExtra("word_fullscreen", w.en);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        bMK.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
+                intent.putExtra("word_fullscreen", w.mk);
+                startActivity(intent);
+                return true;
+            }
+        });
+
+        bRU.setOnLongClickListener(new View.OnLongClickListener() {
+            @Override
+            public boolean onLongClick(View v) {
+                Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
+                intent.putExtra("word_fullscreen", w.en);
+                startActivity(intent);
+                return true;
+            }
+        });
     }
 
     private void setupActionBar() {
@@ -239,24 +269,6 @@ public class WordInfoActivity extends AppCompatActivity {
 
     public void transcriptionRU(View view) {
         showTranscription("ru");
-    }
-
-    public void fullscreenEN(View view) {
-        Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
-        intent.putExtra("word_fullscreen", w.en);
-        startActivity(intent);
-    }
-
-    public void fullscreenMK(View view) {
-        Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
-        intent.putExtra("word_fullscreen", w.mk);
-        startActivity(intent);
-    }
-
-    public void fullscreenRU(View view) {
-        Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
-        intent.putExtra("word_fullscreen", w.en);
-        startActivity(intent);
     }
 
     private void запросить_разрешение() {

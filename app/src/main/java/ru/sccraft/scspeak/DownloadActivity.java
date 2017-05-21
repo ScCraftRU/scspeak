@@ -41,7 +41,7 @@ public class DownloadActivity extends AppCompatActivity {
         //Действие запрещено!
     }
 
-    class Get extends AsyncTask<Void, Integer, Boolean> {
+    private class Get extends AsyncTask<Void, Integer, Boolean> {
         static final String LOG_TAG = "DownloadActivity/Get";
         DownloadActivity a;
         Fe fe;
@@ -59,11 +59,11 @@ public class DownloadActivity extends AppCompatActivity {
 
         @Override
         protected Boolean doInBackground(Void... params) {
-            if(!NetGet.getNetworkConnectionStatus(a)) return false;
+            //if(!NetGet.getNetworkConnectionStatus(a)) return false;
             fe = new Fe(a);
             file = fileList();
             sp = PreferenceManager.getDefaultSharedPreferences(a);
-            server = sp.getString("word_server", "http://sccraft.ru/android-app/scspeak/").toString();
+            server = sp.getString("word_server", "http://sccraft.ru/android-app/scspeak/");
             Log.i(LOG_TAG, "Загрузка с сервера:" + server);
             String swl = server + "list.sccraft";
             Log.i(LOG_TAG, "Путь к файлу со списком слов: " + swl);
@@ -77,7 +77,7 @@ public class DownloadActivity extends AppCompatActivity {
             pathOnServer = new String[serverWoordList.length];
             for (int i = 0; i < serverWoordList.length; i++) {
                 String[] temp = serverWoordList[i].split(" ");
-                fileName[i] = temp[0];
+                fileName[i] = temp[0] + ".json";
                 pathOnServer[i] = temp[1];
             }
             for (int i = 0; i < fileName.length; i++) {

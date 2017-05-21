@@ -25,25 +25,20 @@
                 android:text="@string/onThisLanguage"
                 android:textSize="18sp"
                 android:textAlignment="center" />
-            <HorizontalScrollView
-                android:layout_width="match_parent"
-                android:layout_height="45sp">
 
-                <LinearLayout
+            <HorizontalScrollView
+                android:layout_width="wrap_content"
+                android:layout_height="45sp"
+                android:layout_gravity="center">
+
+                <TextView
+                    android:id="@+id/wordInfo_thisLanguage"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_gravity="center"
-                    android:orientation="horizontal">
-
-                    <TextView
-                        android:id="@+id/wordInfo_thisLanguage"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:text="Слово"
-                        android:textAlignment="center"
-                        android:textSize="36sp"
-                        android:textStyle="normal|bold" />
-                </LinearLayout>
+                    android:text="Слово"
+                    android:textAlignment="center"
+                    android:textSize="36sp"
+                    android:textStyle="normal|bold" />
             </HorizontalScrollView>
 
             <!--На других языках-->
@@ -77,12 +72,6 @@
                     android:textSize="18sp"
                     android:onClick="trancriptionEN" />
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/common_google_signin_btn_text_dark_default"
-                    ads:srcCompat="@android:drawable/ic_menu_add"
-                    android:onClick="fullscreenEN"/>
             </LinearLayout>
             <!--Македонский-->
             <LinearLayout
@@ -107,12 +96,6 @@
                     android:textSize="18sp"
                     android:onClick="transcriptionMK"/>
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/common_google_signin_btn_text_dark_default"
-                    android:onClick="fullscreenMK"
-                    ads:srcCompat="@android:drawable/ic_menu_add" />
             </LinearLayout>
             <!--Русский-->
             <LinearLayout
@@ -137,12 +120,6 @@
                     android:textSize="18sp"
                     android:onClick="transcriptionRU"/>
 
-                <ImageButton
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:backgroundTint="@color/common_google_signin_btn_text_dark_default"
-                    android:onClick="fullscreenRU"
-                    ads:srcCompat="@android:drawable/ic_menu_add" />
             </LinearLayout>
         </LinearLayout>
     </ScrollView>
