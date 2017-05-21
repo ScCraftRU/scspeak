@@ -3,6 +3,7 @@ package ru.sccraft.scspeak;
 import android.content.Context;
 import android.net.ConnectivityManager;
 import android.net.NetworkInfo;
+import android.util.Log;
 
 import java.io.BufferedReader;
 import java.io.InputStreamReader;
@@ -15,6 +16,8 @@ import java.util.ArrayList;
  */
 
 public class NetGet {
+    private static final String LOG_TAG = "NetGet";
+
     public static String getOneLine(String webAdress) {
         URL url;
         HttpURLConnection conn = null;
@@ -25,6 +28,8 @@ public class NetGet {
             url = new URL(webAdress);
             conn = (HttpURLConnection) url.openConnection();
             conn.setRequestMethod("GET");
+            int responseCode = conn.getResponseCode();
+            Log.i(LOG_TAG, "Код ответа сервера (RESPONSE CODE) = " + responseCode);
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             while ((line = rd.readLine()) != null) {
                 result += line;
@@ -52,9 +57,9 @@ public class NetGet {
         try {
             url = new URL(webAdress);
             conn = (HttpURLConnection) url.openConnection();
-            int responseCode = conn.getResponseCode();
-            if (responseCode != conn.HTTP_OK) return new String[]{"Connection error"};
             conn.setRequestMethod("GET");
+            int responseCode = conn.getResponseCode();
+            Log.i(LOG_TAG, "Код ответа сервера (RESPONSE CODE) = " + responseCode);
             rd = new BufferedReader(new InputStreamReader(conn.getInputStream()));
             while ((line = rd.readLine()) != null) {
                 if (!(line.equals(""))) {
