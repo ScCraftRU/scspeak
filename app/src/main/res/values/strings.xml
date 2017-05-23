@@ -101,5 +101,15 @@
     <string name="pref_sync_summary">Load all new words. If the word has a translation added, then delete the word before synchronization!</string>
     <string name="privacy">Privacy policy</string>
     <string name="noWordsDialogContent">Download words from the server and accept the privacy policy?\n\nTo view the privacy policy, click "NO" and select the appropriate option.</string>
+    <string name="action_share">Share</string>
+    <string name="helpActivity_title">Help</string>
+    <string name="helpActivity_howToCreateWord">How to create a word?</string>
+    <string name="helpActivity_howToCreateWord_info">In order to create a word (a phrase), you must click the \"+\" button on the application main screen.</string>
+    <string name="helpActivity_howToChangeWord">How to change (Delete) a word?</string>
+    <string name="helpActivity_howToChangeWord_info">1) Make a long click on the word you want to change (delete)\n2) Make the necessary changes to the word (when editing)\n3) click save (delete)</string>
+    <string name="helpActivity_howToViewTranscription">How do I view the pronunciation of a word?</string>
+    <string name="helpActivity_howToViewTranscription_answer">Click on the desired word translation</string>
+    <string name="HelpActivity_fullscreen">How to view the word translation in full-screen mode?</string>
+    <string name="helpActivity_fullscreen_content">Make a long press on the desired translation. In full screen mode, you can select a word (phrase). To exit full-screen mode, click anywhere on the screen.</string>
 
 </resources>

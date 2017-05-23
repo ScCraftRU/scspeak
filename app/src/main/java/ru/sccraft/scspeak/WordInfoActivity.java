@@ -31,7 +31,7 @@ import java.util.List;
 public class WordInfoActivity extends AppCompatActivity {
 
     Word w;
-    TextView thisLanguage, tvEN, tvMK, tvRU;
+    TextView thisLanguage;
     LinearLayout llEN, llMK, llRU;
     Button bEN, bMK, bRU;
     private AdView adView;
@@ -52,7 +52,7 @@ public class WordInfoActivity extends AppCompatActivity {
 
         // Load an ad into the AdMob banner view.
         adView = (AdView) findViewById(R.id.adView);
-        showAD();
+        показать_рекламу();
         if (w == null) return;
         switch (getString(R.string.getSystemLanguage)) {
             case "en":
@@ -96,7 +96,7 @@ public class WordInfoActivity extends AppCompatActivity {
             @Override
             public boolean onLongClick(View v) {
                 Intent intent = new Intent(WordInfoActivity.this, WordFullscreenActivity.class);
-                intent.putExtra("word_fullscreen", w.en);
+                intent.putExtra("word_fullscreen", w.ru);
                 startActivity(intent);
                 return true;
             }
@@ -133,17 +133,17 @@ public class WordInfoActivity extends AppCompatActivity {
 
         switch (id) {
             case R.id.action_share:
-                share();
+                поделиться();
                 return true;
             case R.id.action_toServer:
-                toServer();
+                экспорт_на_сервер();
                 return true;
         }
 
         return super.onOptionsItemSelected(item);
     }
 
-    private void toServer() {
+    private void экспорт_на_сервер() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, w.toJSON());
@@ -153,7 +153,7 @@ public class WordInfoActivity extends AppCompatActivity {
         }
     }
 
-    private void share() {
+    private void поделиться() {
         Intent sendIntent = new Intent();
         sendIntent.setAction(Intent.ACTION_SEND);
         sendIntent.putExtra(Intent.EXTRA_TEXT, "EN: " + w.en + "\n" + "MK: " + w.mk + "\n" + "RU: " + w.ru + "\n" + "===== TRANSCRIPTIONS ====\n" + "EN ---> MK: " + w.enTranscriptionToMK + "\n" + "EN ---> RU: " + w.enTranscriptionToRU + "\n" + "MK ---> EN: " + w.mkTranscriptionToEN + "\n" + "MK ---> RU: " + w.mkTranscriptionToRU + "\n" + "RU ---> EN: " + w.ruTranscriptionToEN + "\n" + "RU ---> MK: " + w.ruTranscriptionToMK);
@@ -163,7 +163,7 @@ public class WordInfoActivity extends AppCompatActivity {
         }
     }
 
-    private void showTranscription(String language) {
+    private void показать_произношение(String language) {
         AlertDialog.Builder ad = new AlertDialog.Builder(this);
         ad.setTitle(getString(R.string.transcription));  // заголовок
         switch (getString(R.string.getSystemLanguage)) {
@@ -216,18 +216,18 @@ public class WordInfoActivity extends AppCompatActivity {
         ad.show();
     }
 
-    private void showAD() {
+    private void показать_рекламу() {
         adView.setVisibility(View.GONE);
         Fe fe = new Fe(this);
         String AD_DATA = fe.getFile("scspeak-ads");
         if (AD_DATA.contains("1")) return; //Для повышения вероятности работы покупки. Раньше использовался equals.
-        if (getUsername().equals("sasha01945@gmail.com")) return;
+        if (получить_email().equals("sasha01945@gmail.com")) return;
         adView.setVisibility(View.VISIBLE);
         AdRequest adRequest = new AdRequest.Builder().setRequestAgent("android_studio:ad_template").build();
         adView.loadAd(adRequest);
     }
 
-    public String getUsername() {
+    public String получить_email() {
         AccountManager manager = AccountManager.get(this);
         SharedPreferences myPreference= PreferenceManager.getDefaultSharedPreferences(this);
         Boolean fl = myPreference.getBoolean("disableADsByEmail", false);
@@ -260,15 +260,15 @@ public class WordInfoActivity extends AppCompatActivity {
     }
 
     public void trancriptionEN(View view) {
-        showTranscription("en");
+        показать_произношение("en");
     }
 
     public void transcriptionMK(View view) {
-        showTranscription("mk");
+        показать_произношение("mk");
     }
 
     public void transcriptionRU(View view) {
-        showTranscription("ru");
+        показать_произношение("ru");
     }
 
     private void запросить_разрешение() {
@@ -279,8 +279,8 @@ public class WordInfoActivity extends AppCompatActivity {
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         if (requestCode == 1 && grantResults.length == 1) {
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
-                showAD();
-                Toast.makeText(getApplicationContext(), "You are logined as " + getUsername(), Toast.LENGTH_LONG).show();
+                показать_рекламу();
+                Toast.makeText(getApplicationContext(), "You are logined as " + получить_email(), Toast.LENGTH_LONG).show();
             }
         }
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);

@@ -81,4 +81,14 @@
     <string name="pref_sync_summary">Загрузить все новые слова. Если у слова добавился перевод, то удалите слово перед синхронизацией!</string>
     <string name="privacy">Политика конфиденциальности</string>
     <string name="noWordsDialogContent">Загрузить слова с сервера и принять политику конфиденциальности?\n\nДля просмотра политики конфиденциальности нажмите "НЕТ" и выберите соответствующий пункт.</string>
+    <string name="action_share">Поделиться</string>
+    <string name="helpActivity_title">Справка</string>
+    <string name="helpActivity_howToCreateWord">Как создать слово?</string>
+    <string name="helpActivity_howToCreateWord_info">Для того, чтобы создать слово (словосочетание) нужно нажать кнопку \"+\" на главном экране приложения.</string>
+    <string name="helpActivity_howToChangeWord">Как изменить (удалить) слово?</string>
+    <string name="helpActivity_howToChangeWord_info">1) Сделайте долгий клик на слово, которое хотите изменить (удалить)\n2) Внесите необходимые изменения в слово (при редактировании)\n3) Нажмите сохранить (удалить)</string>
+    <string name="helpActivity_howToViewTranscription">Как посмотреть произношение слова?</string>
+    <string name="helpActivity_howToViewTranscription_answer">нажмите на нужный вам перевод слова</string>
+    <string name="HelpActivity_fullscreen">Как просмотреть перевод в полноэкранном режиме?</string>
+    <string name="helpActivity_fullscreen_content">Сделайте долгое нажатие на нужный перевод. В полноэкранном режиме вы можете выделять слово (словосочетание). Для выхода из полноэкранного режима нажмите в любое место экрана.</string>
 </resources>

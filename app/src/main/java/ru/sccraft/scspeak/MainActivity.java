@@ -62,7 +62,7 @@ public class MainActivity extends AppCompatActivity {
         super.onResume();
         file = fileList();
         updateMenu();
-        if (file.length > 1) {
+        if (file.length > 0) {
             updateWordList();
             search(swResult);
         }else{
@@ -200,6 +200,10 @@ public class MainActivity extends AppCompatActivity {
                 Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
                 startActivity(intent);
                 return true;
+            case R.id.action_help:
+                Intent intent2 = new Intent(MainActivity.this, HelpActivity.class);
+                startActivity(intent2);
+                break;
             case R.id.action_about:
                 Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
                 startActivity(intent1);

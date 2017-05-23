@@ -112,7 +112,7 @@ public class DisableADsActivity extends AppCompatActivity {
                     ad.show();
                 }
                 // Hooray, IAB is fully set up!
-                restore();
+                восстановить();
             }
         });
     }
@@ -136,7 +136,7 @@ public class DisableADsActivity extends AppCompatActivity {
         mHelper = null;
     }
 
-    private void buy() {
+    private void купить() {
         try {
             mHelper.launchPurchaseFlow(this, "ru.sccraft.scspeak.disableads", 10001, mPurchaseFinishedListener, "Язык: " + MainActivity.language);
         } catch (IabHelper.IabAsyncInProgressException e) {
@@ -147,7 +147,7 @@ public class DisableADsActivity extends AppCompatActivity {
         }
     }
 
-    private void restore() {
+    private void восстановить() {
         ArrayList<String> товары = new ArrayList<>(1);
         товары.add("ru.sccraft.scspeak.disableads");
         try {
@@ -160,10 +160,10 @@ public class DisableADsActivity extends AppCompatActivity {
         }
     }
     public void buy(View view) {
-        buy();
+        купить();
     }
 
     public void restore(View view) {
-        restore();
+        восстановить();
     }
 }

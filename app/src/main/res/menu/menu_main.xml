@@ -19,12 +19,17 @@
         app:showAsAction="ifRoom" />
     <item
         android:id="@+id/action_settings"
-        android:orderInCategory="102"
+        android:orderInCategory="103"
         android:title="@string/action_settings"
         app:showAsAction="never" />
     <item
+        android:id="@+id/action_help"
+        android:icon="@android:drawable/ic_menu_help"
+        android:orderInCategory="104"
+        android:title="@string/helpActivity_title" />
+    <item
         android:title="@string/about"
-        android:orderInCategory="103"
+        android:orderInCategory="105"
         android:id="@+id/action_about" />
 
 </menu>

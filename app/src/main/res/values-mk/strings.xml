@@ -82,5 +82,15 @@
     <string name="pref_sync_summary">Преземање на сите нови зборови. Ако зборот да додадете превод, а потоа отстранете зборот пред да го синхронизирате!</string>
     <string name="privacy">Политиката на доверливоста</string>
     <string name="noWordsDialogContent">Преземете ја зборовите на сервер и да го прифатат политиката за приватност?\n\nКликнете на "Не" и одберете ја соодветната опција за да го видиш политика за приватност.</string>
+    <string name="action_share">Сподели</string>
+    <string name="helpActivity_title">Информации</string>
+    <string name="helpActivity_howToCreateWord">Како да се создаде еден збор?</string>
+    <string name="helpActivity_howToCreateWord_info">За да креирате некој збор (фраза) треба да го притиснете копчето \"+\" на главниот екран на апликацијата.</string>
+    <string name="helpActivity_howToChangeWord">Како да ја сменам (бришење) на зборот?</string>
+    <string name="helpActivity_howToChangeWord_info">1) Бидете долго кликнете на зборот што сакате да се промени (отстрани)\n2) Направете промени во зборот (уреди)3) Кликнете Зачувај (отстрани)</string>
+    <string name="helpActivity_howToViewTranscription">Како да се види на изговорот на зборот?</string>
+    <string name="helpActivity_howToViewTranscription_answer">кликнете на саканиот збор превод</string>
+    <string name="HelpActivity_fullscreen">Како можам да гледам зборот во режим на цел екран?</string>
+    <string name="helpActivity_fullscreen_content">Направете долго притискање на саканиот превод. Во режим на цел екран, можете да изберете го зборот (фраза). За да излезете од режимот на цел екран, кликнете било каде на екранот.</string>
 
 </resources>
