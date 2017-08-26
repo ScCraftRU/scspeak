@@ -44,9 +44,9 @@ public class MainActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         language = getString(R.string.getSystemLanguage);
         setContentView(R.layout.activity_main);
-        Toolbar toolbar = (Toolbar) findViewById(R.id.toolbar);
+        Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
-        lw = (ListView) findViewById(R.id.lw);
+        lw = findViewById(R.id.lw);
         FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -217,7 +217,7 @@ public class MainActivity extends AppCompatActivity {
             Fe fe = new Fe(this);
             ArrayList<Word> al = new ArrayList<>();
             for (String файл : file) {
-                if (!((файл.equals("instant-run")) || (файл.equals("scspeak-ads")))) {
+                if (файл.contains(".json")) {
                     if (файл.contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
                     al.add(Word.fromJSON(fe.getFile(файл)));
                 }
