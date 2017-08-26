@@ -21,7 +21,7 @@
             android:onClick="close"
             android:text="Где ближайший аэропорт?"
             android:textAppearance="@style/TextAppearance.AppCompat"
-            android:textColor="@color/common_google_signin_btn_text_dark_default"
+            android:textColor="@android:color/background_light"
             android:textIsSelectable="true"
             android:textSize="50sp" />
     </LinearLayout>
