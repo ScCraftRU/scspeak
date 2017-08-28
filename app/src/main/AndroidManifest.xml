@@ -71,10 +71,12 @@
         </activity>
         <activity
             android:name=".WordFullscreenActivity"
-            android:configChanges="orientation|keyboardHidden|screenSize"
+            android:configChanges="orientation|keyboardHidden|screenSize|smallestScreenSize|screenLayout"
             android:label="@string/title_activity_word_fullscreen"
             android:parentActivityName=".WordInfoActivity"
-            android:theme="@style/FullscreenTheme">
+            android:theme="@style/FullscreenTheme"
+            android:resizeableActivity="true"
+            android:supportsPictureInPicture="true">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="ru.sccraft.scspeak.WordInfoActivity" />
