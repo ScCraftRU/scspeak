@@ -22,7 +22,7 @@
                 android:id="@+id/word_fullscreen"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="close"
+                android:onClick="закрыть"
                 android:text="Где ближайший аэропорт?"
                 android:textAppearance="@style/TextAppearance.AppCompat"
                 android:textColor="@android:color/background_light"

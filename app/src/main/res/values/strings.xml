@@ -80,7 +80,7 @@
     <string name="transcription">Pronunciation of a word</string>
     <string name="close">Close</string>
     <string name="fileSaved">The file is saved!</string>
-    <string name="pref_email">Allow access to E-mail</string>
+    <string name="pref_email">Developer mode</string>
     <string name="buy">Buy</string>
     <string name="ads">Advertisement</string>
     <string name="restorePurchases">restore purchases</string>
@@ -111,5 +111,7 @@
     <string name="helpActivity_howToViewTranscription_answer">Click on the desired word translation</string>
     <string name="HelpActivity_fullscreen">How to view the word translation in full-screen mode?</string>
     <string name="helpActivity_fullscreen_content">Make a long press on the desired translation. In full screen mode, you can select a word (phrase). To exit full-screen mode, click anywhere on the screen.</string>
+    <string name="devMode_enabled">Developer mode enabled!</string>
+    <string name="devMode_reqest">The application needs to make sure that you are its developer. To do this, give the application permission to view your e-mail.\n\nDo you want permission?</string>
 
 </resources>

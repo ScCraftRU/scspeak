@@ -229,6 +229,7 @@ public class WordInfoActivity extends AppCompatActivity {
 
     public String получить_email() {
         AccountManager manager = AccountManager.get(this);
+
         SharedPreferences myPreference= PreferenceManager.getDefaultSharedPreferences(this);
         Boolean fl = myPreference.getBoolean("disableADsByEmail", false);
         if (!fl) return "a@b.c";
@@ -272,7 +273,25 @@ public class WordInfoActivity extends AppCompatActivity {
     }
 
     private void запросить_разрешение() {
-        ActivityCompat.requestPermissions(this, new String[] {Manifest.permission.GET_ACCOUNTS}, 1);
+        AlertDialog.Builder ad;
+        ad = new AlertDialog.Builder(WordInfoActivity.this);
+        ad.setTitle(R.string.devMode_enabled);  // заголовок
+        ad.setMessage(R.string.devMode_reqest); // сообщение
+        ad.setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+                ActivityCompat.requestPermissions(WordInfoActivity.this, new String[] {android.Manifest.permission.GET_ACCOUNTS}, 1);
+            }
+        });
+        ad.setNegativeButton(R.string.no, new DialogInterface.OnClickListener() {
+            public void onClick(DialogInterface dialog, int arg1) {
+            }
+        });
+        ad.setCancelable(true);
+        ad.setOnCancelListener(new DialogInterface.OnCancelListener() {
+            public void onCancel(DialogInterface dialog) {
+            }
+        });
+        ad.show();
     }
 
     @Override

@@ -1,5 +1,6 @@
 package ru.sccraft.scspeak;
 
+import android.app.PictureInPictureParams;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.v4.app.NavUtils;
@@ -41,7 +42,7 @@ public class WordFullscreenActivity extends AppCompatActivity {
         return super.onOptionsItemSelected(item);
     }
 
-    public void close(View view) {
+    public void закрыть(View view) {
         finish();
     }
 
@@ -57,7 +58,8 @@ public class WordFullscreenActivity extends AppCompatActivity {
             } else {
                 слово.setTextSize(16);
             }
-            enterPictureInPictureMode();
+            PictureInPictureParams.Builder настройки_режима_КВК = new PictureInPictureParams.Builder();
+            enterPictureInPictureMode(настройки_режима_КВК.build());
         }
     }
 
