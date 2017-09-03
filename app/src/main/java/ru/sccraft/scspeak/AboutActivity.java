@@ -44,8 +44,8 @@ public class AboutActivity extends AppCompatActivity {
         } catch (PackageManager.NameNotFoundException e) {
             e.printStackTrace();
         }
-        vc = (TextView) findViewById(R.id.aboutVersionCode);
-        vn = (TextView) findViewById(R.id.aboutVN);
+        vc = findViewById(R.id.aboutVersionCode);
+        vn = findViewById(R.id.aboutVN);
         vc.setText("" + номер_сборки);
         vn.setText(название_версии);
         кликни_пять_раз_не_поворачивая_экран = 0;
