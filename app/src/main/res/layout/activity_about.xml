@@ -84,7 +84,7 @@
                 android:layout_height="wrap_content"
                 android:layout_gravity="center"
                 android:text="@string/send_logcat"
-                android:onClick="getLogcat"/>
+                android:onClick="получить_LogCat"/>
         </LinearLayout>
     </ScrollView>
 
