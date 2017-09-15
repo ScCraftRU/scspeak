@@ -117,7 +117,7 @@ public class AboutActivity extends AppCompatActivity {
         }
     }
 
-    public void получить_LogCat(View view) {
+    public void get_Logcat(View view) {
         if (кликни_пять_раз_не_поворачивая_экран < 5) {
             кликни_пять_раз_не_поворачивая_экран++;
             toast.setText(R.string.onlyForDevelopers);

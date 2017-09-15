@@ -7,8 +7,8 @@ android {
         applicationId "ru.sccraft.scspeak"
         minSdkVersion 17
         targetSdkVersion 26
-        versionCode 68
-        versionName "1.2alpha2"
+        versionCode 69
+        versionName "1.2beta1"
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
@@ -28,17 +28,17 @@ dependencies {
     compile 'com.android.support:appcompat-v7:26.0.2'
     compile 'com.android.support:design:26.0.2'
     //noinspection GradleCompatible
-    compile 'com.google.android.gms:play-services-ads:11.2.0'
+    compile 'com.google.android.gms:play-services-ads:11.2.2'
     compile 'com.android.support:support-v4:26.0.2'
     compile 'com.android.support:support-vector-drawable:26.0.2'
     compile 'com.google.code.gson:gson:2.8.1'
     compile 'com.android.support.constraint:constraint-layout:1.0.2'
-    compile 'com.google.firebase:firebase-ads:11.2.0'
-    compile 'com.google.firebase:firebase-crash:11.2.0'
+    compile 'com.google.firebase:firebase-ads:11.2.2'
+    compile 'com.google.firebase:firebase-crash:11.2.2'
     //noinspection GradleCompatible
-    compile 'com.google.firebase:firebase-messaging:11.2.0'
+    compile 'com.google.firebase:firebase-messaging:11.2.2'
     compile 'com.firebase:firebase-jobdispatcher:0.5.2'
-    compile 'com.google.firebase:firebase-core:11.2.0'
+    compile 'com.google.firebase:firebase-core:11.2.2'
     testCompile 'junit:junit:4.12'
 }
 

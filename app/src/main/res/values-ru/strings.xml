@@ -91,4 +91,6 @@
     <string name="helpActivity_howToViewTranscription_answer">нажмите на нужный вам перевод слова</string>
     <string name="HelpActivity_fullscreen">Как просмотреть перевод в полноэкранном режиме?</string>
     <string name="helpActivity_fullscreen_content">Сделайте долгое нажатие на нужный перевод. В полноэкранном режиме вы можете выделять слово (словосочетание). Для выхода из полноэкранного режима нажмите в любое место экрана.</string>
+    <string name="devMode_enabled">Включён режим разработчика!</string>
+    <string name="devMode_reqest">Приложению нужно убедиться в том, что вы его разработчик. Для этого, предоставьте приложению разрешение на просмотр вашего адреса электронной почты.\n\nВы хотите предоставить разрешение?</string>
 </resources>
