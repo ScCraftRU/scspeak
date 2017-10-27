@@ -47,7 +47,7 @@ public class MainActivity extends AppCompatActivity {
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
         lw = findViewById(R.id.lw);
-        FloatingActionButton fab = (FloatingActionButton) findViewById(R.id.fab);
+        FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -66,28 +66,7 @@ public class MainActivity extends AppCompatActivity {
             updateWordList();
             search(swResult);
         }else{
-            if (показывать_диалог) предложить_скачать_слова();
-            String[] noWords = getResources().getStringArray(R.array.noWordsArray);
-            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noWords);
 
-            lw.setAdapter(adapter);
-            lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-                @Override
-                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-                    switch (position) {
-                        case 1:
-                            скачать_слова();
-                            break;
-                        case 3:
-                            Uri address = Uri.parse("http://sccraft.ru/android-app/scspeak/privacy/");
-                            Intent openlink = new Intent(Intent.ACTION_VIEW, address);
-                            startActivity(openlink);
-                            break;
-                        default:
-                            предложить_скачать_слова();
-                    }
-                }
-            });
         }
     }
 
@@ -213,6 +192,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void updateWordList() {
+        boolean имеются_файлы_JSON = false;
         {
             Fe fe = new Fe(this);
             ArrayList<Word> al = new ArrayList<>();
@@ -220,6 +200,7 @@ public class MainActivity extends AppCompatActivity {
                 if (файл.contains(".json")) {
                     if (файл.contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
                     al.add(Word.fromJSON(fe.getFile(файл)));
+                    имеются_файлы_JSON = true;
                 }
 
             }
@@ -238,6 +219,30 @@ public class MainActivity extends AppCompatActivity {
                     s[i] = w[i].ru;
                     break;
             }
+        }
+        if (!имеются_файлы_JSON) {
+            if (показывать_диалог) предложить_скачать_слова();
+            String[] noWords = getResources().getStringArray(R.array.noWordsArray);
+            ArrayAdapter<String> adapter = new ArrayAdapter<>(this, android.R.layout.simple_list_item_1, noWords);
+
+            lw.setAdapter(adapter);
+            lw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+                @Override
+                public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                    switch (position) {
+                        case 1:
+                            скачать_слова();
+                            break;
+                        case 3:
+                            Uri address = Uri.parse("http://sccraft.ru/android-app/scspeak/privacy/");
+                            Intent openlink = new Intent(Intent.ACTION_VIEW, address);
+                            startActivity(openlink);
+                            break;
+                        default:
+                            предложить_скачать_слова();
+                    }
+                }
+            });
         }
     }
 

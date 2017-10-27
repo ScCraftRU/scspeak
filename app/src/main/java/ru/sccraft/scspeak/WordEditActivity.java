@@ -29,25 +29,25 @@ public class WordEditActivity extends AppCompatActivity implements TextWatcher {
         w = Word.fromJSON(getIntent().getStringExtra("word"));
         newW = w == null; //= if (w == null){newW = true;}else{newW = false}
 
-        etEN = (EditText) findViewById(R.id.wordEdit_ENet);
-        etMK = (EditText) findViewById(R.id.wordEdit_MKet);
-        etRU = (EditText) findViewById(R.id.wordEdit_RUet);
-        etEN_MK = (EditText) findViewById(R.id.WordEdit_enMKet);
-        etEN_RU = (EditText) findViewById(R.id.WordEdit_enRUet);
-        etMK_EN = (EditText) findViewById(R.id.WordEdit_mkENet);
-        etMK_RU = (EditText) findViewById(R.id.WordEdit_mkRUet);
-        etRU_EN = (EditText) findViewById(R.id.WordEdit_RUenet);
+        etEN = findViewById(R.id.wordEdit_ENet);
+        etMK = findViewById(R.id.wordEdit_MKet);
+        etRU = findViewById(R.id.wordEdit_RUet);
+        etEN_MK = findViewById(R.id.WordEdit_enMKet);
+        etEN_RU = findViewById(R.id.WordEdit_enRUet);
+        etMK_EN = findViewById(R.id.WordEdit_mkENet);
+        etMK_RU = findViewById(R.id.WordEdit_mkRUet);
+        etRU_EN = findViewById(R.id.WordEdit_RUenet);
         etRU_MK = (EditText) findViewById(R.id.WordEdit_ruMKet);
 
-        tvEN = (TextView) findViewById(R.id.textView_editEN);
-        tvMK = (TextView) findViewById(R.id.textView_editMK);
-        tvRU = (TextView) findViewById(R.id.textView_editRU);
-        tvEN_MK = (TextView) findViewById(R.id.textView_editENtoMK);
-        tvEN_RU = (TextView) findViewById(R.id.textView_editENtoRU);
-        tvMK_EN = (TextView) findViewById(R.id.textView_editMKtoEN);
-        tvMK_RU = (TextView) findViewById(R.id.textView_editMKtoRU);
-        tvRU_EN = (TextView) findViewById(R.id.textView_editRUtoEN);
-        tvRU_MK = (TextView) findViewById(R.id.textView_editRUtoMK);
+        tvEN = findViewById(R.id.textView_editEN);
+        tvMK = findViewById(R.id.textView_editMK);
+        tvRU = findViewById(R.id.textView_editRU);
+        tvEN_MK = findViewById(R.id.textView_editENtoMK);
+        tvEN_RU = findViewById(R.id.textView_editENtoRU);
+        tvMK_EN = findViewById(R.id.textView_editMKtoEN);
+        tvMK_RU = findViewById(R.id.textView_editMKtoRU);
+        tvRU_EN = findViewById(R.id.textView_editRUtoEN);
+        tvRU_MK = findViewById(R.id.textView_editRUtoMK);
 
         etEN.addTextChangedListener(this);
         etMK.addTextChangedListener(this);
