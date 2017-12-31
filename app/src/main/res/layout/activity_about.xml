@@ -44,7 +44,7 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="0.1alpha1"
+                    tools:text="0.1alpha1"
                     android:id="@+id/aboutVN" />
             </LinearLayout>
             <LinearLayout
@@ -58,8 +58,23 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="1"
+                    tools:text="1"
                     android:id="@+id/aboutVersionCode" />
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="@string/license" />
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="GNU GENERAL PUBLIC LICENSE Version 3" />
             </LinearLayout>
 
             <Button
@@ -77,6 +92,22 @@
                 android:layout_gravity="center"
                 android:onClick="rateAPP"
                 android:text="@string/rateApp" />
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center"
+                android:text="@string/license_button"
+                android:onClick="viewLicense"/>
+
+            <Button
+                style="@style/Widget.AppCompat.Button.Borderless.Colored"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal"
+                android:text="@string/sourceCode"
+                android:onClick="viewSourceCode"/>
 
             <Button
                 style="@style/Widget.AppCompat.Button.Borderless.Colored"

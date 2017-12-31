@@ -113,5 +113,8 @@
     <string name="helpActivity_fullscreen_content">Make a long press on the desired translation. In full screen mode, you can select a word (phrase). To exit full-screen mode, click anywhere on the screen.</string>
     <string name="devMode_enabled">Developer mode enabled!</string>
     <string name="devMode_reqest">The application needs to make sure that you are its developer. To do this, give the application permission to view your e-mail.\n\nDo you want permission?</string>
+    <string name="license">"License: "</string>
+    <string name="license_button">View license</string>
+    <string name="sourceCode">View source code</string>
 
 </resources>
