@@ -66,7 +66,7 @@ public class MainActivity extends AppCompatActivity {
             updateWordList();
             search(swResult);
         }else{
-
+            if (показывать_диалог) предложить_скачать_слова();
         }
     }
 
