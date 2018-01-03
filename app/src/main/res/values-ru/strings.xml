@@ -94,4 +94,6 @@
     <string name="devMode_enabled">Включён режим разработчика!</string>
     <string name="devMode_reqest">Приложению нужно убедиться в том, что вы его разработчик. Для этого, предоставьте приложению разрешение на просмотр вашего адреса электронной почты.\n\nВы хотите предоставить разрешение?</string>
     <string name="license">"Лицензия: "</string>
+    <string name="license_button">Просмотреть лицензию</string>
+    <string name="sourceCode">Исходный код</string>
 </resources>

@@ -95,4 +95,6 @@
     <string name="devMode_enabled">Режимот на развивач е овозможен!</string>
     <string name="devMode_reqest">Примена треба да бидете сигурни дека сте на инвеститорот. За да го направите ова, дадете дозвола на апликацијата за да ја видите вашата е-адреса.\n\nДали сакате да даде дозвола?</string>
     <string name="license">"Лиценца: "</string>
+    <string name="license_button">Види лиценца</string>
+    <string name="sourceCode">Изворен код</string>
 </resources>
