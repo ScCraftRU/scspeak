@@ -9,7 +9,7 @@ import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
 /**
- * Created by alexandr on 18.02.17.
+ * Создан пользователем alexandr 18.02.17 20:36, работающем в комманде ScCraft.
  */
 
 public class Word implements Parcelable, Comparable<Word> {
