@@ -12,7 +12,7 @@ import java.net.URL;
 import java.util.ArrayList;
 
 /**
- * Created by alexandr on 18.02.17.
+ * Создан пользователем alexandr 18.02.17 20:01, работающем в комманде ScCraft.
  */
 
 public class NetGet {
