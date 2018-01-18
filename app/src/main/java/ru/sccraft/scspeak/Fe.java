@@ -11,7 +11,7 @@ import java.io.IOException;
 import static android.content.Context.MODE_PRIVATE;
 
 /**
- * Created by alexandr on 19.02.17.
+ * Создан пользователем alexandr 19.02.17 20:05, работающем в комманде ScCraft.
  * Операции с файлами
  */
 
