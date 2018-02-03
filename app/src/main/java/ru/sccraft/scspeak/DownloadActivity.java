@@ -18,7 +18,7 @@ public class DownloadActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_download);
         setTitle(getString(R.string.pleaseWait));
-        pb = (ProgressBar) findViewById(R.id.pb_download);
+        pb = findViewById(R.id.pb_download);
         g = (Get) getLastCustomNonConfigurationInstance();
         if (g == null) {
             g = new Get(this);
