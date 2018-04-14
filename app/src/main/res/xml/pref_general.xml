@@ -28,12 +28,6 @@
             android:title="@string/pref_export" />
     </PreferenceCategory>
     <PreferenceCategory android:title="@string/ads">
-        <CheckBoxPreference
-            android:defaultValue="false"
-            android:icon="@android:drawable/sym_action_email"
-            android:key="disableADsByEmail"
-            android:summary="@string/pref_export_summary"
-            android:title="@string/pref_email" />
         <Preference
             android:icon="@android:drawable/presence_offline"
             android:summary="@string/pref_disableADs_summary"
