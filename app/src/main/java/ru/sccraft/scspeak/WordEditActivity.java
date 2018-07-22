@@ -123,6 +123,7 @@ public class WordEditActivity extends AppCompatActivity implements TextWatcher {
                     if (aFile.contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
                     String JSON = fe.getFile(aFile);
                     Word слово = Word.fromJSON(JSON);
+                    if (слово == null) continue;
                     if (!слово.equals(original)) continue;
                     fileName = aFile;
                     fe.saveFile(fileName, w.toJSON());
@@ -147,6 +148,7 @@ public class WordEditActivity extends AppCompatActivity implements TextWatcher {
                 if (aFile.contains("rList-ru.sccraft.scspeak.")) continue; //устраняет сбой на Samsung GALAXY S6
                 String JSON = fe.getFile(aFile);
                 Word слово = Word.fromJSON(JSON);
+                if (слово == null) continue;
                 if (!(слово.equals(original))) continue;
                 fileName = aFile;
                 deleteFile(fileName);
