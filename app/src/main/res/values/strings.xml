@@ -115,4 +115,8 @@
     <string name="license_button">View license</string>
     <string name="sourceCode">View source code</string>
 
+    <!--Запрос на использование рекламного интендификатора-->
+    <string name="intendificatorReqest">Please provide access to your advertising ID</string>
+    <string name="intendificatorMessage">This app is free, but it contains ads.\nDue to the fact that AdMob by default uses an advertising intensifier, and Google Play requires the user\'s consent to use the advertising intensifier, you need either to allow access to the intensifier, or to refuse to use this application.\n\nPrivacy policy is available in the About window.</string>
+
 </resources>
