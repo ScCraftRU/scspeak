@@ -32,12 +32,14 @@ public class MainActivity extends AppCompatActivity {
     String[] s, vW; //Слова на текущем языке
     ListView lw;
     String[] file;
+    Fe fe;
     SearchView searchView;
     String swResult = ""; //Текст из SearchView
     static String language;
     private Menu menu;
     private MenuItem searchItem;
     private static boolean показывать_диалог = true;
+    private boolean разрешить_использование_интендификатора = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,6 +48,7 @@ public class MainActivity extends AppCompatActivity {
         setContentView(R.layout.activity_main);
         Toolbar toolbar = findViewById(R.id.toolbar);
         setSupportActionBar(toolbar);
+        fe = new Fe(this);
         lw = findViewById(R.id.lw);
         FloatingActionButton fab = findViewById(R.id.fab);
         fab.setOnClickListener(new View.OnClickListener() {
@@ -55,6 +58,35 @@ public class MainActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        String рекламаID = fe.getFile("adid");
+        if (рекламаID.contains("1")) {
+            разрешить_использование_интендификатора = true;
+        } else {
+            разрешить_использование_интендификатора = false;
+        }
+    }
+
+    private void запросить_интендификатор() {
+        android.support.v7.app.AlertDialog.Builder диалог = new android.support.v7.app.AlertDialog.Builder(this);
+        диалог.setTitle(R.string.intendificatorReqest)
+                .setMessage(R.string.intendificatorMessage)
+                .setCancelable(false)
+                .setPositiveButton(R.string.yes, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        fe.saveFile("adid", "1");
+                        разрешить_использование_интендификатора = true;
+                    }
+                })
+                .setNegativeButton(R.string.about, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialog, int which) {
+                        Intent intent = new Intent(MainActivity.this, AboutActivity.class);
+                        startActivity(intent);
+                    }
+                });
+        диалог.show();
     }
 
     @Override
@@ -194,7 +226,6 @@ public class MainActivity extends AppCompatActivity {
     private void updateWordList() {
         boolean имеются_файлы_JSON = false;
         {
-            Fe fe = new Fe(this);
             ArrayList<Word> al = new ArrayList<>();
             for (String файл : file) {
                 if (файл.contains(".json")) {
@@ -355,9 +386,13 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void info(Word word) {
-        Intent intent = new Intent(MainActivity.this, WordInfoActivity.class);
-        intent.putExtra("word", word);
-        startActivity(intent);
+        if (разрешить_использование_интендификатора) {
+            Intent intent = new Intent(MainActivity.this, WordInfoActivity.class);
+            intent.putExtra("word", word);
+            startActivity(intent);
+        } else {
+            запросить_интендификатор();
+        }
     }
 
     private void edit(Word word) {
