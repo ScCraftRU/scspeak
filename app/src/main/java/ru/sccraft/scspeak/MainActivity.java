@@ -9,11 +9,11 @@ import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.PersistableBundle;
 import android.preference.PreferenceManager;
-import android.support.design.widget.FloatingActionButton;
-import android.support.v7.app.AlertDialog;
-import android.support.v7.app.AppCompatActivity;
-import android.support.v7.widget.SearchView;
-import android.support.v7.widget.Toolbar;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
+import androidx.appcompat.app.AlertDialog;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -68,7 +68,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
     private void запросить_интендификатор() {
-        android.support.v7.app.AlertDialog.Builder диалог = new android.support.v7.app.AlertDialog.Builder(this);
+        androidx.appcompat.app.AlertDialog.Builder диалог = new androidx.appcompat.app.AlertDialog.Builder(this);
         диалог.setTitle(R.string.intendificatorReqest)
                 .setMessage(R.string.intendificatorMessage)
                 .setCancelable(false)
