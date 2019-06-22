@@ -1,84 +1,45 @@
 package ru.sccraft.scspeak;
 
-import android.content.DialogInterface;
 import android.os.Bundle;
-import androidx.appcompat.app.ActionBar;
-import androidx.appcompat.app.AlertDialog;
-import androidx.appcompat.app.AppCompatActivity;
+import android.text.TextUtils;
 import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
-import java.util.ArrayList;
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AppCompatActivity;
 
-import ru.sccraft.scspeak.util.IabHelper;
-import ru.sccraft.scspeak.util.IabResult;
-import ru.sccraft.scspeak.util.Inventory;
-import ru.sccraft.scspeak.util.Purchase;
+import com.android.billingclient.api.BillingClient;
+import com.android.billingclient.api.BillingClientStateListener;
+import com.android.billingclient.api.BillingFlowParams;
+import com.android.billingclient.api.BillingResult;
+import com.android.billingclient.api.Purchase;
+import com.android.billingclient.api.PurchasesUpdatedListener;
+import com.android.billingclient.api.SkuDetails;
+import com.android.billingclient.api.SkuDetailsParams;
+import com.android.billingclient.api.SkuDetailsResponseListener;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class DisableADsActivity extends AppCompatActivity {
 
     private static final String LOG_TAG = "DisableADsActivity";
+    private BillingClient mBillingClient;
     Fe fe;
     Button buyButton;
-    IabHelper mHelper;
-    boolean adsDisabled = false;
-    private boolean показывать_сообщение;
-    private String TAG = "DisableADsActivity";
-    IabHelper.OnIabPurchaseFinishedListener mPurchaseFinishedListener = new IabHelper.OnIabPurchaseFinishedListener() {
-        public void onIabPurchaseFinished(IabResult result, Purchase purchase) {
-            if (result.isFailure()) {
-                Log.e(TAG, "Ошибка покупки: " + result);
 
-                AlertDialog.Builder ad = new AlertDialog.Builder(DisableADsActivity.this);
-                ad.setTitle("ERROR");  // заголовок
-                ad.setMessage("" +result);
-                ad.setPositiveButton(getString(R.string.close), new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                    }
-                });
-                ad.setCancelable(true);
-                ad.show();
-                return;
-            }
-            else if (purchase.getSku().equals("ru.sccraft.scspeak.disableads")) {
-                adsDisabled = true;
-                // consume the gas and update the UI
-                adsDisabled = true;
-                fe.saveFile("scspeak-ads", "1");
-                Log.i(LOG_TAG, "Реклама отключена!");
-                Toast.makeText(getApplicationContext(), getString(R.string.adsDisabled), Toast.LENGTH_LONG).show();
-            }
-        }
-    };
+    private Map<String, SkuDetails> mSkuDetailsMap = new HashMap<>();
+    private String интендификатор_товара = "ru.sccraft.scspeak.disableads";
 
-    IabHelper.QueryInventoryFinishedListener mGotInventoryListener = new IabHelper.QueryInventoryFinishedListener() {
-        public void onQueryInventoryFinished(IabResult result, Inventory inventory) {
-
-            if (result.isFailure()) {
-                // handle error here
-                Log.e(LOG_TAG, "" + result);
-            } else {
-                String цена = inventory.getSkuDetails("ru.sccraft.scspeak.disableads").getPrice();
-                if (!показывать_сообщение) buyButton.setText(buyButton.getText().toString() + " (" + цена + ")");
-                // does the user have the premium upgrade?
-                adsDisabled = inventory.hasPurchase("ru.sccraft.scspeak.disableads");
-                // update UI accordingly
-                if (adsDisabled) {
-                    fe.saveFile("scspeak-ads", "1");
-                    Toast.makeText(getApplicationContext(), getString(R.string.adsDisabled), Toast.LENGTH_LONG).show();
-                    finish();
-                } else {
-                    if (показывать_сообщение) Toast.makeText(getApplicationContext(), getString(R.string.notBuyed), Toast.LENGTH_SHORT).show();
-                    показывать_сообщение = true;
-                }
-            }
-        }
-    };
-
-
+    private List<Purchase> queryPurchases() {
+        Purchase.PurchasesResult purchasesResult = mBillingClient.queryPurchases(BillingClient.SkuType.INAPP);
+        return purchasesResult.getPurchasesList();
+    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -86,35 +47,67 @@ public class DisableADsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_disable_ads);
         setTitle(getString(R.string.disableADs));
         setupActionBar();
-        buyButton = (Button) findViewById(R.id.button_buy);
+        buyButton = findViewById(R.id.button_buy);
         fe = new Fe(this);
-        String base64EncodedPublicKey = "MIIBIjANBgkqhkiG9w0BAQEFAAOCAQ8AMIIBCgKCAQEAi4FjCgarlg4fXq0hnhUeLmQxQs3GFbZXZRKOFw7Dj5b0+rtghIy0JpLciorCVrSOqLphths3uT7AIabWR3AfHa/1R3IIAHutXsV4d83z86bYAeExEHqBZEiJslmpm/S1ghI3PpkOASByYKwjU3Gl0UHiINlr8AAuTfJElhgQDnVoWmwH8QVT2WrshtVDF6/YZkLxEmlfNkbupjG6CqDaypiywquiDXfAo8RKfHgBcqoPcAYtBAOCzUhSFjYY2Af4b7DRnas4HLrTE84NaygqsuJYp0tI+C9frZBneLmne7OVs1PTqUvdjosOy+R2NH+xxYNE8btsbQSCyGkAwXDLrQIDAQAB";
-        показывать_сообщение = false;
 
-        // compute your public key and store it in base64EncodedPublicKey
-        mHelper = new IabHelper(this, base64EncodedPublicKey);
-        mHelper.enableDebugLogging(true, "In-app-billing");
-        mHelper.startSetup(new IabHelper.OnIabSetupFinishedListener() {
-            public void onIabSetupFinished(IabResult result) {
-                if (!result.isSuccess()) {
-                    // Oh no, there was a problem.
-                    Log.e(TAG, "Problem setting up In-app Billing: " + result);
-
-                    AlertDialog.Builder ad = new AlertDialog.Builder(DisableADsActivity.this);
-                    ad.setTitle("ERROR");  // заголовок
-                    ad.setMessage("" + result);
-                    ad.setPositiveButton(getString(R.string.close), new DialogInterface.OnClickListener() {
-                        @Override
-                        public void onClick(DialogInterface dialog, int which) {
-                        }
-                    });
-                    ad.setCancelable(true);
-                    ad.show();
-                }
-                // Hooray, IAB is fully set up!
+        mBillingClient = BillingClient.newBuilder(this).setListener(new PurchasesUpdatedListener() {
+            @Override
+            public void onPurchasesUpdated(BillingResult billingResult, @Nullable List<Purchase> purchases) {
+                //сюда мы попадем когда будет осуществлена покупка
                 восстановить();
             }
+        }).enablePendingPurchases().build();
+        mBillingClient.startConnection(new BillingClientStateListener() {
+
+            @Override
+            public void onBillingSetupFinished(BillingResult billingResult) {
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    // The BillingClient is ready. You can query purchases here.
+                    //здесь мы можем запросить информацию о товарах и покупках
+                    получить_информацию_о_товарах();
+
+                    List<Purchase> purchasesList = queryPurchases(); //запрос о покупках
+
+                    //если товар уже куплен, предоставить его пользователю
+                    for (int i = 0; i < purchasesList.size(); i++) {
+                        String purchaseId = purchasesList.get(i).getSku();
+                        if(TextUtils.equals(интендификатор_товара, purchaseId)) {
+                            восстановить();
+                        }
+                    }
+                }
+
+            }
+
+            @Override
+            public void onBillingServiceDisconnected() {
+                //сюда мы попадем если что-то пойдет не так
+            }
         });
+    }
+
+    private void получить_информацию_о_товарах() {
+        SkuDetailsParams.Builder skuDetailsParamsBuilder = SkuDetailsParams.newBuilder();
+        List<String> skuList = new ArrayList<>();
+        skuList.add(интендификатор_товара);
+        skuDetailsParamsBuilder.setSkusList(skuList).setType(BillingClient.SkuType.INAPP);
+        mBillingClient.querySkuDetailsAsync(skuDetailsParamsBuilder.build(), new SkuDetailsResponseListener() {
+            @Override
+            public void onSkuDetailsResponse(BillingResult billingResult, List<SkuDetails> skuDetailsList) {
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
+                    for (SkuDetails skuDetails : skuDetailsList) {
+                        mSkuDetailsMap.put(skuDetails.getSku(), skuDetails);
+                    }
+                }
+            }
+        });
+    }
+
+    public void купить(String skuId) {
+        BillingFlowParams billingFlowParams = BillingFlowParams.newBuilder()
+                .setSkuDetails(mSkuDetailsMap.get(skuId))
+                .build();
+        mBillingClient.launchBillingFlow(this, billingFlowParams);
     }
 
     private void setupActionBar() {
@@ -128,39 +121,17 @@ public class DisableADsActivity extends AppCompatActivity {
     @Override
     public void onDestroy() {
         super.onDestroy();
-        if (mHelper != null) try {
-            mHelper.dispose();
-        } catch (IabHelper.IabAsyncInProgressException | IllegalArgumentException e) {
-            e.printStackTrace();
-        }
-        mHelper = null;
-    }
-
-    private void купить() {
-        try {
-            mHelper.launchPurchaseFlow(this, "ru.sccraft.scspeak.disableads", 10001, mPurchaseFinishedListener, "Язык: " + MainActivity.language);
-        } catch (IabHelper.IabAsyncInProgressException e) {
-            e.printStackTrace();
-            Toast.makeText(getApplication(), R.string.unavableInThisMoment, Toast.LENGTH_LONG).show();
-        } catch (IllegalStateException ex) {
-            ex.printStackTrace();
-        }
     }
 
     private void восстановить() {
-        ArrayList<String> товары = new ArrayList<>(1);
-        товары.add("ru.sccraft.scspeak.disableads");
-        try {
-            mHelper.queryInventoryAsync(true,товары, null, mGotInventoryListener);
-        } catch (IabHelper.IabAsyncInProgressException e) {
-            e.printStackTrace();
-            Toast.makeText(getApplication(), R.string.unavableInThisMoment, Toast.LENGTH_LONG).show();
-        } catch (IllegalStateException ex) {
-            ex.printStackTrace();
-        }
+        //Зачем покупать, если можно с root файл создать... (или переименовать adid)
+        fe.saveFile("scspeak-ads", "1");
+        Log.i(LOG_TAG, "Реклама отключена!");
+        Toast.makeText(getApplicationContext(), R.string.adsDisabled, Toast.LENGTH_SHORT).show();
+        finish();
     }
     public void buy(View view) {
-        купить();
+        купить(интендификатор_товара);
     }
 
     public void restore(View view) {

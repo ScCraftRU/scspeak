@@ -37,6 +37,7 @@ dependencies {
     implementation 'com.google.firebase:firebase-ads:18.0.0'
     implementation 'com.google.firebase:firebase-crash:16.2.1'
     implementation 'com.google.firebase:firebase-core:17.0.0'
+    implementation 'com.android.billingclient:billing:2.0.1'
     testImplementation 'junit:junit:4.12'
 }
 
