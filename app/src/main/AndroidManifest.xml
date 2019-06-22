@@ -118,24 +118,6 @@
                 android:value="ru.sccraft.scspeak.SettingsActivity" />
         </activity>
 
-        <service android:name=".MyFirebaseMessagingService">
-            <intent-filter>
-                <action android:name="com.google.firebase.MESSAGING_EVENT" />
-            </intent-filter>
-        </service>
-        <service android:name=".MyFirebaseInstanceIDService">
-            <intent-filter>
-                <action android:name="com.google.firebase.INSTANCE_ID_EVENT" />
-            </intent-filter>
-        </service>
-        <service
-            android:name=".MyJobService"
-            android:exported="false">
-            <intent-filter>
-                <action android:name="com.firebase.jobdispatcher.ACTION_EXECUTE" />
-            </intent-filter>
-        </service>
-
         <activity android:name=".HelpActivity">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
