@@ -1,5 +1,6 @@
 package ru.sccraft.scspeak;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.text.TextUtils;
 import android.util.Log;
@@ -9,6 +10,7 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.ActionBar;
+import androidx.appcompat.app.AlertDialog;
 import androidx.appcompat.app.AppCompatActivity;
 
 import com.android.billingclient.api.BillingClient;
@@ -54,7 +56,9 @@ public class DisableADsActivity extends AppCompatActivity {
             @Override
             public void onPurchasesUpdated(BillingResult billingResult, @Nullable List<Purchase> purchases) {
                 //сюда мы попадем когда будет осуществлена покупка
-                восстановить();
+                if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK && purchases != null) {
+                    восстановить();
+                }
             }
         }).enablePendingPurchases().build();
         mBillingClient.startConnection(new BillingClientStateListener() {
@@ -75,6 +79,10 @@ public class DisableADsActivity extends AppCompatActivity {
                             восстановить();
                         }
                     }
+                }
+                else {
+                    Log.w(LOG_TAG, "Ошибка In-App Billing №" + billingResult.getResponseCode() + " " + billingResult.getDebugMessage());
+                    показать_диалог_ошибки(billingResult.getDebugMessage());
                 }
 
             }
@@ -97,10 +105,30 @@ public class DisableADsActivity extends AppCompatActivity {
                 if (billingResult.getResponseCode() == BillingClient.BillingResponseCode.OK) {
                     for (SkuDetails skuDetails : skuDetailsList) {
                         mSkuDetailsMap.put(skuDetails.getSku(), skuDetails);
+                        String цена = skuDetails.getPrice();
+                        if (skuDetails.getSku().equals(интендификатор_товара)) {
+                            String text = buyButton.getText().toString();
+                            text = text + " (" + цена + ")";
+                        }
                     }
                 }
             }
         });
+    }
+
+    private void показать_диалог_ошибки(String сообщение) {
+        AlertDialog.Builder диалог = new AlertDialog.Builder(this);
+        диалог.setTitle("ERROR")
+                .setMessage(сообщение)
+                .setCancelable(true)
+                .setIcon(android.R.drawable.stat_notify_error)
+                .setPositiveButton(R.string.close, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+
+                    }
+                });
+        диалог.show();
     }
 
     public void купить(String skuId) {

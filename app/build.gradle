@@ -7,8 +7,8 @@ android {
         applicationId "ru.sccraft.scspeak"
         minSdkVersion 17
         targetSdkVersion 29
-        versionCode 77
-        versionName "1.8"
+        versionCode 78
+        versionName "1.9dev1"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
         vectorDrawables.useSupportLibrary = true
     }
