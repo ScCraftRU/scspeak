@@ -107,8 +107,9 @@ public class DisableADsActivity extends AppCompatActivity {
                         mSkuDetailsMap.put(skuDetails.getSku(), skuDetails);
                         String цена = skuDetails.getPrice();
                         if (skuDetails.getSku().equals(интендификатор_товара)) {
-                            String text = buyButton.getText().toString();
-                            text = text + " (" + цена + ")";
+                            String текст = buyButton.getText().toString();
+                            текст = текст + " (" + цена + ")";
+                            buyButton.setText(текст);
                         }
                     }
                 }
