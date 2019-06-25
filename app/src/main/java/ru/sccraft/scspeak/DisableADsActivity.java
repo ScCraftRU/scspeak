@@ -163,7 +163,7 @@ public class DisableADsActivity extends AppCompatActivity {
         купить(интендификатор_товара);
     }
 
-    public void restore(View view) {
+    public void getItFree(View view) {
         восстановить();
     }
 }

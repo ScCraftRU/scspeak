@@ -14,8 +14,8 @@
         android:layout_alignParentEnd="true"
         android:layout_marginBottom="26dp"
         android:layout_marginEnd="30dp"
-        android:onClick="restore"
-        android:text="@string/restorePurchases" />
+        android:onClick="getItFree"
+        android:text="@string/getItFree" />
 
     <Button
         android:id="@+id/button_buy"

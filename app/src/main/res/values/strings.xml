@@ -83,7 +83,7 @@
     <string name="pref_email">Developer mode</string>
     <string name="buy">Buy</string>
     <string name="ads">Advertisement</string>
-    <string name="restorePurchases">restore purchases</string>
+    <string name="getItFree">Get it free!</string>
     <string name="disableADs">Disable advertisement</string>
     <string name="exportAll">Export al words</string>
     <string name="notBuyed">You are no have this in-app product!</string>

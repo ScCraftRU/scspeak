@@ -64,7 +64,7 @@
     <string name="pref_email">Дозволи пристап кон Email</string>
     <string name="buy">Купи</string>
     <string name="ads">Реклама</string>
-    <string name="restorePurchases">Враќање на набавките</string>
+    <string name="getItFree">Земете бесплатно!</string>
     <string name="disableADs">Исклучи ја рекламата</string>
     <string name="exportAll">Експортира ги сите зборови</string>
     <string name="notBuyed"> Овој производ не е купен!</string>

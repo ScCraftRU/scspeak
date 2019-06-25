@@ -1,11 +1,11 @@
 <component name="libraryTable">
   <library name="Gradle: com.android.billingclient:billing:2.0.1@aar">
     <ANNOTATIONS>
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9bc7332bf0da05d2157001e44ccf0b22/annotations.zip!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e1a0526cf6a9b6eb4d2a59bbc483e89/annotations.zip!/" />
     </ANNOTATIONS>
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9bc7332bf0da05d2157001e44ccf0b22/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9bc7332bf0da05d2157001e44ccf0b22/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e1a0526cf6a9b6eb4d2a59bbc483e89/res" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/0e1a0526cf6a9b6eb4d2a59bbc483e89/jars/classes.jar!/" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>
