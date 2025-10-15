@@ -203,21 +203,18 @@ public class MainActivity extends AppCompatActivity {
         int id = item.getItemId();
 
         //noinspection SimplifiableIfStatement
-        switch (id) {
-            case R.id.action_exportAll:
-                exportAllWords();
-                break;
-            case R.id.action_settings:
-                Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
-                startActivity(intent);
-                return true;
-            case R.id.action_help:
-                Intent intent2 = new Intent(MainActivity.this, HelpActivity.class);
-                startActivity(intent2);
-                break;
-            case R.id.action_about:
-                Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
-                startActivity(intent1);
+        if (id == R.id.action_exportAll) {
+            exportAllWords();
+        } else if (id == R.id.action_settings) {
+            Intent intent = new Intent(MainActivity.this, SettingsActivity.class);
+            startActivity(intent);
+            return true;
+        } else if (id == R.id.action_help) {
+            Intent intent2 = new Intent(MainActivity.this, HelpActivity.class);
+            startActivity(intent2);
+        } else if (id == R.id.action_about) {
+            Intent intent1 = new Intent(MainActivity.this, AboutActivity.class);
+            startActivity(intent1);
         }
 
         return super.onOptionsItemSelected(item);

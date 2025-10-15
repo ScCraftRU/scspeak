@@ -15,16 +15,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TextView;
 
-import com.google.android.gms.ads.AdRequest;
-import com.google.android.gms.ads.AdView;
-
 public class WordInfoActivity extends AppCompatActivity {
 
     Word w;
     TextView thisLanguage;
     LinearLayout llEN, llMK, llRU;
     Button bEN, bMK, bRU;
-    private AdView adView;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -41,8 +37,6 @@ public class WordInfoActivity extends AppCompatActivity {
         bRU = findViewById(R.id.wordInfo_ru);
 
         // Load an ad into the AdMob banner view.
-        adView = findViewById(R.id.adView);
-        показать_рекламу();
         if (w == null) return;
         switch (getString(R.string.getSystemLanguage)) {
             case "en":
@@ -121,13 +115,12 @@ public class WordInfoActivity extends AppCompatActivity {
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
 
-        switch (id) {
-            case R.id.action_share:
-                поделиться();
-                return true;
-            case R.id.action_toServer:
-                экспорт_на_сервер();
-                return true;
+        if (id == R.id.action_share) {
+            поделиться();
+            return true;
+        } else if (id == R.id.action_toServer) {
+            экспорт_на_сервер();
+            return true;
         }
 
         return super.onOptionsItemSelected(item);
@@ -204,16 +197,6 @@ public class WordInfoActivity extends AppCompatActivity {
         });
         ad.setCancelable(true);
         ad.show();
-    }
-
-    private void показать_рекламу() {
-        adView.setVisibility(View.GONE);
-        Fe fe = new Fe(this);
-        String AD_DATA = fe.getFile("scspeak-ads");
-        if (AD_DATA.contains("1")) return; //Для повышения вероятности работы покупки. Раньше использовался equals.
-        adView.setVisibility(View.VISIBLE);
-        AdRequest adRequest = new AdRequest.Builder().setRequestAgent("android_studio:ad_template").build();
-        adView.loadAd(adRequest);
     }
 
     public void trancriptionEN(View view) {

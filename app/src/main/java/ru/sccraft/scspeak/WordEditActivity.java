@@ -90,13 +90,11 @@ public class WordEditActivity extends AppCompatActivity implements TextWatcher {
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
         int id = item.getItemId();
-        switch (id) {
-            case R.id.action_save:
-                save();
-                return true;
-            case R.id.action_delete:
-                delete();
-                break;
+        if (id == R.id.action_save) {
+            save();
+            return true;
+        } else if (id == R.id.action_delete) {
+            delete();
         }
         return super.onOptionsItemSelected(item);
     }
